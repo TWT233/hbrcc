@@ -1,4 +1,3 @@
-import {Modifier} from "./hit";
 import {Skill} from "./skill";
 
 export class Character {

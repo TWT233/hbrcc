@@ -1,5 +1,5 @@
 import {Character} from "./character";
-import {Modifier} from "./modifier";
+import {Modifier} from "./modifier/modifier";
 import {Enemy} from "./enemy";
 
 export class Hit {

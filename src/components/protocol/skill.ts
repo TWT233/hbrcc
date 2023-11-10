@@ -1,4 +1,4 @@
-import {Modifier} from "./modifier";
+import {Modifier} from "./modifier/modifier";
 import {Stat} from "./character";
 
 export interface Skill {

@@ -2,25 +2,14 @@
 </script>
 
 <template>
-  <header>
-    placeholder1
-  </header>
+  <v-layout class="rounded rounded-md">
+    <v-app-bar title="Application bar"></v-app-bar>
 
-  <main>
-    <a>placeholder</a>
-  </main>
+    <v-main class="d-flex align-center justify-center" style="min-height: 300px;">
+      Main Content
+    </v-main>
+  </v-layout>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-}
 </style>

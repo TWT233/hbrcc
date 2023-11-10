@@ -13,10 +13,15 @@ class CustomMod implements Modifier {
     value: number;
 }
 
-class DefaultATKBuff implements Modifier {
+export class DefaultATKBuff implements Modifier {
     main = MainTypes.ATK
     sub = ATK.NORMAL
     value: number
+    
+    constructor(sub: ATK, value: number) {
+        this.sub = sub;
+        this.value = value;
+    }
 }
 
 

@@ -1,3 +1,10 @@
 export class Enemy {
-    Border: number
+    border: number
+
+    type: EnemyType
+}
+
+export enum EnemyType {
+    HP,
+    DP,
 }

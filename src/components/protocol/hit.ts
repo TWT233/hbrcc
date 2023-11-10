@@ -1,18 +1,36 @@
 import {Character} from "./character";
-import {MainType, Modifier, ModifierType} from "./modifier/modifier";
+import {Modifier} from "./modifier/modifier";
 import {Enemy} from "./enemy";
+import {MainTypes} from "./modifier/types";
 
 export class Hit {
     char: Character
     enemy: Enemy
 
-    mods: Record<MainType, Modifier[]>
+    mods: Record<MainTypes, Modifier[]>
+
+    check(): boolean {
+        return this.char.skill.requiredStats.every(s => s in this.char.stat)
+    }
 
     calculate(): number {
-        let base = this.getBaseDamage()
-        let ratk = this.dealWithATK()
+        this.char.skill.presetModifiers.forEach(m => this.addMod(m))
 
-        return base * ratk
+        let rs: number[] = []
+        rs.push(
+            defaultModValueCalc(
+                this.mods[MainTypes.ATK]
+            ),
+            defaultModValueCalc(
+                this.mods[MainTypes.EnemyType].filter(v => v.sub == this.enemy.type)
+            ),
+        )
+
+        return this.getBaseDamage() * rs.reduce((a, b) => a * b, 1)
+    }
+
+    addMod(mod: Modifier) {
+        this.mods[mod.main].push(mod)
     }
 
     getBaseDamage(): number {
@@ -41,16 +59,22 @@ export class Hit {
         return sd / this.char.skill.requiredStats.length - this.enemy.border
     }
 
-    dealWithATK(): number {
-        let r = 1
-        let ms = this.categorizeBySubType(this.mods[MainType.ATK])
-        
+}
 
-        return r
+
+function defaultModValueCalc(mods: Modifier[]): number {
+    let res = 1
+    let modMapSub = categorizeAndSort(mods)
+    for (let sub in modMapSub) {
+        res += modMapSub[sub].slice(0, 2).reduce((a, b) => a + b.value, 0)
     }
+    return res
+}
 
-    categorizeBySubType(ms: Modifier[]): Record<any, Modifier[]> {
-        return ms.reduce((res, v) => res[v.type[1]].push(v), {})
+function categorizeAndSort(ms: Modifier[]): Record<any, Modifier[]> {
+    let res: Record<any, Modifier[]> = ms.reduce((res, v) => res[v.sub].push(v), {})
+    for (const sub in res) {
+        res[sub].sort((m1, m2) => m1.value - m2.value)
     }
-
+    return res
 }

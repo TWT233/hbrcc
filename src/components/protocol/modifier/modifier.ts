@@ -1,12 +1,32 @@
+import {EnemyType} from "../enemy";
+import {ATK, MainTypes, SubTypes} from "./types";
+
 export interface Modifier {
-    readonly type: ModifierType
+    readonly main: MainTypes
+    readonly sub: SubTypes
     readonly value: number
 }
 
-export type ModifierType = [MainType, any] // [MainType, SubType]
-// SubType is defined according to specific MainType implements, thus typing with any here
+class CustomMod implements Modifier {
+    main = MainTypes.ATK
+    sub: any;
+    value: number;
+}
 
-export enum MainType {
-    ATK,
-    ON_ENEMY_TYPE,
+class DefaultATKBuff implements Modifier {
+    main = MainTypes.ATK
+    sub = ATK.NORMAL
+    value: number
+}
+
+
+export class DefaultEnemyType implements Modifier {
+    main = MainTypes.EnemyType
+    sub = EnemyType.HP;
+    value: number;
+
+    constructor(t: EnemyType, value: number) {
+        this.sub = t
+        this.value = value;
+    }
 }

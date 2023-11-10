@@ -6,8 +6,13 @@ import {MainTypes} from "./modifier/types";
 export class Hit {
     char: Character
     enemy: Enemy
+    isCrit: boolean
 
     mods: Record<MainTypes, Modifier[]>
+
+    addMod(mod: Modifier) {
+        this.mods[mod.main].push(mod)
+    }
 
     check(): boolean {
         return this.char.skill.requiredStats.every(s => s in this.char.stat)
@@ -18,23 +23,19 @@ export class Hit {
 
         let rs: number[] = []
         rs.push(
-            defaultModValueCalc(
-                this.mods[MainTypes.ATK]
-            ),
+            defaultModValueCalc(this.mods[MainTypes.ATK]),
+            defaultModValueCalc(this.mods[MainTypes.DEF]),
+            defaultModValueCalc(this.mods[MainTypes.FRAGILE]),
             defaultModValueCalc(
                 this.mods[MainTypes.EnemyType].filter(v => v.sub == this.enemy.type)
             ),
         )
 
-        return this.getBaseDamage() * rs.reduce((a, b) => a * b, 1)
+        return this.calcBaseDamage() * rs.reduce((a, b) => a * b, 1)
     }
 
-    addMod(mod: Modifier) {
-        this.mods[mod.main].push(mod)
-    }
-
-    getBaseDamage(): number {
-        let sd = this.getSD()
+    calcBaseDamage(): number {
+        let sd = this.calcSD(this.isCrit)
         let skill = this.char.skill
         let cap = skill.cap
 
@@ -50,13 +51,13 @@ export class Hit {
         return skill.bar[1]
     }
 
-    getSD(): number {
+    calcSD(isCrit: boolean): number {
         let sd =
             this.char.skill.requiredStats
                 .map((v) => this.char.stat[v])
                 .reduce((a, b) => a + b)
 
-        return sd / this.char.skill.requiredStats.length - this.enemy.border
+        return sd / this.char.skill.requiredStats.length - (this.enemy.border - (isCrit ? 50 : 0))
     }
 
 }

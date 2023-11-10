@@ -29,11 +29,3 @@ export enum DEF {
 export enum FRAGILE {
     NORMAL,
 }
-
-
-export const MAIN_SUB_MAP: Record<MainTypes, any> = {
-    [MainTypes.ATK]: ATK,
-    [MainTypes.DEF]: DEF,
-    [MainTypes.FRAGILE]: FRAGILE,
-    [MainTypes.EnemyType]: EnemyType
-}

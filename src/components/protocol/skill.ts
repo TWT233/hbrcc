@@ -16,9 +16,9 @@ export class DefaultSkill implements Skill {
     bar: [number, number] = [2502, 12510]
     cap = 147
 
-    enemyTypeModifier = new DefaultEnemyType(EnemyType.HP, 0.5)
-    eleATKModifier = new DefaultATKBuff(ATK.ELEMENT, 50)
+    enemyTypeMod = new DefaultEnemyType(EnemyType.HP, 0.5)
+    eleATKMod = new DefaultATKBuff(ATK.ELEMENT, 50)
 
-    presetModifiers: Modifier[] = [this.enemyTypeModifier, this.eleATKModifier]
+    presetModifiers: Modifier[] = [this.enemyTypeMod, this.eleATKMod]
 
 }

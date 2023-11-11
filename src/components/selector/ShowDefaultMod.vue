@@ -17,7 +17,7 @@ const dialog = ref(false)
 </script>
 
 <template>
-  <v-chip closable elevation="8" size="large" @click:close="$emit('del')">
+  <v-chip closable @click:close="$emit('del')">
     <v-icon start icon="mdi-pencil"></v-icon>
     {{ mod.main }} | {{ mod.sub }} | {{ (mod.value * 100 | 0) }}%
     <v-dialog v-model="dialog" activator="parent" width="auto">

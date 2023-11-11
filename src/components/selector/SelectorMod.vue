@@ -1,27 +1,27 @@
-<script setup lang="ts">
-import {defineProps, defineEmits} from "vue"
+<script lang="ts" setup>
+import {defineEmits, defineProps} from "vue"
 
 import ShowMod from "@/components/selector/ShowDefaultMod.vue";
 
-import {Modifier, DefaultATKBuff} from "@/components/model/modifier/modifier";
-import {ATK} from "@/components/model/modifier/types";
+import {DefaultATKBuff, Modifier} from "@/components/model/modifier/modifier";
+import {ATK, MainTypes} from "@/components/model/modifier/types";
 
 const props = defineProps<{
-  selectedMods: Modifier[]
+  mods: Record<MainTypes, Modifier[]>
 }>()
 
 const emit = defineEmits<{
   update: [
-    selectedMods: Modifier[],
+    mods: Record<MainTypes, Modifier[]>,
   ]
 }>()
 
 function addMod() {
-  props.selectedMods.push(new DefaultATKBuff(ATK.NORMAL, 0.5))
+  props.mods[MainTypes.ATK].push(new DefaultATKBuff(ATK.NORMAL, 0.5))
 }
 
-function deleteMod(index) {
-  props.selectedMods.splice(index, 1)
+function deleteMod(ii, index) {
+  ii.splice(index, 1)
 }
 </script>
 
@@ -32,9 +32,10 @@ function deleteMod(index) {
       <v-btn icon="mdi-plus" @click="addMod()"></v-btn>
     </v-toolbar>
     <v-container>
-      <v-row>
-        <v-col v-for="i in selectedMods.length" :key="i" cols="auto">
-          <ShowMod v-model:mod="selectedMods[i-1]" @del="deleteMod(i-1)"></ShowMod>
+      <v-row v-for="(mt,index) in mods" :key="mt">
+        <v-divider v-if="index>0&&mt.length>0"></v-divider>
+        <v-col v-for="i in mt.length" :key="i" cols="auto">
+          <ShowMod v-model:mod="mt[i-1]" @del="deleteMod(mt,i-1)"></ShowMod>
         </v-col>
       </v-row>
     </v-container>

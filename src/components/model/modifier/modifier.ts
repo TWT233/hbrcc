@@ -7,7 +7,7 @@ export interface Modifier {
     readonly value: number
 }
 
-class CustomMod implements Modifier {
+export class CustomMod implements Modifier {
     main = MainTypes.ATK
     sub: any;
     value: number;
@@ -16,8 +16,8 @@ class CustomMod implements Modifier {
 export class DefaultATKBuff implements Modifier {
     main = MainTypes.ATK
     sub = ATK.NORMAL
-    value: number
-    
+    value: number = 0
+
     constructor(sub: ATK, value: number) {
         this.sub = sub;
         this.value = value;

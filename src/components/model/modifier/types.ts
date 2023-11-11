@@ -1,10 +1,10 @@
 import {EnemyType} from "../enemy";
 
 export enum MainTypes {
-    ATK,
-    DEF,
-    FRAGILE,
-    EnemyType,
+    ATK = 'ATK',
+    DEF = 'DEF',
+    FRAGILE = 'FRAGILE',
+    EnemyType = 'EnemyType',
 }
 
 export type SubTypes =

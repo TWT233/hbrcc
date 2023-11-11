@@ -1,11 +1,10 @@
-<script setup lang="ts">
-import {defineProps, ref} from "vue";
+<script lang="ts" setup>
+import {ref} from "vue";
 
 import SelectorMod from "@/components/selector/SelectorMod.vue";
-import {Modifier} from "@/components/model/modifier/modifier";
 import SelectorEnemy from "@/components/selector/SelectorEnemy.vue";
-import {Enemy} from "@/components/model/enemy";
 import SelectorChar from "@/components/selector/SelectorChar.vue";
+
 import {Hit} from "@/components/model/hit";
 
 const hit = ref(new Hit())
@@ -31,7 +30,7 @@ const hit = ref(new Hit())
               </v-col>
             </v-row>
           </v-col>
-          <v-col cols="12" md="6" lg="4">
+          <v-col cols="12" lg="4" md="6">
             <SelectorMod v-model:mods="hit.mods"></SelectorMod>
           </v-col>
         </v-row>

@@ -4,11 +4,11 @@ import {Enemy} from "./enemy";
 import {MainTypes} from "./modifier/types";
 
 export class Hit {
-    char: Character
-    enemy: Enemy
-    isCrit: boolean
+    char: Character = new Character()
+    enemy: Enemy = new Enemy()
+    isCrit: boolean = true
 
-    mods: Record<MainTypes, Modifier[]>
+    mods: Record<MainTypes, Modifier[]> = {ATK: [], DEF: [], EnemyType: [], FRAGILE: []}
 
     addMod(mod: Modifier) {
         this.mods[mod.main].push(mod)

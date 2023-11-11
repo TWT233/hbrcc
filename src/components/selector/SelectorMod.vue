@@ -28,7 +28,7 @@ function deleteMod(index) {
 <template>
   <v-card>
     <v-toolbar>
-      <v-toolbar-title>Buffs</v-toolbar-title>
+      <v-toolbar-title>Buffs & DeBuffs</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon="mdi-plus" @click="addMod()"></v-btn>
     </v-toolbar>

@@ -8,6 +8,6 @@ export class Enemy {
 }
 
 export enum EnemyType {
-    HP,
-    DP,
+    HP = "HP",
+    DP = "DP",
 }

@@ -1,10 +1,10 @@
 import {EnemyType} from "../enemy";
 
 export enum MainTypes {
-    ATK = 'ATK',
-    DEF = 'DEF',
-    FRAGILE = 'FRAGILE',
-    EnemyType = 'EnemyType',
+    ATK = "ATK",
+    DEF = "DEF",
+    FRAGILE = "FRAGILE",
+    EnemyType = "EnemyType",
 }
 
 export type SubTypes =
@@ -14,8 +14,8 @@ export type SubTypes =
     | EnemyType;
 
 export enum ATK {
-    NORMAL, // normal atk buff
-    ELEMENT,
+    NORMAL = "NORMAL", // normal atk buff
+    ELEMENT = "ELEMENT",
 }
 
 export enum DEF {

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import {defineEmits, defineProps, onMounted, ref} from "vue";
-import {ATK, MainTypes, Modifier} from "@/model/modifier";
+import {defineEmits, defineProps} from "vue";
+import {ATK, Modifier} from "@/model/modifier";
 
 const props = defineProps<{
   mod: Modifier,
@@ -9,16 +9,21 @@ const props = defineProps<{
 const emit = defineEmits<{
   'update:mod': [mod: Modifier]
 }>()
-
-let modd = ref(new Modifier(MainTypes.ATK, ATK.NORMAL, 0.9))
-
-onMounted(() => {
-  emit('update:mod', modd.value)
-})
 </script>
 
 <template>
-  <v-card title="ATK Buff"></v-card>
+  <v-card title="ATK Buff">
+    <v-container>
+      <v-row>
+        <v-col cols="6">
+          <v-combobox v-model="mod.sub" :items="Object.keys(ATK)" label="sub"></v-combobox>
+        </v-col>
+        <v-col cols="6">
+          <v-text-field v-model="mod.value" label="value"></v-text-field>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-card>
 </template>
 
 <style scoped>

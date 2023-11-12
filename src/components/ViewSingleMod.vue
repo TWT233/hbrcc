@@ -10,7 +10,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  update: [
+  'update:mod': [
     mod: Modifier,
   ],
   del: []
@@ -18,7 +18,7 @@ const emit = defineEmits<{
 
 const wrappedMod = computed({
   get: () => props.mod,
-  set: value => emit('update', value)
+  set: value => emit('update:mod', value)
 })
 
 const dialog = ref(false)

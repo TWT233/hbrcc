@@ -13,8 +13,8 @@ const emit = defineEmits<{
 }>()
 
 const destructionPercent = computed({
-  get: () => props.enemy.destruction * 100,
-  set: value => props.enemy.destruction = value / 100
+  get: () => props.enemy.des * 100,
+  set: value => props.enemy.des = value / 100
 })
 const phyWeakPercent = computed({
   get: () => props.enemy.phyWeak * 100,

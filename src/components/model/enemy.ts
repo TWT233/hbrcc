@@ -4,7 +4,7 @@ export class Enemy {
     eleWeak: number = 0
     phyWeak: number = 0
 
-    destruction: number = 1
+    des: number = 1 // Destruction
 
     type: EnemyType = EnemyType.HP
 }

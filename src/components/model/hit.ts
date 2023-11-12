@@ -19,15 +19,15 @@ export class Hit {
     }
 
     calculate(): number {
-        this.char.skill.presetModifiers.forEach(m => this.addMod(m))
+        let mods = {...this.mods, ...this.char.skill.presetModifiers}
 
         let rs: number[] = []
         rs.push(
-            defaultModValueCalc(this.mods[MainTypes.ATK]),
-            defaultModValueCalc(this.mods[MainTypes.DEF]),
-            defaultModValueCalc(this.mods[MainTypes.FRAGILE]),
+            defaultModValueCalc(mods[MainTypes.ATK]),
+            defaultModValueCalc(mods[MainTypes.DEF]),
+            defaultModValueCalc(mods[MainTypes.FRAGILE]),
             defaultModValueCalc(
-                this.mods[MainTypes.EnemyType].filter(v => v.sub == this.enemy.type)
+                mods[MainTypes.EnemyType].filter(v => v.sub == this.enemy.type)
             ),
         )
 

@@ -3,7 +3,7 @@ import {defineEmits, defineProps} from "vue"
 
 import ViewSingleMod from "@/components/ViewSingleMod.vue";
 
-import {DefaultATKBuff, Modifier} from "@/components/model/modifier/modifier";
+import {ATKBuff, Modifier} from "@/components/model/modifier/modifier";
 import {ATK, MainTypes} from "@/components/model/modifier/types";
 
 const props = defineProps<{
@@ -18,7 +18,7 @@ const emit = defineEmits<{
 }>()
 
 function addMod() {
-  props.mods[MainTypes.ATK].push(new DefaultATKBuff(ATK.NORMAL, 0.5))
+  props.mods[MainTypes.ATK].push(new ATKBuff(ATK.NORMAL, 0.5))
 }
 
 function deleteMod(ii, index) {

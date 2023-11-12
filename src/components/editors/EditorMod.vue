@@ -18,12 +18,15 @@ const emit = defineEmits<{
 
 <template>
   <v-card>
-    <v-toolbar title="Buff Detail">
+    <v-toolbar title="Buff Editor">
       <v-btn icon="mdi-delete" @click="$emit('del')"></v-btn>
     </v-toolbar>
     <v-tabs v-model="mod.main">
       <v-tab v-for="i in Object.keys(MainTypes)" :value="i">{{ i }}</v-tab>
     </v-tabs>
+    <v-window :model-value="mod.main">
+      <v-window-item v-for="i in Object.keys(MainTypes)" :value="i">{{ i }}</v-window-item>
+    </v-window>
   </v-card>
 </template>
 

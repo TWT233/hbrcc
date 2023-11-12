@@ -1,6 +1,6 @@
 import {Character} from "./character";
 import {Modifier} from "./modifier/modifier";
-import {Enemy} from "./enemy";
+import {Enemy, EnemyType} from "./enemy";
 import {MainTypes} from "./modifier/types";
 
 export class Hit {
@@ -31,7 +31,7 @@ export class Hit {
             ),
         )
 
-        return this.calcBaseDamage() * this.enemy.destruction * rs.reduce((a, b) => a * b, 1)
+        return this.calcBaseDamage() * this.calcDes() * rs.reduce((a, b) => a * b, 1)
     }
 
     calcBaseDamage(): number {
@@ -49,6 +49,10 @@ export class Hit {
             return (skill.bar[1] - skill.bar[0]) * sd / cap
         }
         return skill.bar[1]
+    }
+
+    calcDes(): number {
+        return this.enemy.type == EnemyType.HP ? this.enemy.des : 1
     }
 
     calcSD(isCrit: boolean): number {

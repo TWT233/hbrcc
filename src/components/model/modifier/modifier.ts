@@ -13,7 +13,7 @@ export class CustomMod implements Modifier {
     value: number;
 }
 
-export class DefaultATKBuff implements Modifier {
+export class ATKBuff implements Modifier {
     main = MainTypes.ATK
     sub = ATK.NORMAL
     value: number = 0
@@ -25,7 +25,7 @@ export class DefaultATKBuff implements Modifier {
 }
 
 
-export class DefaultEnemyType implements Modifier {
+export class EnemyTypeBuff implements Modifier {
     main = MainTypes.EnemyType
     sub = EnemyType.HP;
     value: number;

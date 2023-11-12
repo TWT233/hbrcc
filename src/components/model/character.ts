@@ -1,5 +1,5 @@
 import {DefaultSkill, Skill} from "./skill";
-import {DefaultATKBuff} from "./modifier/modifier";
+import {ATKBuff} from "./modifier/modifier";
 
 export class Character {
     stat: Record<Stat, number> = {CON: 0, DEX: 0, LUK: 0, SPR: 0, STR: 0, WIS: 0}

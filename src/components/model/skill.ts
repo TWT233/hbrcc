@@ -1,4 +1,4 @@
-import {DefaultATKBuff, DefaultEnemyType, Modifier} from "./modifier/modifier";
+import {ATKBuff, EnemyTypeBuff, Modifier} from "./modifier/modifier";
 import {Stat} from "./character";
 import {EnemyType} from "./enemy";
 import {ATK, MainTypes} from "./modifier/types";
@@ -16,8 +16,8 @@ export class DefaultSkill implements Skill {
     bar: [number, number] = [2502, 12510]
     cap = 147
 
-    enemyTypeMod = new DefaultEnemyType(EnemyType.HP, 0.5)
-    eleATKMod = new DefaultATKBuff(ATK.ELEMENT, 0.5)
+    enemyTypeMod = new EnemyTypeBuff(EnemyType.HP, 0.5)
+    eleATKMod = new ATKBuff(ATK.ELEMENT, 0.5)
 
     presetModifiers: Record<MainTypes, Modifier[]> = {
         ATK: [this.eleATKMod],

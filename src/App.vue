@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import {ref} from "vue";
 
-import SelectorMod from "@/components/selector/ViewMod.vue";
-import SelectorEnemy from "@/components/selector/ViewEnemy.vue";
-import SelectorChar from "@/components/selector/ViewChar.vue";
+import ViewMods from "@/components/selector/ViewMods.vue";
+import ViewEnemy from "@/components/selector/ViewEnemy.vue";
+import ViewChar from "@/components/selector/ViewChar.vue";
 
 import {Hit} from "@/components/model/hit";
 
@@ -21,17 +21,17 @@ const hit = ref(new Hit())
           <v-col cols="12" lg="4">
             <v-row>
               <v-col>
-                <SelectorChar v-model:char="hit.char"></SelectorChar>
+                <ViewChar v-model:char="hit.char"></ViewChar>
               </v-col>
             </v-row>
             <v-row>
               <v-col>
-                <SelectorEnemy v-model:enemy="hit.enemy"></SelectorEnemy>
+                <ViewEnemy v-model:enemy="hit.enemy"></ViewEnemy>
               </v-col>
             </v-row>
           </v-col>
           <v-col cols="12" lg="4">
-            <SelectorMod v-model:mods="hit.mods" title="Buffs & DeBuffs"></SelectorMod>
+            <ViewMods v-model:mods="hit.mods" title="Buffs & DeBuffs"></ViewMods>
           </v-col>
         </v-row>
       </v-container>

@@ -7,6 +7,13 @@ export enum MainTypes {
     EnemyType = "EnemyType",
 }
 
+export const COLOR_MAP = {
+    [MainTypes.ATK]: "red-darken-4",
+    [MainTypes.DEF]: "blue-darken-4",
+    [MainTypes.FRAGILE]: "light-blue-darken-4",
+    [MainTypes.EnemyType]: "lime-darken-4",
+}
+
 export type SubTypes =
     | ATK
     | DEF

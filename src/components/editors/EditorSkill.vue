@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {defineEmits, defineProps} from "vue";
 
-import {Skill} from "@/components/model/skill";
+import {Skill} from "@/model/skill";
 import ViewMod from "@/components/ViewMods.vue";
 
 

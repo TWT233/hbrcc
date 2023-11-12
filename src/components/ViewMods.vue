@@ -3,8 +3,8 @@ import {defineEmits, defineProps} from "vue"
 
 import ViewSingleMod from "@/components/ViewSingleMod.vue";
 
-import {ATKBuff, Modifier} from "@/components/model/modifier/modifier";
-import {ATK, MainTypes} from "@/components/model/modifier/types";
+import {ATKBuff, Modifier} from "@/model/modifier/modifier";
+import {ATK, MainTypes} from "@/model/modifier/types";
 
 const props = defineProps<{
   modMap: Record<MainTypes, Modifier[]>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {defineEmits, defineProps} from "vue";
 
-import {Stat} from "@/components/model/character";
+import {Stat} from "@/model/character";
 
 const props = defineProps<{
   stat: Record<Stat, number>,

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import {computed, defineEmits, defineProps} from "vue";
 
-import {Modifier} from "@/components/model/modifier/modifier";
-import {MainTypes} from "@/components/model/modifier/types";
+import {Modifier} from "@/model/modifier/modifier";
+import {MainTypes} from "@/model/modifier/types";
 import EditorModATK from "@/components/editors/EditorModATK.vue";
 
 const props = defineProps<{

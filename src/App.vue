@@ -5,7 +5,7 @@ import ViewMods from "@/components/ViewMods.vue";
 import ViewEnemy from "@/components/ViewEnemy.vue";
 import ViewChar from "@/components/ViewChar.vue";
 
-import {Hit} from "@/components/model/hit";
+import {Hit} from "@/model/hit";
 
 const hit = ref(new Hit())
 

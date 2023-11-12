@@ -4,7 +4,7 @@ import {defineEmits, defineProps} from "vue";
 import EditorStat from "@/components/editors/EditorStat.vue";
 import EditorSkill from "@/components/editors/EditorSkill.vue";
 
-import {Character} from "@/components/model/character";
+import {Character} from "@/model/character";
 
 
 const props = defineProps<{

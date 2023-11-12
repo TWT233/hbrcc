@@ -39,7 +39,7 @@ function deleteMod(ii, index) {
       </v-row>
       <v-row>
         <v-col>
-          <ViewMod v-model:mods="skill.presetModifiers" title="Preseted Buffs"></ViewMod>
+          <ViewMod v-model:modMap="skill.presetModifiers" title="Preseted Buffs"></ViewMod>
         </v-col>
       </v-row>
     </v-container>

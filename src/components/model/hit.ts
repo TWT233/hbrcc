@@ -31,7 +31,7 @@ export class Hit {
             ),
         )
 
-        return this.calcBaseDamage() * rs.reduce((a, b) => a * b, 1)
+        return this.calcBaseDamage() * this.enemy.destruction * rs.reduce((a, b) => a * b, 1)
     }
 
     calcBaseDamage(): number {

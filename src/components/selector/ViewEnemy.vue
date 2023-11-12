@@ -12,6 +12,10 @@ const emit = defineEmits<{
   ]
 }>()
 
+const destructionPercent = computed({
+  get: () => props.enemy.destruction * 100,
+  set: value => props.enemy.destruction = value / 100
+})
 const phyWeakPercent = computed({
   get: () => props.enemy.phyWeak * 100,
   set: value => props.enemy.phyWeak = value / 100
@@ -30,13 +34,11 @@ const eleWeakPercent = computed({
         <v-col cols="4">
           <v-select v-model="enemy.type" :items="Object.keys(EnemyType)" label="Type"></v-select>
         </v-col>
-        <v-col cols="8">
+        <v-col cols="4">
           <v-text-field v-model="enemy.border" label="Border" type="number"></v-text-field>
         </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-divider></v-divider>
+        <v-col cols="4">
+          <v-text-field v-model="destructionPercent" label="Destruction" type="number" suffix="%"></v-text-field>
         </v-col>
       </v-row>
       <v-row>

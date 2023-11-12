@@ -1,7 +1,8 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {defineEmits, defineProps} from "vue";
 
 import {Skill} from "@/components/model/skill";
+import ViewMod from "@/components/selector/ViewMod.vue";
 
 
 const props = defineProps<{
@@ -13,10 +14,17 @@ const emit = defineEmits<{
     skill: Skill,
   ]
 }>()
+
+function addMod() {
+}
+
+function deleteMod(ii, index) {
+  ii.splice(index, 1)
+}
 </script>
 
 <template>
-  <v-card elevation="8" variant="outlined" title="Skill">
+  <v-card elevation="8" title="Skill" variant="outlined">
     <v-container>
       <v-row>
         <v-col>
@@ -27,6 +35,11 @@ const emit = defineEmits<{
         </v-col>
         <v-col>
           <v-text-field v-model="skill.bar[1]" label="Max DMG" type="number"></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <ViewMod v-model:mods="skill.presetModifiers" title="Preseted Buffs"></ViewMod>
         </v-col>
       </v-row>
     </v-container>

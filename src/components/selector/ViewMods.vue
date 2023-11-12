@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {defineEmits, defineProps} from "vue"
 
-import ShowMod from "@/components/selector/EditorMod.vue";
+import ViewSingleMod from "@/components/selector/ViewSingleMod.vue";
 
 import {DefaultATKBuff, Modifier} from "@/components/model/modifier/modifier";
 import {ATK, MainTypes} from "@/components/model/modifier/types";
@@ -32,9 +32,9 @@ function deleteMod(ii, index) {
       <v-btn icon="mdi-plus" @click="addMod()"></v-btn>
     </v-toolbar>
     <v-container>
-      <v-row v-for="(mt,index) in mods" :key="mt">
-        <v-col v-for="i in mt.length" :key="i" cols="auto">
-          <ShowMod v-model:mod="mt[i-1]" @del="deleteMod(mt,i-1)"></ShowMod>
+      <v-row v-for="mod in mods" :key="mod">
+        <v-col v-for="i in mod.length" :key="i" cols="auto">
+          <ViewSingleMod v-model:mod="mod[i-1]" @del="deleteMod(mod,i-1)"></ViewSingleMod>
         </v-col>
       </v-row>
     </v-container>

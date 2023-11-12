@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {defineProps, defineEmits, computed} from "vue"
+import {defineProps, defineEmits, computed, ref} from "vue"
 
 import {Modifier} from "@/components/model/modifier/modifier";
 import {COLOR_MAP} from "@/components/model/modifier/types";
@@ -19,16 +19,18 @@ const emit = defineEmits<{
 const wrappedMod = computed({
   get: () => props.mod,
   set: value => emit('update', value)
-
 })
 
+const dialog = ref(false)
 </script>
 
 <template>
-  <v-chip closable @click:close="$emit('del')" :color="COLOR_MAP[mod.main]">
+  <v-chip @click="dialog=true" @click:close="$emit('del')" :color="COLOR_MAP[mod.main]">
     <v-icon start icon="mdi-pencil"></v-icon>
     {{ mod.main }} | {{ mod.sub }} | {{ (mod.value * 100 | 0) }}%
-    <EditorMod v-model:mod="wrappedMod"></EditorMod>
+    <v-dialog v-model="dialog" width="auto">
+      <EditorMod v-model:mod="wrappedMod"></EditorMod>
+    </v-dialog>
   </v-chip>
 </template>
 

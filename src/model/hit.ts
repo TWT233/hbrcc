@@ -14,7 +14,8 @@ export class Hit {
     }
 
     check(): boolean {
-        return this.char.skill.requiredStats.every(s => s in this.char.stat)
+        let rs = this.char.skill.requiredStats
+        return Object.keys(rs).every(s => rs[s] && this.char.stat[s] > 0)
     }
 
     calculate(): number {
@@ -55,12 +56,7 @@ export class Hit {
     }
 
     calcSD(isCrit: boolean): number {
-        let sd =
-            this.char.skill.requiredStats
-                .map((v) => this.char.stat[v])
-                .reduce((a, b) => a + b)
-
-        return sd / this.char.skill.requiredStats.length - (this.enemy.border - (isCrit ? 50 : 0))
+        return this.char.es - (this.enemy.border - (isCrit ? 50 : 0))
     }
 
 }

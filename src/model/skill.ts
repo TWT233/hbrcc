@@ -3,7 +3,7 @@ import {Stat} from "./character";
 import {EnemyType} from "./enemy";
 
 export interface Skill {
-    readonly requiredStats: Stat[] // eg: [STR, STR, DEX] means 2*STR+1*DEX
+    readonly requiredStats: { [key in Stat]?: number }// eg: [STR, STR, DEX] means 2*STR+1*DEX
     readonly bar: [number, number] // [min, max]
     readonly cap: number
 
@@ -11,7 +11,7 @@ export interface Skill {
 }
 
 export class DefaultSkill implements Skill {
-    requiredStats = [Stat.STR, Stat.STR, Stat.DEX]
+    requiredStats = {[Stat.STR]: 2, [Stat.DEX]: 1}
     bar: [number, number] = [2502, 12510]
     cap = 147
 

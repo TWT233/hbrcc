@@ -36,20 +36,12 @@ const eleWeakPercent = computed({
         </v-col>
         <v-col cols="4">
           <v-text-field v-model="enemy.border" label="Border" type="number"></v-text-field>
-        </v-col>
-        <v-col cols="4">
           <v-text-field v-model="destructionPercent" label="Destruction" type="number" suffix="%"></v-text-field>
         </v-col>
-      </v-row>
-      <v-row>
-        <v-col cols="6">
+        <v-col cols="4">
           <v-text-field v-model="phyWeakPercent" label="Physical Weak" type="number" suffix="%"></v-text-field>
-        </v-col>
-        <v-col cols="6">
           <v-text-field v-model="eleWeakPercent" label="Element Weak" type="number" suffix="%"></v-text-field>
         </v-col>
-      </v-row>
-      <v-row>
       </v-row>
     </v-container>
   </v-card>

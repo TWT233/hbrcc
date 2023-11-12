@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import {ref} from "vue";
 
-import SelectorMod from "@/components/selector/SelectorMod.vue";
-import SelectorEnemy from "@/components/selector/SelectorEnemy.vue";
-import SelectorChar from "@/components/selector/SelectorChar.vue";
+import SelectorMod from "@/components/selector/ViewMod.vue";
+import SelectorEnemy from "@/components/selector/ViewEnemy.vue";
+import SelectorChar from "@/components/selector/ViewChar.vue";
 
 import {Hit} from "@/components/model/hit";
 

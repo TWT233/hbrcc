@@ -28,7 +28,7 @@ const dialog = ref(false)
     <v-icon start icon="mdi-pencil"></v-icon>
     {{ mod.main }} | {{ mod.sub }} | {{ (mod.value * 100 | 0) }}%
     <v-dialog v-model="dialog" width="auto">
-      <EditorMod v-model:mod="wrappedMod"></EditorMod>
+      <EditorMod v-model:mod="wrappedMod" @del="$emit('del')"></EditorMod>
     </v-dialog>
   </v-chip>
 </template>

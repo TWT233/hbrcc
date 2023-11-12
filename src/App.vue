@@ -30,8 +30,8 @@ const hit = ref(new Hit())
               </v-col>
             </v-row>
           </v-col>
-          <v-col cols="12" lg="4" md="6">
-            <SelectorMod v-model:mods="hit.mods"></SelectorMod>
+          <v-col cols="12" lg="4">
+            <SelectorMod v-model:mods="hit.mods" title="Buffs & DeBuffs"></SelectorMod>
           </v-col>
         </v-row>
       </v-container>

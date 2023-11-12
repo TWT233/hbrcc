@@ -1,4 +1,16 @@
-import {EnemyType} from "../enemy";
+import {EnemyType} from "./enemy";
+
+export class Modifier {
+    main: MainTypes
+    sub: SubTypes
+    value: number
+
+    constructor(main: MainTypes, sub: SubTypes, value: number) {
+        this.main = main;
+        this.sub = sub;
+        this.value = value;
+    }
+}
 
 export enum MainTypes {
     ATK = "ATK",
@@ -13,7 +25,6 @@ export const COLOR_MAP = {
     [MainTypes.FRAGILE]: "light-blue-darken-4",
     [MainTypes.EnemyType]: "lime-darken-4",
 }
-
 export type SubTypes =
     | ATK
     | DEF

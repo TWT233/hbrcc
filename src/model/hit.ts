@@ -1,7 +1,6 @@
 import {Character} from "./character";
-import {Modifier} from "./modifier/modifier";
+import {MainTypes, Modifier} from "./modifier";
 import {Enemy, EnemyType} from "./enemy";
-import {MainTypes} from "./modifier/types";
 
 export class Hit {
     char: Character = new Character()

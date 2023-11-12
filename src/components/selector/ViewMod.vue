@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {defineEmits, defineProps} from "vue"
 
-import ShowMod from "@/components/selector/ShowDefaultMod.vue";
+import ShowMod from "@/components/selector/EditorDefaultMod.vue";
 
 import {DefaultATKBuff, Modifier} from "@/components/model/modifier/modifier";
 import {ATK, MainTypes} from "@/components/model/modifier/types";

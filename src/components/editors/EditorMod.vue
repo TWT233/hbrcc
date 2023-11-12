@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import {computed, defineEmits, defineProps} from "vue";
 
-import {Modifier} from "@/model/modifier/modifier";
-import {MainTypes} from "@/model/modifier/types";
+import {MainTypes, Modifier} from "@/model/modifier";
 import EditorModATK from "@/components/editors/EditorModATK.vue";
 
 const props = defineProps<{
@@ -19,7 +18,6 @@ const emit = defineEmits<{
 const wrappedMod = computed({
   get: () => props.mod,
   set: value => {
-    console.log(22)
     emit('update:mod', value)
   }
 })
@@ -36,6 +34,12 @@ const wrappedMod = computed({
     <v-window :model-value="mod.main">
       <v-window-item :value="MainTypes.ATK">
         <EditorModATK v-model:mod="wrappedMod"></EditorModATK>
+      </v-window-item>
+      <v-window-item :value="MainTypes.DEF">
+      </v-window-item>
+      <v-window-item :value="MainTypes.FRAGILE">
+      </v-window-item>
+      <v-window-item :value="MainTypes.EnemyType">
       </v-window-item>
     </v-window>
   </v-card>

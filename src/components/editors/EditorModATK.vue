@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import {defineEmits, defineProps, onMounted, ref} from "vue";
-import {ATKBuff, Modifier} from "@/model/modifier/modifier";
-import {ATK} from "@/model/modifier/types";
+import {ATK, MainTypes, Modifier} from "@/model/modifier";
 
 const props = defineProps<{
   mod: Modifier,
@@ -11,10 +10,9 @@ const emit = defineEmits<{
   'update:mod': [mod: Modifier]
 }>()
 
-let modd = ref(new ATKBuff(ATK.NORMAL, 0.9))
+let modd = ref(new Modifier(MainTypes.ATK, ATK.NORMAL, 0.9))
 
 onMounted(() => {
-  console.log(11)
   emit('update:mod', modd.value)
 })
 </script>

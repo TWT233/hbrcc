@@ -31,7 +31,7 @@ const hit = ref(new Hit())
             </v-row>
           </v-col>
           <v-col cols="12" lg="4">
-            <ViewMods v-model:mods="hit.mods" title="Buffs & DeBuffs"></ViewMods>
+            <ViewMods v-model:modMap="hit.modMap" title="Buffs & DeBuffs"></ViewMods>
           </v-col>
         </v-row>
       </v-container>

@@ -8,10 +8,10 @@ export class Hit {
     enemy: Enemy = new Enemy()
     isCrit: boolean = true
 
-    mods: Record<MainTypes, Modifier[]> = {ATK: [], DEF: [], EnemyType: [], FRAGILE: []}
+    modMap: Record<MainTypes, Modifier[]> = {ATK: [], DEF: [], EnemyType: [], FRAGILE: []}
 
     addMod(mod: Modifier) {
-        this.mods[mod.main].push(mod)
+        this.modMap[mod.main].push(mod)
     }
 
     check(): boolean {
@@ -19,7 +19,7 @@ export class Hit {
     }
 
     calculate(): number {
-        let mods = {...this.mods, ...this.char.skill.presetModifiers}
+        let mods = {...this.modMap, ...this.char.skill.presetModifiers}
 
         let rs: number[] = []
         rs.push(

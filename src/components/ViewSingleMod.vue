@@ -3,7 +3,7 @@ import {defineProps, defineEmits, computed} from "vue"
 
 import {Modifier} from "@/components/model/modifier/modifier";
 import {COLOR_MAP} from "@/components/model/modifier/types";
-import EditorMod from "@/components/selector/EditorMod.vue";
+import EditorMod from "@/components/editors/EditorMod.vue";
 
 const props = defineProps<{
   mod: Modifier,

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import {ref} from "vue";
 
-import ViewMods from "@/components/selector/ViewMods.vue";
-import ViewEnemy from "@/components/selector/ViewEnemy.vue";
-import ViewChar from "@/components/selector/ViewChar.vue";
+import ViewMods from "@/components/ViewMods.vue";
+import ViewEnemy from "@/components/ViewEnemy.vue";
+import ViewChar from "@/components/ViewChar.vue";
 
 import {Hit} from "@/components/model/hit";
 

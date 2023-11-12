@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import {defineEmits, defineProps} from "vue";
+import {computed, defineEmits, defineProps, ref} from "vue";
 
 import {Modifier} from "@/components/model/modifier/modifier";
+import {MainTypes} from "@/components/model/modifier/types";
 
 const props = defineProps<{
   mod: Modifier,
@@ -13,6 +14,8 @@ const emit = defineEmits<{
   ],
   del: []
 }>()
+
+const tab = ref(null)
 </script>
 
 <template>
@@ -21,6 +24,16 @@ const emit = defineEmits<{
       <v-toolbar title="Buff Detail">
         <v-btn icon="mdi-delete" @click="$emit('del')"></v-btn>
       </v-toolbar>
+      <v-tabs
+          v-model="tab"
+          bg-color="primary"
+      >
+        <v-tab v-for="i in Object.keys(MainTypes)" :value="i">{{ i }}</v-tab>
+      </v-tabs>
+      <v-window v-model="tab">
+      </v-window>
+
+
       <v-container>
         <v-row>
           <v-col>

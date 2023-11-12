@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {defineEmits, defineProps} from "vue"
 
-import ViewSingleMod from "@/components/selector/ViewSingleMod.vue";
+import ViewSingleMod from "@/components/ViewSingleMod.vue";
 
 import {DefaultATKBuff, Modifier} from "@/components/model/modifier/modifier";
 import {ATK, MainTypes} from "@/components/model/modifier/types";

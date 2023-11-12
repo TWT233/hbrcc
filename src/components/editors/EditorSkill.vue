@@ -1,8 +1,10 @@
 <script lang="ts" setup>
-import {defineEmits, defineProps} from "vue";
+import {defineEmits, defineProps, ref} from "vue";
 
 import {Skill} from "@/model/skill";
 import ViewMod from "@/components/ViewMods.vue";
+import {COLOR_MAP} from "@/model/modifier";
+import EditorMod from "@/components/editors/EditorMod.vue";
 
 
 const props = defineProps<{
@@ -15,12 +17,8 @@ const emit = defineEmits<{
   ]
 }>()
 
-function addMod() {
-}
+const dialog = ref(false)
 
-function deleteMod(ii, index) {
-  ii.splice(index, 1)
-}
 </script>
 
 <template>
@@ -29,19 +27,22 @@ function deleteMod(ii, index) {
       <v-row>
         <v-col>
           <v-text-field v-model="skill.cap" label="Skill cap" type="number"></v-text-field>
-        </v-col>
-        <v-col>
           <v-text-field v-model="skill.bar[0]" label="Min DMG" type="number"></v-text-field>
-        </v-col>
-        <v-col>
           <v-text-field v-model="skill.bar[1]" label="Max DMG" type="number"></v-text-field>
         </v-col>
-      </v-row>
-      <v-row>
         <v-col>
-          <ViewMod v-model:modMap="skill.presetModifiers" title="Preseted Buffs"></ViewMod>
+          <v-chip @click="dialog=true">
+            <v-icon start icon="mdi-pencil"></v-icon>
+            Base on
+            <v-dialog v-model="dialog" width="auto">
+              <v-card></v-card>
+            </v-dialog>
+          </v-chip>
         </v-col>
       </v-row>
+      <v-col cols="12">
+        <ViewMod v-model:modMap="skill.presetModifiers" title="Preseted Buffs"></ViewMod>
+      </v-col>
     </v-container>
   </v-card>
 </template>

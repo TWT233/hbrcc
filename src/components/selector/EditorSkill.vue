@@ -2,7 +2,7 @@
 import {defineEmits, defineProps} from "vue";
 
 import {Skill} from "@/components/model/skill";
-import ViewMod from "@/components/selector/ViewMod.vue";
+import ViewMod from "@/components/selector/ViewMods.vue";
 
 
 const props = defineProps<{

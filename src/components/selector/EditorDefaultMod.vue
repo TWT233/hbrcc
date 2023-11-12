@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import {defineProps, defineEmits} from "vue"
+
 import {Modifier} from "@/components/model/modifier/modifier";
-import {defineProps, defineEmits, ref} from "vue"
 
 const props = defineProps<{
   mod: Modifier,
@@ -12,15 +13,13 @@ const emit = defineEmits<{
   ],
   del: []
 }>()
-
-const dialog = ref(false)
 </script>
 
 <template>
   <v-chip closable @click:close="$emit('del')">
     <v-icon start icon="mdi-pencil"></v-icon>
     {{ mod.main }} | {{ mod.sub }} | {{ (mod.value * 100 | 0) }}%
-    <v-dialog v-model="dialog" activator="parent" width="auto">
+    <v-dialog activator="parent" width="auto">
       <v-card>
         <v-toolbar title="Buff Detail">
           <v-btn icon="mdi-delete" @click="$emit('del')"></v-btn>

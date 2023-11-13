@@ -10,29 +10,31 @@ export class Hit {
 
     mods: Modifier[] = []
 
-    addMod(mod: Modifier) {
-        this.mods[mod.main].push(mod)
-    }
-
-    check(): boolean {
-        let rs = this.char.skill.requiredStats
-        return Object.keys(rs).every(s => rs[s] && this.char.stat[s] > 0)
-    }
-
     calculate(): number {
-        let mods = mergeMods(this.mods, this.char.skill.presetModifiers)
+        let modMap = this.mergeMods()
 
         let rs: number[] = []
         rs.push(
-            defaultModValueCalc(mods[ModMain.ATK]),
-            defaultModValueCalc(mods[ModMain.DEF]),
-            defaultModValueCalc(mods[ModMain.FRAGILE]),
+            defaultModValueCalc(modMap[ModMain.ATK]),
+            defaultModValueCalc(modMap[ModMain.DEF]),
+            defaultModValueCalc(modMap[ModMain.FRAGILE]),
             defaultModValueCalc(
-                mods[ModMain.EnemyType].filter(v => v.sub == this.enemy.type)
+                modMap[ModMain.EnemyType].filter(v => v.sub == this.enemy.type)
             ),
         )
 
         return this.calcBaseDamage() * this.calcDes() * rs.reduce((a, b) => a * b, 1)
+    }
+
+    mergeMods(): ModMap {
+        return [...this.mods, ...this.char.skill.presetModifiers]
+            .filter(mod => !!mod)
+            .reduce(
+                (res, mod) => {
+                    mod.main in res ? res[mod.main].concat(mod) : res[mod.main] = [mod]
+                    return res
+                }, {},
+            )
     }
 
     calcBaseDamage(): number {
@@ -60,18 +62,6 @@ export class Hit {
         return this.char.es - (this.enemy.border - (isCrit ? 50 : 0))
     }
 
-}
-
-function mergeMods(...modss: Modifier[][]): ModMap {
-    return modss
-        .reduce((res, mods) => res.concat(mods), [])
-        .filter(mod => !!mod)
-        .reduce(
-            (res, mod) => {
-                mod.main in res ? res[mod.main].push(mod) : res[mod.main] = [mod]
-                return res
-            }, {},
-        )
 }
 
 function defaultModValueCalc(mods: Modifier[]): number {

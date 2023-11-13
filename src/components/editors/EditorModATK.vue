@@ -25,7 +25,7 @@ const value = computed({
           <v-combobox v-model="mod.sub" :items="Object.keys(ATK)" label="sub"></v-combobox>
         </v-col>
         <v-col cols="6">
-          <v-text-field v-model="value" label="value" type="number"></v-text-field>
+          <v-text-field v-model.number="value" label="value" type="number"></v-text-field>
         </v-col>
       </v-row>
     </v-container>

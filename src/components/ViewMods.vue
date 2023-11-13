@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {computed, defineEmits, defineProps} from "vue"
+import {defineEmits, defineProps} from "vue"
 
 import ShowSingleMod from "@/components/ShowSingleMod.vue";
 
@@ -21,20 +21,20 @@ function addMod() {
   props.mods.push(new Modifier(ModMain.ATK, ATK.NORMAL, 0.5))
 }
 
-function deleteMod(ii, index) {
-  ii.splice(index, 1)
+function deleteMod(index) {
+  props.mods.splice(index, 1)
 }
 </script>
 
 <template>
   <v-card>
     <v-toolbar :title="title">
-      <v-btn icon="mdi-plus" @click="addMod()"></v-btn>
+      <v-btn icon="mdi-plus" @click="addMod"></v-btn>
     </v-toolbar>
     <v-container>
       <v-row>
-        <v-col v-for="i in mods.length" :key="i" cols="auto">
-          <ShowSingleMod v-model:mod="mods[i-1]" @del="deleteMod(mods,i-1)"></ShowSingleMod>
+        <v-col v-for="(mod, i) in mods" :key="mod" cols="auto">
+          <ShowSingleMod v-model:mod="mods[i]" @del="deleteMod(i)"></ShowSingleMod>
         </v-col>
       </v-row>
     </v-container>

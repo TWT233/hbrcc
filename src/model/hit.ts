@@ -8,10 +8,10 @@ export class Hit {
     enemy: Enemy = new Enemy()
     isCrit: boolean = true
 
-    modMap: ModMap = {ATK: [], DEF: [], EnemyType: [], FRAGILE: []}
+    mods: Modifier[] = []
 
     addMod(mod: Modifier) {
-        this.modMap[mod.main].push(mod)
+        this.mods[mod.main].push(mod)
     }
 
     check(): boolean {
@@ -20,7 +20,7 @@ export class Hit {
     }
 
     calculate(): number {
-        let mods = mergeModMap(this.modMap, this.char.skill.presetModifiers)
+        let mods = mergeMods(this.mods, this.char.skill.presetModifiers)
 
         let rs: number[] = []
         rs.push(
@@ -62,17 +62,16 @@ export class Hit {
 
 }
 
-function mergeModMap(...modMaps: ModMap[]): ModMap {
-    let res: ModMap = {}
-    for (const modMap of modMaps) {
-        for (const main in modMap) {
-            if (!(main in res)) {
-                res[main] = []
-            }
-            res[main].push(...modMap[main])
-        }
-    }
-    return res
+function mergeMods(...modss: Modifier[][]): ModMap {
+    return modss
+        .reduce((res, mods) => res.concat(mods), [])
+        .filter(mod => !!mod)
+        .reduce(
+            (res, mod) => {
+                mod.main in res ? res[mod.main].push(mod) : res[mod.main] = [mod]
+                return res
+            }, {},
+        )
 }
 
 function defaultModValueCalc(mods: Modifier[]): number {

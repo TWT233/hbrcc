@@ -1,12 +1,12 @@
 import {Modifier} from "./modifier";
-import {ATK, EnemyType, ModMain, ModMap, Stat} from "./types";
+import {ATK, EnemyType, ModMain, Stat} from "./types";
 
 export interface Skill {
     readonly requiredStats: { [key in Stat]?: number }// eg: {[STR]: 2, [DEX]: 1} means 2*STR+1*DEX
     readonly bar: [number, number] // [min, max]
     readonly cap: number
 
-    readonly presetModifiers: ModMap
+    readonly presetModifiers: Modifier[]
 }
 
 export class DefaultSkill implements Skill {
@@ -17,11 +17,6 @@ export class DefaultSkill implements Skill {
     enemyTypeMod = new Modifier(ModMain.EnemyType, EnemyType.HP, 0.5)
     eleATKMod = new Modifier(ModMain.ATK, ATK.ELEMENT, 0.5)
 
-    presetModifiers: Record<ModMain, Modifier[]> = {
-        ATK: [this.eleATKMod],
-        DEF: [],
-        EnemyType: [this.enemyTypeMod],
-        FRAGILE: []
-    }
+    presetModifiers = [this.eleATKMod, this.enemyTypeMod]
 
 }

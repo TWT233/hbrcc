@@ -19,11 +19,10 @@ const emit = defineEmits<{
     <v-container>
       <v-list>
         <v-list-item>
-
           <v-row>
-            <v-col>
+            <v-col cols="auto">
               <v-card-title>Damage</v-card-title>
-              <v-card-text>{{ hit.calculate() }}</v-card-text>
+              <v-card-text>{{ hit.calculate().toFixed(1) }}</v-card-text>
             </v-col>
             <v-col>
               <v-switch v-model="hit.isCrit" label="Critical" color="primary"></v-switch>

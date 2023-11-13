@@ -28,7 +28,7 @@ const emit = defineEmits<{
       </v-row>
       <v-row>
         <v-col>
-          <v-card-text>current mods:{{ hit.modMap }}</v-card-text>
+          <v-card-text>current mods:{{ hit.mods }}</v-card-text>
         </v-col>
       </v-row>
     </v-container>

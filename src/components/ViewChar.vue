@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import {defineEmits, defineProps} from "vue";
-
 import EditorStat from "@/components/editors/EditorStat.vue";
 import EditorSkill from "@/components/editors/EditorSkill.vue";
 

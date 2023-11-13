@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import {defineEmits, defineProps, ref} from "vue";
+import {ref} from "vue";
+
+import ViewMod from "@/components/ViewMods.vue";
 
 import {Skill} from "@/model/skill";
-import ViewMod from "@/components/ViewMods.vue";
 
 const props = defineProps<{
   skill: Skill,

@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import {computed, defineEmits, defineProps} from "vue";
+import {computed} from "vue";
+
+import NumberField from "@/components/utils/NumberField.vue";
+
 import {Enemy} from "@/model/enemy";
 import {EnemyType} from "@/model/types";
 
@@ -20,10 +23,6 @@ const destructionPercent = computed({
 const phyWeakPercent = computed({
   get: () => props.enemy.phyWeak * 100,
   set: value => props.enemy.phyWeak = value / 100
-})
-const eleWeakPercent = computed({
-  get: () => props.enemy.eleWeak * 100,
-  set: value => props.enemy.eleWeak = value / 100
 })
 const wrappedEnemyType = computed({
   get: () => props.enemy.type === EnemyType.HP,
@@ -46,7 +45,9 @@ const wrappedEnemyType = computed({
         </v-col>
         <v-col>
           <v-text-field v-model="phyWeakPercent" label="Physical Weak" type="number" suffix="%"></v-text-field>
-          <v-text-field v-model="eleWeakPercent" label="Element Weak" type="number" suffix="%"></v-text-field>
+          <!--          <v-text-field v-model="eleWeakPercent" label="Element Weak" type="number" suffix="%"></v-text-field>-->
+          <NumberField percent v-model="enemy.eleWeak" label="Element Weak"></NumberField>
+          <div>{{ enemy.eleWeak }}</div>
         </v-col>
       </v-row>
     </v-container>

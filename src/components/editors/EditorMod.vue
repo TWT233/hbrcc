@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {computed, defineEmits, defineProps} from "vue";
+import {computed} from "vue";
 
 import {Modifier} from "@/model/modifier";
 import EditorModATK from "@/components/editors/EditorModATK.vue";

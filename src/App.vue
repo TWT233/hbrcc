@@ -4,12 +4,11 @@ import {ref} from "vue";
 import ViewMods from "@/components/ViewMods.vue";
 import ViewEnemy from "@/components/ViewEnemy.vue";
 import ViewChar from "@/components/ViewChar.vue";
-
-import {Hit} from "@/model/hit";
 import ViewResult from "@/components/ViewResult.vue";
 
-const hit = ref(new Hit())
+import {Hit} from "@/model/hit";
 
+const hit = ref(new Hit())
 </script>
 
 <template>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {defineProps} from "vue"
 import {Hit} from "@/model/hit";
 
 const props = defineProps<{

@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import {defineEmits, defineProps} from "vue"
-
 import ShowSingleMod from "@/components/ShowSingleMod.vue";
 
 import {Modifier} from "@/model/modifier";

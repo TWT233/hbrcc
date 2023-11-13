@@ -3,9 +3,6 @@ import {defineEmits, defineProps, ref} from "vue";
 
 import {Skill} from "@/model/skill";
 import ViewMod from "@/components/ViewMods.vue";
-import {COLOR_MAP} from "@/model/modifier";
-import EditorMod from "@/components/editors/EditorMod.vue";
-
 
 const props = defineProps<{
   skill: Skill,
@@ -41,7 +38,7 @@ const dialog = ref(false)
         </v-col>
       </v-row>
       <v-col cols="12">
-        <ViewMod v-model:modMap="skill.presetModifiers" title="Preseted Buffs"></ViewMod>
+        <ViewMod v-model:mods="skill.presetModifiers" title="Preseted Buffs"></ViewMod>
       </v-col>
     </v-container>
   </v-card>

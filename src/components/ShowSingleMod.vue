@@ -17,14 +17,16 @@ const emit = defineEmits<{
 
 const wrappedMod = computed({
   get: () => props.mod,
-  set: value => emit('update:mod', value)
+  set: value => {
+    emit('update:mod', value)
+  }
 })
 
 const dialog = ref(false)
 </script>
 
 <template>
-  <v-chip @click="dialog=true" @click:close="$emit('del')" :color="COLOR_MAP[mod.main]">
+  <v-chip @click="dialog=true" closable @click:close="$emit('del')" :color="COLOR_MAP[mod.main]">
     <v-icon start icon="mdi-pencil"></v-icon>
     {{ mod.main }} | {{ mod.sub }} | {{ (mod.value * 100 | 0) }}%
     <v-dialog v-model="dialog" width="auto">

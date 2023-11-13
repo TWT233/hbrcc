@@ -1,7 +1,7 @@
 import {DefaultSkill, Skill} from "./skill";
 
 export class Character {
-    stat: Record<Stat, number> = {CON: 0, DEX: 0, LUK: 0, SPR: 0, STR: 0, WIS: 0}
+    stat: Record<Stat, number> = {CON: 0, DEX: 320, LUK: 0, SPR: 0, STR: 320, WIS: 0}
     skill: Skill = new DefaultSkill()
 
     get es(): number { // effective stat

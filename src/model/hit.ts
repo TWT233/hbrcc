@@ -1,13 +1,14 @@
 import {Character} from "./character";
 import {MainTypes, Modifier} from "./modifier";
 import {Enemy, EnemyType} from "./enemy";
+import {ModMap} from "./types";
 
 export class Hit {
     char: Character = new Character()
     enemy: Enemy = new Enemy()
     isCrit: boolean = true
 
-    modMap: Record<MainTypes, Modifier[]> = {ATK: [], DEF: [], EnemyType: [], FRAGILE: []}
+    modMap: ModMap = {ATK: [], DEF: [], EnemyType: [], FRAGILE: []}
 
     addMod(mod: Modifier) {
         this.modMap[mod.main].push(mod)
@@ -19,7 +20,7 @@ export class Hit {
     }
 
     calculate(): number {
-        let mods = {...this.modMap, ...this.char.skill.presetModifiers}
+        let mods = mergeModMap(this.modMap, this.char.skill.presetModifiers)
 
         let rs: number[] = []
         rs.push(
@@ -61,9 +62,24 @@ export class Hit {
 
 }
 
+function mergeModMap(...modMaps: ModMap[]): ModMap {
+    let res: ModMap = {}
+    for (const modMap of modMaps) {
+        for (const main in modMap) {
+            if (!(main in res)) {
+                res[main] = []
+            }
+            res[main].push(...modMap[main])
+        }
+    }
+    return res
+}
 
 function defaultModValueCalc(mods: Modifier[]): number {
     let res = 1
+    if (!mods) {
+        return res
+    }
     let modMapSub = categorizeAndSort(mods)
     for (let sub in modMapSub) {
         res += modMapSub[sub].slice(0, 2).reduce((a, b) => a + b.value, 0)
@@ -72,9 +88,15 @@ function defaultModValueCalc(mods: Modifier[]): number {
 }
 
 function categorizeAndSort(ms: Modifier[]): Record<any, Modifier[]> {
-    let res: Record<any, Modifier[]> = ms.reduce((res, v) => res[v.sub].push(v), {})
+    let res: Record<any, Modifier[]> = {}
+    for (const m of ms) {
+        if (!(m.sub in res)) {
+            res[m.sub] = []
+        }
+        res[m.sub].push(m)
+    }
     for (const sub in res) {
-        res[sub].sort((m1, m2) => m1.value - m2.value)
+        res[sub].sort((m1, m2) => m2.value - m1.value)
     }
     return res
 }

@@ -21,6 +21,15 @@ const wrappedMod = computed({
     emit('update:mod', value)
   }
 })
+
+const wrappedMain = computed({
+  get: () => props.mod.main,
+  set: (value: MainTypes) => {
+    props.mod.main = value
+    emit('update:mod', props.mod)
+  }
+})
+
 </script>
 
 <template>
@@ -28,10 +37,10 @@ const wrappedMod = computed({
     <v-toolbar title="Buff Editor">
       <v-btn icon="mdi-delete" @click="$emit('del')"></v-btn>
     </v-toolbar>
-    <v-tabs v-model="mod.main">
+    <v-tabs v-model="wrappedMain">
       <v-tab v-for="i in Object.keys(MainTypes)" :value="i">{{ i }}</v-tab>
     </v-tabs>
-    <v-window :model-value="mod.main">
+    <v-window :model-value="wrappedMain">
       <v-window-item :value="MainTypes.ATK">
         <EditorModATK v-model:mod="wrappedMod"></EditorModATK>
       </v-window-item>

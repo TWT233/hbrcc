@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import {defineProps, defineEmits, computed, ref} from "vue"
+import {computed, defineEmits, defineProps, ref} from "vue"
 
-import {COLOR_MAP, Modifier} from "@/model/modifier";
 import EditorMod from "@/components/editors/EditorMod.vue";
+
+import {Modifier} from "@/model/modifier";
+import {COLOR_MAP} from "@/model/types";
 
 const props = defineProps<{
   mod: Modifier,

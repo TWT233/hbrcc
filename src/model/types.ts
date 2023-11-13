@@ -23,13 +23,15 @@ export enum ModMain {
     DEF = "DEF",
     FRAGILE = "FRAGILE",
     EnemyType = "EnemyType",
+    CRIT = "CRIT"
 }
 
 export type ModSub =
     | ATK
     | DEF
     | FRAGILE
-    | EnemyType;
+    | EnemyType
+    | CRIT;
 
 export enum ATK {
     NORMAL = "NORMAL", // normal atk buff
@@ -46,4 +48,17 @@ export enum DEF {
 
 export enum FRAGILE {
     NORMAL,
+}
+
+export enum CRIT {
+    NORMAL = "NORMAL", // normal atk buff
+    ELEMENT = "ELEMENT",
+}
+
+export const COLOR_MAP = {
+    [ModMain.ATK]: "red-darken-4",
+    [ModMain.DEF]: "blue-darken-4",
+    [ModMain.FRAGILE]: "light-blue-darken-4",
+    [ModMain.EnemyType]: "lime-darken-4",
+    [ModMain.CRIT]: "red-darken-2",
 }

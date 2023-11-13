@@ -17,20 +17,30 @@ const emit = defineEmits<{
   <v-card>
     <v-toolbar title="Result"></v-toolbar>
     <v-container>
-      <v-row>
-        <v-col>
-          <v-card-title>Damage</v-card-title>
-          <v-card-text>{{ hit.calculate() }}</v-card-text>
-        </v-col>
-        <v-col>
-          <v-switch v-model="hit.isCrit" label="Critical" color="primary"></v-switch>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-card-text>current mods:{{ hit.mods }}</v-card-text>
-        </v-col>
-      </v-row>
+      <v-list>
+        <v-list-item>
+
+          <v-row>
+            <v-col>
+              <v-card-title>Damage</v-card-title>
+              <v-card-text>{{ hit.calculate() }}</v-card-text>
+            </v-col>
+            <v-col>
+              <v-switch v-model="hit.isCrit" label="Critical" color="primary"></v-switch>
+            </v-col>
+          </v-row>
+        </v-list-item>
+
+        <v-list-item>
+          <v-divider/>
+        </v-list-item>
+
+        <v-list-item>
+          <v-card-title>Current Mods</v-card-title>
+          <v-card-text>{{ hit.mergeMods() }}</v-card-text>
+        </v-list-item>
+
+      </v-list>
     </v-container>
   </v-card>
 </template>

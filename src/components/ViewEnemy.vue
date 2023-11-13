@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {computed, defineEmits, defineProps} from "vue";
-import {Enemy, EnemyType} from "@/model/enemy";
+import {Enemy} from "@/model/enemy";
+import {EnemyType} from "@/model/types";
 
 const props = defineProps<{
   enemy: Enemy

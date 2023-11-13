@@ -1,3 +1,5 @@
+import {EnemyType} from "./types";
+
 export class Enemy {
     border: number = 320
 
@@ -9,7 +11,3 @@ export class Enemy {
     type: EnemyType = EnemyType.HP
 }
 
-export enum EnemyType {
-    HP = "HP",
-    DP = "DP",
-}

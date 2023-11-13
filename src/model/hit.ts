@@ -1,7 +1,7 @@
 import {Character} from "./character";
-import {MainTypes, Modifier} from "./modifier";
-import {Enemy, EnemyType} from "./enemy";
-import {ModMap} from "./types";
+import {Modifier} from "./modifier";
+import {Enemy} from "./enemy";
+import {EnemyType, ModMain, ModMap} from "./types";
 
 export class Hit {
     char: Character = new Character()
@@ -24,11 +24,11 @@ export class Hit {
 
         let rs: number[] = []
         rs.push(
-            defaultModValueCalc(mods[MainTypes.ATK]),
-            defaultModValueCalc(mods[MainTypes.DEF]),
-            defaultModValueCalc(mods[MainTypes.FRAGILE]),
+            defaultModValueCalc(mods[ModMain.ATK]),
+            defaultModValueCalc(mods[ModMain.DEF]),
+            defaultModValueCalc(mods[ModMain.FRAGILE]),
             defaultModValueCalc(
-                mods[MainTypes.EnemyType].filter(v => v.sub == this.enemy.type)
+                mods[ModMain.EnemyType].filter(v => v.sub == this.enemy.type)
             ),
         )
 

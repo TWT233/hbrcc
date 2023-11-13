@@ -1,4 +1,5 @@
 import {DefaultSkill, Skill} from "./skill";
+import {Stat} from "./types";
 
 export class Character {
     stat: Record<Stat, number> = {CON: 0, DEX: 320, LUK: 0, SPR: 0, STR: 320, WIS: 0}
@@ -14,15 +15,3 @@ export class Character {
         return sall / smultiplier
     }
 }
-
-export enum Stat {
-    STR = "STR",
-    DEX = "DEX",
-
-    CON = "CON",
-    SPR = "SPR",
-
-    WIS = "WIS",
-    LUK = "LUK",
-}
-

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import {computed, defineEmits, defineProps} from "vue";
-import {ATK, Modifier} from "@/model/modifier";
+import {Modifier} from "@/model/modifier";
+import {ATK} from "@/model/types";
 
 const props = defineProps<{
   mod: Modifier,

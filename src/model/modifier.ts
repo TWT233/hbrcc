@@ -1,49 +1,20 @@
-import {EnemyType} from "./enemy";
+import {ModMain, ModSub} from "./types";
 
 export class Modifier {
-    main: MainTypes
-    sub: SubTypes
+    main: ModMain
+    sub: ModSub
     value: number
 
-    constructor(main: MainTypes, sub: SubTypes, value: number) {
+    constructor(main: ModMain, sub: ModSub, value: number) {
         this.main = main;
         this.sub = sub;
         this.value = value;
     }
 }
 
-export enum MainTypes {
-    ATK = "ATK",
-    DEF = "DEF",
-    FRAGILE = "FRAGILE",
-    EnemyType = "EnemyType",
-}
-
 export const COLOR_MAP = {
-    [MainTypes.ATK]: "red-darken-4",
-    [MainTypes.DEF]: "blue-darken-4",
-    [MainTypes.FRAGILE]: "light-blue-darken-4",
-    [MainTypes.EnemyType]: "lime-darken-4",
-}
-export type SubTypes =
-    | ATK
-    | DEF
-    | FRAGILE
-    | EnemyType;
-
-export enum ATK {
-    NORMAL = "NORMAL", // normal atk buff
-    ELEMENT = "ELEMENT",
-}
-
-export enum DEF {
-    NORMAL_DOWN,
-    ELEMENT_DOWN,
-
-    NORMAL_UP,
-    ELEMENT_UP,
-}
-
-export enum FRAGILE {
-    NORMAL,
+    [ModMain.ATK]: "red-darken-4",
+    [ModMain.DEF]: "blue-darken-4",
+    [ModMain.FRAGILE]: "light-blue-darken-4",
+    [ModMain.EnemyType]: "lime-darken-4",
 }

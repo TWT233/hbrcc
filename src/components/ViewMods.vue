@@ -3,21 +3,22 @@ import {computed, defineEmits, defineProps} from "vue"
 
 import ShowSingleMod from "@/components/ShowSingleMod.vue";
 
-import {ATK, MainTypes, Modifier} from "@/model/modifier";
+import {Modifier} from "@/model/modifier";
+import {ATK, ModMain} from "@/model/types";
 
 const props = defineProps<{
-  modMap: Record<MainTypes, Modifier[]>
+  modMap: Record<ModMain, Modifier[]>
   title: string
 }>()
 
 const emit = defineEmits<{
   update: [
-    mods: Record<MainTypes, Modifier[]>,
+    mods: Record<ModMain, Modifier[]>,
   ]
 }>()
 
 function addMod() {
-  props.modMap[MainTypes.ATK].push(new Modifier(MainTypes.ATK, ATK.NORMAL, 0.5))
+  props.modMap[ModMain.ATK].push(new Modifier(ModMain.ATK, ATK.NORMAL, 0.5))
 }
 
 function deleteMod(ii, index) {

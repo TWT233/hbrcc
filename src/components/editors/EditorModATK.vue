@@ -11,10 +11,10 @@ const emit = defineEmits<{
   'update:mod': [mod: Modifier]
 }>()
 
-const value = computed({
-  get: () => props.mod.value,
-  set: (value) => props.mod.value = Number(value)
-})
+function updateValueFromEvent(e) {
+  props.mod.value = Number(e.target.value)
+}
+
 </script>
 
 <template>
@@ -25,7 +25,8 @@ const value = computed({
           <v-combobox v-model="mod.sub" :items="Object.keys(ATK)" label="sub"></v-combobox>
         </v-col>
         <v-col cols="6">
-          <v-text-field v-model.number="value" label="value" type="number"></v-text-field>
+          <v-text-field :model-value="mod.value" @change="updateValueFromEvent"
+                        label="value" type="number" clearable></v-text-field>
         </v-col>
       </v-row>
     </v-container>

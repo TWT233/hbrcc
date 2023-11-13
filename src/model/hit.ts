@@ -1,7 +1,7 @@
 import {Character} from "./character";
 import {Modifier} from "./modifier";
 import {Enemy} from "./enemy";
-import {CRIT, EnemyType, ModMain, ModMap, ModSub} from "./types";
+import {CRIT, ModMain, ModMap, ModSub} from "./types";
 
 export class Hit {
     char: Character = new Character()
@@ -16,12 +16,14 @@ export class Hit {
         let rs = [
             defaultModValueCalc(modMap[ModMain.ATK]),
             defaultModValueCalc(modMap[ModMain.DEF]),
-            defaultModValueCalc(modMap[ModMain.FRAGILE]),
+            this.enemy.weak > 1 ? defaultModValueCalc(modMap[ModMain.FRAGILE]) : 1,
             defaultModValueCalc(modMap[ModMain.EnemyType].filter(v => v.sub == this.enemy.type)),
             defaultModValueCalc(modMap[ModMain.CRIT]),
+            this.enemy.weak,
+            this.enemy.des,
         ].reduce((a, b) => a * b, 1)
 
-        return this.calcBaseDamage() * this.calcDes() * rs
+        return this.calcBaseDamage() * rs
     }
 
     mergeMods(): ModMap {
@@ -50,10 +52,6 @@ export class Hit {
             return (skill.bar[1] - skill.bar[0]) * sd / cap
         }
         return skill.bar[1]
-    }
-
-    calcDes(): number {
-        return this.enemy.type == EnemyType.HP ? this.enemy.des : 1
     }
 
     calcSD(isCrit: boolean): number {

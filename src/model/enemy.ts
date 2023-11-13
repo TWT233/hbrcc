@@ -9,5 +9,9 @@ export class Enemy {
     des: number = 1 // Destruction
 
     type: EnemyType = EnemyType.HP
+
+    get weak(): number {
+        return (1 + this.eleWeak) * (1 + this.phyWeak)
+    }
 }
 

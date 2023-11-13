@@ -23,9 +23,9 @@ const dialog = ref(false)
     <v-container>
       <v-row>
         <v-col>
-          <v-text-field v-model="skill.cap" label="Skill cap" type="number"></v-text-field>
-          <v-text-field v-model="skill.bar[0]" label="Min DMG" type="number"></v-text-field>
-          <v-text-field v-model="skill.bar[1]" label="Max DMG" type="number"></v-text-field>
+          <v-text-field v-model="skill.cap" label="Skill Cap" type="number"></v-text-field>
+          <v-text-field v-model.number="skill.bar[0]" label="Min DMG" type="number"></v-text-field>
+          <v-text-field v-model.number="skill.bar[1]" label="Max DMG" type="number"></v-text-field>
         </v-col>
         <v-col>
           <v-chip @click="dialog=true">

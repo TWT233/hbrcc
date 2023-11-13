@@ -25,6 +25,11 @@ const eleWeakPercent = computed({
   get: () => props.enemy.eleWeak * 100,
   set: value => props.enemy.eleWeak = value / 100
 })
+const wrappedEnemyType = computed({
+  get: () => props.enemy.type === EnemyType.HP,
+  set: value => props.enemy.type = value ? EnemyType.HP : EnemyType.DP
+})
+
 </script>
 
 <template>
@@ -32,14 +37,14 @@ const eleWeakPercent = computed({
     <v-toolbar title="Enemy Detail"></v-toolbar>
     <v-container>
       <v-row>
-        <v-col cols="4">
-          <v-select v-model="enemy.type" :items="Object.keys(EnemyType)" label="Type"></v-select>
+        <v-col cols="auto">
+          <v-switch v-model="wrappedEnemyType" :label="props.enemy.type" color="primary"></v-switch>
         </v-col>
-        <v-col cols="4">
+        <v-col>
           <v-text-field v-model="enemy.border" label="Border" type="number"></v-text-field>
           <v-text-field v-model="destructionPercent" label="Destruction" type="number" suffix="%"></v-text-field>
         </v-col>
-        <v-col cols="4">
+        <v-col>
           <v-text-field v-model="phyWeakPercent" label="Physical Weak" type="number" suffix="%"></v-text-field>
           <v-text-field v-model="eleWeakPercent" label="Element Weak" type="number" suffix="%"></v-text-field>
         </v-col>

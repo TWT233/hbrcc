@@ -1,7 +1,7 @@
 import {Character} from "./character";
 import {Modifier} from "./modifier";
 import {Enemy} from "./enemy";
-import {CRIT, EnemyType, ModMain, ModMap} from "./types";
+import {CRIT, EnemyType, ModMain, ModMap, ModSub} from "./types";
 
 export class Hit {
     char: Character = new Character()
@@ -13,18 +13,15 @@ export class Hit {
     calculate(): number {
         let modMap = this.mergeMods()
 
-        let rs: number[] = []
-        rs.push(
+        let rs = [
             defaultModValueCalc(modMap[ModMain.ATK]),
             defaultModValueCalc(modMap[ModMain.DEF]),
             defaultModValueCalc(modMap[ModMain.FRAGILE]),
-            defaultModValueCalc(
-                modMap[ModMain.EnemyType].filter(v => v.sub == this.enemy.type)
-            ),
+            defaultModValueCalc(modMap[ModMain.EnemyType].filter(v => v.sub == this.enemy.type)),
             defaultModValueCalc(modMap[ModMain.CRIT]),
-        )
+        ].reduce((a, b) => a * b, 1)
 
-        return this.calcBaseDamage() * this.calcDes() * rs.reduce((a, b) => a * b, 1)
+        return this.calcBaseDamage() * this.calcDes() * rs
     }
 
     mergeMods(): ModMap {
@@ -62,31 +59,20 @@ export class Hit {
     calcSD(isCrit: boolean): number {
         return this.char.es - (this.enemy.border - (isCrit ? 50 : 0))
     }
-
 }
 
 function defaultModValueCalc(mods: Modifier[]): number {
+    if (!mods) return 1
+
     let res = 1
-    if (!mods) {
-        return res
-    }
-    let modMapSub = categorizeAndSort(mods)
-    for (let sub in modMapSub) {
-        res += modMapSub[sub].slice(0, 2).reduce((a, b) => a + b.value, 0)
-    }
+    let modMapSub = categorizeAndSort(mods.filter(m => !!m))
+    for (let sub in modMapSub) res += modMapSub[sub].slice(0, 2).reduce((a, b) => a + b.value, 0)
+
     return res
 }
 
-function categorizeAndSort(ms: Modifier[]): Record<any, Modifier[]> {
-    let res: Record<any, Modifier[]> = {}
-    for (const m of ms) {
-        if (!(m.sub in res)) {
-            res[m.sub] = []
-        }
-        res[m.sub].push(m)
-    }
-    for (const sub in res) {
-        res[sub].sort((m1, m2) => m2.value - m1.value)
-    }
+function categorizeAndSort(ms: Modifier[]): Partial<Record<ModSub, Modifier[]>> {
+    let res = ms.reduce((res, m) => (m.sub in res ? res[m.sub].push(m) : res[m.sub] = [m], res), {})
+    for (const sub in res) res[sub].sort((m1: Modifier, m2: Modifier) => m2.value - m1.value)
     return res
 }

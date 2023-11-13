@@ -28,7 +28,6 @@ function set(e) {
                 @change="set"
                 :suffix="percent?'%':''"
                 type="number"
-                clearable
                 v-bind="$props"
   ></v-text-field>
 </template>

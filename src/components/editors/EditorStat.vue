@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {Stat} from "@/model/types";
+import NumberField from "@/components/utils/NumberField.vue";
 
 const props = defineProps<{
   stat: Record<Stat, number>,
@@ -17,7 +18,7 @@ const emit = defineEmits<{
     <v-container>
       <v-row>
         <v-col v-for="i in Object.keys(Stat)" :key="i">
-          <v-text-field v-model="stat[i]" :label="i"></v-text-field>
+          <NumberField v-model="stat[i]" :label="i"></NumberField>
         </v-col>
       </v-row>
     </v-container>

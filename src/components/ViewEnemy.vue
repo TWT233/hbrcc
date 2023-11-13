@@ -40,14 +40,12 @@ const wrappedEnemyType = computed({
           <v-switch v-model="wrappedEnemyType" :label="props.enemy.type" color="primary"></v-switch>
         </v-col>
         <v-col>
-          <v-text-field v-model="enemy.border" label="Border" type="number"></v-text-field>
-          <v-text-field v-model="destructionPercent" label="Destruction" type="number" suffix="%"></v-text-field>
+          <NumberField v-model="enemy.border" label="Border"></NumberField>
+          <NumberField percent v-model="enemy.des" label="Destruction"></NumberField>
         </v-col>
         <v-col>
-          <v-text-field v-model="phyWeakPercent" label="Physical Weak" type="number" suffix="%"></v-text-field>
-          <!--          <v-text-field v-model="eleWeakPercent" label="Element Weak" type="number" suffix="%"></v-text-field>-->
+          <NumberField percent v-model="enemy.phyWeak" label="Physical Weak"></NumberField>
           <NumberField percent v-model="enemy.eleWeak" label="Element Weak"></NumberField>
-          <div>{{ enemy.eleWeak }}</div>
         </v-col>
       </v-row>
     </v-container>

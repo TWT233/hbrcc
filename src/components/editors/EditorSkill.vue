@@ -4,6 +4,7 @@ import {ref} from "vue";
 import ViewMod from "@/components/ViewMods.vue";
 
 import {Skill} from "@/model/skill";
+import NumberField from "@/components/utils/NumberField.vue";
 
 const props = defineProps<{
   skill: Skill,
@@ -24,9 +25,9 @@ const dialog = ref(false)
     <v-container>
       <v-row>
         <v-col>
-          <v-text-field v-model="skill.cap" label="Skill Cap" type="number"></v-text-field>
-          <v-text-field v-model.number="skill.bar[0]" label="Min DMG" type="number"></v-text-field>
-          <v-text-field v-model.number="skill.bar[1]" label="Max DMG" type="number"></v-text-field>
+          <NumberField v-model="skill.cap" label="Skill Cap"></NumberField>
+          <NumberField v-model="skill.bar[0]" label="Min DMG"></NumberField>
+          <NumberField v-model="skill.bar[1]" label="Max DMG"></NumberField>
         </v-col>
         <v-col>
           <v-chip @click="dialog=true">

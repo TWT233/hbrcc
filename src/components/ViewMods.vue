@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {defineEmits, defineProps} from "vue"
 
-import ViewSingleMod from "@/components/ViewSingleMod.vue";
+import ShowSingleMod from "@/components/ShowSingleMod.vue";
 
 import {ATK, MainTypes, Modifier} from "@/model/modifier";
 
@@ -33,7 +33,7 @@ function deleteMod(ii, index) {
     <v-container>
       <v-row v-for="mods in modMap" :key="mods">
         <v-col v-for="i in mods.length" :key="i" cols="auto">
-          <ViewSingleMod v-model:mod="mods[i-1]" @del="deleteMod(mods,i-1)"></ViewSingleMod>
+          <ShowSingleMod v-model:mod="mods[i-1]" @del="deleteMod(mods,i-1)"></ShowSingleMod>
         </v-col>
       </v-row>
     </v-container>

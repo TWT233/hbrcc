@@ -6,6 +6,7 @@ import ViewEnemy from "@/components/ViewEnemy.vue";
 import ViewChar from "@/components/ViewChar.vue";
 
 import {Hit} from "@/model/hit";
+import ViewResult from "@/components/ViewResult.vue";
 
 const hit = ref(new Hit())
 
@@ -25,7 +26,16 @@ const hit = ref(new Hit())
             <ViewMods v-model:modMap="hit.modMap" title="Buffs & DeBuffs"></ViewMods>
           </v-col>
           <v-col cols="12" lg="4">
-            <ViewEnemy v-model:enemy="hit.enemy"></ViewEnemy>
+            <v-row>
+              <v-col>
+                <ViewEnemy v-model:enemy="hit.enemy"></ViewEnemy>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <ViewResult v-model:hit="hit"></ViewResult>
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
       </v-container>

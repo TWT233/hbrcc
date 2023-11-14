@@ -17,7 +17,7 @@ export class Hit {
             defaultModValueCalc(modMap[ModMain.ATK]),
             defaultModValueCalc(modMap[ModMain.DEF]),
             this.enemy.weak > 1 ? defaultModValueCalc(modMap[ModMain.FRAGILE]) : 1,
-            defaultModValueCalc(modMap[ModMain.EnemyType].filter(v => v.sub == this.enemy.type)),
+            defaultModValueCalc(modMap[ModMain.EnemyType]?.filter(v => v.sub == this.enemy.type)),
             defaultModValueCalc(modMap[ModMain.CRIT]),
             this.enemy.weak,
             this.enemy.des,
@@ -60,17 +60,14 @@ export class Hit {
 }
 
 function defaultModValueCalc(mods: Modifier[]): number {
-    if (!mods) return 1
-
     let res = 1
-    let modMapSub = categorizeAndSort(mods.filter(m => !!m))
+    let modMapSub = categorizeAndSort(mods?.filter(m => !!m))
     for (let sub in modMapSub) res += modMapSub[sub].slice(0, 2).reduce((a, b) => a + b.value, 0)
-
     return res
 }
 
 function categorizeAndSort(ms: Modifier[]): Partial<Record<ModSub, Modifier[]>> {
-    let res = ms.reduce((res, m) => (m.sub in res ? res[m.sub].push(m) : res[m.sub] = [m], res), {})
+    let res = ms?.reduce((res, m) => (m.sub in res ? res[m.sub].push(m) : res[m.sub] = [m], res), {})
     for (const sub in res) res[sub].sort((m1: Modifier, m2: Modifier) => m2.value - m1.value)
     return res
 }

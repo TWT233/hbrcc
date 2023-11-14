@@ -2,7 +2,7 @@
 import {ref} from "vue";
 
 import ViewMods from "@/components/ViewMods.vue";
-import ViewEnemy from "@/components/ViewEnemy.vue";
+import ViewAndEditEnemy from "@/components/ViewAndEditEnemy.vue";
 import ViewChar from "@/components/ViewChar.vue";
 import ViewResult from "@/components/ViewResult.vue";
 
@@ -27,7 +27,7 @@ const hit = ref(new Hit())
           <v-col cols="12" lg="4">
             <v-row>
               <v-col>
-                <ViewEnemy v-model:enemy="hit.enemy"></ViewEnemy>
+                <ViewAndEditEnemy v-model:enemy="hit.enemy"></ViewAndEditEnemy>
               </v-col>
             </v-row>
             <v-row>

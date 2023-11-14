@@ -27,8 +27,11 @@ const wrappedEnemyType = computed({
     <v-toolbar title="Enemy Detail"></v-toolbar>
     <v-container>
       <v-row>
-        <v-col cols="auto">
-          <v-switch v-model="wrappedEnemyType" :label="props.enemy.type" color="primary"></v-switch>
+        <v-col>
+          <v-btn-toggle v-model="enemy.type" color="primary.dark" group>
+            <v-btn :value="EnemyType.HP">HP</v-btn>
+            <v-btn :value="EnemyType.DP">DP</v-btn>
+          </v-btn-toggle>
         </v-col>
         <v-col>
           <NumberField v-model="enemy.border" label="Border"></NumberField>
@@ -36,6 +39,8 @@ const wrappedEnemyType = computed({
         <v-col>
           <NumberField percent v-model="enemy.des" label="Destruction"></NumberField>
         </v-col>
+      </v-row>
+      <v-row>
         <v-col>
           <NumberField percent v-model="enemy.phyWeak" label="Physical Weak"></NumberField>
         </v-col>

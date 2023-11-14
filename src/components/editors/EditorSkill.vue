@@ -5,6 +5,10 @@ import ViewMod from "@/components/ViewMods.vue";
 
 import {Skill} from "@/model/skill";
 import NumberField from "@/components/utils/NumberField.vue";
+import {Stat} from "@/model/types";
+import DialogChip from "@/components/utils/DialogChip.vue";
+import EditorSkillBaseOn from "@/components/editors/EditorSkillBaseOn.vue";
+import {sk} from "vuetify/locale";
 
 const props = defineProps<{
   skill: Skill,
@@ -16,8 +20,15 @@ const emit = defineEmits<{
   ]
 }>()
 
-const dialog = ref(false)
+function getBaseString(): string {
+  let result = []
+  for (const stat in props.skill.baseOn) {
+    result.push(`${stat} x ${props.skill.baseOn[stat]}`)
+  }
+  return result.join(' + ')
+}
 
+const dialog = ref(false)
 </script>
 
 <template>
@@ -33,14 +44,12 @@ const dialog = ref(false)
         <v-col>
           <NumberField v-model="skill.bar[1]" label="Max DMG"></NumberField>
         </v-col>
-        <v-col>
-          <v-chip @click="dialog=true">
-            <v-icon start icon="mdi-pencil"></v-icon>
-            Base on
-            <v-dialog v-model="dialog" width="auto">
-              <v-card></v-card>
-            </v-dialog>
-          </v-chip>
+      </v-row>
+      <v-row justify="center">
+        <v-col cols="auto">
+          <DialogChip :text="`Base on: ${ getBaseString() }`">
+            <EditorSkillBaseOn v-model:base-on="skill.baseOn"></EditorSkillBaseOn>
+          </DialogChip>
         </v-col>
       </v-row>
       <v-row>

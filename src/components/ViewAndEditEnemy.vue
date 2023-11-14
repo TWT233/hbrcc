@@ -16,19 +16,10 @@ const emit = defineEmits<{
   ]
 }>()
 
-const destructionPercent = computed({
-  get: () => props.enemy.des * 100,
-  set: value => props.enemy.des = value / 100
-})
-const phyWeakPercent = computed({
-  get: () => props.enemy.phyWeak * 100,
-  set: value => props.enemy.phyWeak = value / 100
-})
 const wrappedEnemyType = computed({
   get: () => props.enemy.type === EnemyType.HP,
   set: value => props.enemy.type = value ? EnemyType.HP : EnemyType.DP
 })
-
 </script>
 
 <template>
@@ -41,10 +32,14 @@ const wrappedEnemyType = computed({
         </v-col>
         <v-col>
           <NumberField v-model="enemy.border" label="Border"></NumberField>
+        </v-col>
+        <v-col>
           <NumberField percent v-model="enemy.des" label="Destruction"></NumberField>
         </v-col>
         <v-col>
           <NumberField percent v-model="enemy.phyWeak" label="Physical Weak"></NumberField>
+        </v-col>
+        <v-col>
           <NumberField percent v-model="enemy.eleWeak" label="Element Weak"></NumberField>
         </v-col>
       </v-row>

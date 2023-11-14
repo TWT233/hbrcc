@@ -26,7 +26,11 @@ const dialog = ref(false)
       <v-row>
         <v-col>
           <NumberField v-model="skill.cap" label="Skill Cap"></NumberField>
+        </v-col>
+        <v-col>
           <NumberField v-model="skill.bar[0]" label="Min DMG"></NumberField>
+        </v-col>
+        <v-col>
           <NumberField v-model="skill.bar[1]" label="Max DMG"></NumberField>
         </v-col>
         <v-col>
@@ -39,9 +43,11 @@ const dialog = ref(false)
           </v-chip>
         </v-col>
       </v-row>
-      <v-col cols="12">
-        <ViewMod v-model:mods="skill.presetModifiers" title="Preseted Buffs"></ViewMod>
-      </v-col>
+      <v-row>
+        <v-col cols="12">
+          <ViewMod v-model:mods="skill.presetModifiers" title="Preseted Buffs"></ViewMod>
+        </v-col>
+      </v-row>
     </v-container>
   </v-card>
 </template>

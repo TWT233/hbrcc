@@ -1,6 +1,7 @@
 import {Modifier} from "./modifier";
 
 export type ModMap = Partial<Record<ModMain, Modifier[]>>
+export type StatMap = Record<Stat, number>
 
 export enum EnemyType {
     HP = "HP",

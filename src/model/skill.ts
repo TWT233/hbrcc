@@ -1,8 +1,8 @@
 import {Modifier} from "./modifier";
-import {ATK, EnemyType, ModMain, Stat} from "./types";
+import {ATK, EnemyType, ModMain, Stat, StatMap} from "./types";
 
 export interface Skill {
-    readonly requiredStats: { [key in Stat]?: number }// eg: {[STR]: 2, [DEX]: 1} means 2*STR+1*DEX
+    readonly baseOn: Partial<StatMap>// eg: {[STR]: 2, [DEX]: 1} means 2*STR+1*DEX
     readonly bar: [number, number] // [min, max]
     readonly cap: number
 
@@ -10,7 +10,7 @@ export interface Skill {
 }
 
 export class DefaultSkill implements Skill {
-    requiredStats = {[Stat.STR]: 2, [Stat.DEX]: 1}
+    baseOn = {[Stat.STR]: 2, [Stat.DEX]: 1}
     bar: [number, number] = [2502, 12510]
     cap = 147
 

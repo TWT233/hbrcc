@@ -5,6 +5,7 @@ import EditorMod from "@/components/editors/EditorMod.vue";
 
 import {Modifier} from "@/model/modifier";
 import {COLOR_MAP} from "@/model/types";
+import DialogChip from "@/components/utils/DialogChip.vue";
 
 const props = defineProps<{
   mod: Modifier,
@@ -24,17 +25,13 @@ const wrappedMod = computed({
   }
 })
 
-const dialog = ref(false)
 </script>
 
 <template>
-  <v-chip @click="dialog=true" closable @click:close="$emit('del')" :color="COLOR_MAP[mod.main]">
-    <v-icon start icon="mdi-pencil"></v-icon>
-    {{ mod.main }} | {{ mod.sub }} | {{ (mod.value * 100 | 0) }}%
-    <v-dialog v-model="dialog" width="auto">
-      <EditorMod v-model:mod="wrappedMod" @del="$emit('del')"></EditorMod>
-    </v-dialog>
-  </v-chip>
+  <DialogChip :text="`${ mod.main } | ${ mod.sub } | ${ (mod.value * 100 | 0) }%`"
+              closable :color="COLOR_MAP[mod.main]" @del="$emit('del')">
+    <EditorMod v-model:mod="wrappedMod" @del="$emit('del')"></EditorMod>
+  </DialogChip>
 </template>
 
 <style scoped>

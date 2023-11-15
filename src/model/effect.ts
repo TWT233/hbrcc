@@ -9,11 +9,11 @@ export class Effect {
 
     baseOn: Partial<StatMap>// eg: {[STR]: 2, [DEX]: 1} means 2*STR+1*DEX
 
-    produce(lv: number, hojuLV: number, stat: Stat, border: number): number {
+    value(lv: number, hojuLV: number, stat: Stat, border: number): number {
         const bar = this.calcBar(lv)
         const sd = this.calcES(stat) - border
 
-        return this.calcValue(bar, sd, this.cap) + this.calcHoju(bar, sd, hojuLV)
+        return this.calcBase(bar, sd, this.cap) + this.calcHoju(bar, sd, hojuLV)
     }
 
     calcBar(lv: number): [number, number] {
@@ -22,16 +22,16 @@ export class Effect {
     }
 
     calcES(stat: Stat): number {
-        let sall = 0
-        let smultiplier = 0
+        let all = 0
+        let multiplier = 0
         for (const s in this.baseOn) {
-            sall += stat[s] * this.baseOn[s]
-            smultiplier += this.baseOn[s]
+            all += stat[s] * this.baseOn[s]
+            multiplier += this.baseOn[s]
         }
-        return sall / smultiplier
+        return all / multiplier
     }
 
-    calcValue(bar: [number, number], sd: number, cap: number) {
+    calcBase(bar: [number, number], sd: number, cap: number) {
         if (sd < -cap / 2) {
             return 1
         }
@@ -48,9 +48,8 @@ export class Effect {
         const growth = (this.hojuGrowth instanceof Array) ? this.hojuGrowth : hojuGrowthRateMap[this.hojuGrowth]
         const hojuBar: [number, number] = [bar[0] * growth[0] * lv, bar[1] * growth[0] * lv]
         const hojuCap = this.cap + growth[1] * lv
-        return this.calcValue(hojuBar, sd, hojuCap)
+        return this.calcBase(hojuBar, sd, hojuCap)
     }
-
 }
 
 const growthRateMap: Record<GrowthType, ArbitraryGrowth> = {

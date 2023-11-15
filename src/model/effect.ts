@@ -1,6 +1,6 @@
 import {
     ArbitraryGrowth,
-    ArbitraryHojuGrowth,
+    ArbitraryHojuGrowth, BorderType,
     GrowthType,
     HojuGrowthType,
     ModMain,
@@ -19,6 +19,8 @@ export class Effect {
 
     type: [ModMain, ModSub] | undefined = undefined
 
+    bdt: BorderType
+
     growth: GrowthType | ArbitraryGrowth
     hojuGrowth: HojuGrowthType | ArbitraryHojuGrowth
 
@@ -27,6 +29,7 @@ export class Effect {
         cap: number,
         baseOn: Partial<StatMap>,
         type: [ModMain, ModSub] | undefined,
+        bdt: BorderType,
         growth: GrowthType | ArbitraryGrowth,
         hojuGrowth: HojuGrowthType | ArbitraryHojuGrowth = HojuGrowthType.NO,
     ) {
@@ -34,6 +37,7 @@ export class Effect {
         this.cap = cap;
         this.baseOn = baseOn;
         this.type = type;
+        this.bdt = bdt;
         this.growth = growth;
         this.hojuGrowth = hojuGrowth;
     }

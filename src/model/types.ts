@@ -19,6 +19,11 @@ export enum Stat {
     LUK = "LUK",
 }
 
+export enum BorderType {
+    NO = "NO",
+    ENEMY = "ENEMY",
+}
+
 export enum GrowthType {
     ATK = "ATK",
     HEAL = "HEAL",

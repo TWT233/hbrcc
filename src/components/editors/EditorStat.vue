@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import {Stat} from "@/model/types";
+import {Stat, StatMap} from "@/model/types";
 import NumberField from "@/components/utils/NumberField.vue";
 
 const props = defineProps<{
-  stat: Record<Stat, number>,
+  stat: StatMap,
 }>()
 
 const emit = defineEmits<{
   update: [
-    stat: Record<Stat, number>,
+    stat: StatMap,
   ]
 }>()
 </script>

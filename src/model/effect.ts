@@ -15,10 +15,9 @@ export class Effect {
     bar: [number, number] // [min, max]
     cap: number
 
-    baseOn: Partial<StatMap>// eg: {[STR]: 2, [DEX]: 1} means 2*STR+1*DEX
+    baseOn: Partial<StatMap> // eg: {[STR]: 2, [DEX]: 1} means 2*STR+1*DEX
 
-    type: [ModMain, ModSub] | undefined = undefined
-
+    mt: [ModMain, ModSub] | undefined = undefined // undefined: atk skill
     bdt: BorderType
 
     growth: GrowthType | ArbitraryGrowth
@@ -28,7 +27,7 @@ export class Effect {
         bar: [number, number],
         cap: number,
         baseOn: Partial<StatMap>,
-        type: [ModMain, ModSub] | undefined,
+        mt: [ModMain, ModSub] | undefined,
         bdt: BorderType,
         growth: GrowthType | ArbitraryGrowth,
         hojuGrowth: HojuGrowthType | ArbitraryHojuGrowth = HojuGrowthType.NO,
@@ -36,14 +35,14 @@ export class Effect {
         this.bar = bar;
         this.cap = cap;
         this.baseOn = baseOn;
-        this.type = type;
+        this.mt = mt;
         this.bdt = bdt;
         this.growth = growth;
         this.hojuGrowth = hojuGrowth;
     }
 
     get isDMG(): boolean {
-        return this.type == undefined
+        return this.mt == undefined
     }
 
     value(lv: number, hojuLV: number, stat: Stat, border: number): number {

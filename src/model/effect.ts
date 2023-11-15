@@ -9,6 +9,8 @@ import {
     StatMap
 } from "@/model/types";
 
+export type NS = Effect[]
+
 export class Effect {
     growth: GrowthType | ArbitraryGrowth
     hojuGrowth: HojuGrowthType | ArbitraryHojuGrowth
@@ -97,4 +99,3 @@ const hojuGrowthRateMap: Record<HojuGrowthType, ArbitraryHojuGrowth> = {
     [HojuGrowthType.CRIT]: [0.02, 60],
     [HojuGrowthType.OTHER]: [0, 0],
 }
-

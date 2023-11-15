@@ -7,6 +7,7 @@ import ViewChar from "@/components/ViewChar.vue";
 import ViewResult from "@/components/ViewResult.vue";
 
 import {Hit} from "@/model/hit";
+import ViewNS from "@/components/ViewNS.vue";
 
 const hit = ref(new Hit())
 </script>
@@ -22,17 +23,26 @@ const hit = ref(new Hit())
             <ViewChar v-model:char="hit.char"></ViewChar>
           </v-col>
           <v-col cols="12" lg="4">
-            <ViewMods v-model:mods="hit.mods" title="Buffs & DeBuffs"></ViewMods>
-          </v-col>
-          <v-col cols="12" lg="4">
+            <v-row>
+              <v-col>
+                <ViewMods v-model:mods="hit.mods" title="Buffs & DeBuffs"></ViewMods>
+              </v-col>
+            </v-row>
             <v-row>
               <v-col>
                 <ViewAndEditEnemy v-model:enemy="hit.enemy"></ViewAndEditEnemy>
               </v-col>
             </v-row>
+          </v-col>
+          <v-col cols="12" lg="4">
             <v-row>
               <v-col>
                 <ViewResult v-model:hit="hit"></ViewResult>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <ViewNS></ViewNS>
               </v-col>
             </v-row>
           </v-col>

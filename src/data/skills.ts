@@ -24,3 +24,19 @@ export const SKILLS: Record<SkillName, NS> = {
     ]
 }
 
+export const SKILLS_DMG = [
+    SkillName.AliceASkill51,
+]
+
+export const SKILLS_MOD = {
+    FREQUENTLY: [
+        SkillName.LShanhuaSkill51,
+        SkillName.SHiguchiSkill52,
+    ],
+    ADDITIONAL: [
+        SkillName.LShanhuaSkill51,
+    ],
+    CRIT: [
+        SkillName.SHiguchiSkill52,
+    ]
+}

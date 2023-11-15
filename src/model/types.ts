@@ -45,7 +45,8 @@ export enum ModMain {
     DEF = "DEF",
     FRAGILE = "FRAGILE",
     EnemyType = "EnemyType",
-    CRIT = "CRIT"
+    CRIT = "CRIT",
+    ADDITIONAL = "ADDITIONAL",
 }
 
 export type ModSub =
@@ -75,6 +76,10 @@ export enum FRAGILE {
 export enum CRIT {
     NORMAL = "NORMAL", // normal atk buff
     ELEMENT = "ELEMENT",
+}
+
+export enum ADDITIONAL {
+    NORMAL = "NORMAL",
 }
 
 export const COLOR_MAP = {

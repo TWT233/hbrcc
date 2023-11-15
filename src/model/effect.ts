@@ -12,9 +12,6 @@ import {
 export type NS = Effect[]
 
 export class Effect {
-    growth: GrowthType | ArbitraryGrowth
-    hojuGrowth: HojuGrowthType | ArbitraryHojuGrowth
-
     bar: [number, number] // [min, max]
     cap: number
 
@@ -22,18 +19,23 @@ export class Effect {
 
     type: [ModMain, ModSub] | undefined = undefined
 
-    constructor(growth: GrowthType | ArbitraryGrowth,
-                hojuGrowth: HojuGrowthType | ArbitraryHojuGrowth,
-                bar: [number, number],
-                cap: number,
-                baseOn: Partial<StatMap>,
-                type: [ModMain, ModSub] | undefined) {
-        this.growth = growth;
-        this.hojuGrowth = hojuGrowth;
+    growth: GrowthType | ArbitraryGrowth
+    hojuGrowth: HojuGrowthType | ArbitraryHojuGrowth
+
+    constructor(
+        bar: [number, number],
+        cap: number,
+        baseOn: Partial<StatMap>,
+        type: [ModMain, ModSub] | undefined,
+        growth: GrowthType | ArbitraryGrowth,
+        hojuGrowth: HojuGrowthType | ArbitraryHojuGrowth = HojuGrowthType.NO,
+    ) {
         this.bar = bar;
         this.cap = cap;
         this.baseOn = baseOn;
         this.type = type;
+        this.growth = growth;
+        this.hojuGrowth = hojuGrowth;
     }
 
     get isDMG(): boolean {

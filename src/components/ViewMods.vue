@@ -16,7 +16,7 @@ const emit = defineEmits<{
 }>()
 
 function addMod() {
-  props.mods.push(new Modifier(ModMain.ATK, ATK.NORMAL, 0.5))
+  props.mods.push(new Modifier([ModMain.ATK, ATK.NORMAL], 0.5))
 }
 
 function deleteMod(index) {

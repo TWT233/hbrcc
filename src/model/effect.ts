@@ -42,7 +42,7 @@ export class Effect {
 
     value(lv: number, hojuLV: number, stat: Stat, border: number): number {
         if (this.growth == GrowthType.FIXED) return this.bar[0]
-        
+
         const bar = this.calcBar(lv)
         const sd = this.calcES(stat) - border
 
@@ -61,7 +61,7 @@ export class Effect {
             all += stat[s] * this.baseOn[s]
             multiplier += this.baseOn[s]
         }
-        return all / multiplier
+        return multiplier == 0 ? 0 : all / multiplier
     }
 
     calcBase(bar: [number, number], sd: number, cap: number) {
@@ -101,5 +101,5 @@ const hojuGrowthRateMap: Record<HojuGrowthType, ArbitraryHojuGrowth> = {
     BUFF: [0.04, 60],
     DEBUFF: [0.02, 20],
     CRIT: [0.02, 60],
-    FIXED: [0, 0],
+    NO: [0, 0],
 }

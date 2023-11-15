@@ -54,7 +54,8 @@ export type ModSub =
     | DEF
     | FRAGILE
     | EnemyType
-    | CRIT;
+    | CRIT
+    | ADDITIONAL;
 
 export enum ATK {
     NORMAL = "NORMAL", // normal atk buff

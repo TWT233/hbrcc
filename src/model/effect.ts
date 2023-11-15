@@ -1,4 +1,13 @@
-import {ArbitraryGrowth, ArbitraryHojuGrowth, GrowthType, HojuGrowthType, Stat, StatMap} from "@/model/types";
+import {
+    ArbitraryGrowth,
+    ArbitraryHojuGrowth,
+    GrowthType,
+    HojuGrowthType,
+    ModMain,
+    ModSub,
+    Stat,
+    StatMap
+} from "@/model/types";
 
 export class Effect {
     growth: GrowthType | ArbitraryGrowth
@@ -8,6 +17,12 @@ export class Effect {
     cap: number
 
     baseOn: Partial<StatMap>// eg: {[STR]: 2, [DEX]: 1} means 2*STR+1*DEX
+
+    type: { main: ModMain, sub: ModSub } | undefined = undefined
+
+    get isDMG(): boolean {
+        return this.type == undefined
+    }
 
     value(lv: number, hojuLV: number, stat: Stat, border: number): number {
         const bar = this.calcBar(lv)

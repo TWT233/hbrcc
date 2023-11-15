@@ -1,5 +1,6 @@
 import {Modifier} from "./modifier";
 
+export type ModType = [ModMain, ModSub]
 export type ModMap = Partial<Record<ModMain, Modifier[]>>
 export type StatMap = Record<Stat, number>
 
@@ -80,6 +81,7 @@ export enum FRAGILE {
 }
 
 export enum CRIT {
+    BASE = "BASE",
     NORMAL = "NORMAL", // normal atk buff
     ELEMENT = "ELEMENT",
 }

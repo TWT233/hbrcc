@@ -29,7 +29,7 @@ export class Hit {
     mergeMods(): ModMap {
         let res: ModMap = {}
         let mods = [...this.mods, ...this.char.skill.presetModifiers].filter(mod => !!mod)
-        if (this.isCrit) mods.push(new Modifier([ModMain.CRIT, CRIT.NORMAL], 0.5))
+        if (this.isCrit) mods.push(new Modifier([ModMain.CRIT, CRIT.BASE], 0.5))
 
         for (const mod of mods) {
             mod.main in res ? res[mod.main].push(mod) : res[mod.main] = [mod]

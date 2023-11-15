@@ -8,7 +8,7 @@ export enum SkillName {
     SHiguchiSkill52 = "絕對現象"
 }
 
-const SKILLS: Record<SkillName, NS> = {
+export const SKILLS: Record<SkillName, NS> = {
     [SkillName.AliceASkill51]: [
         ATK_ELEMENT_S(147),
         ENEMY_TYPE(EnemyType.HP, 0.5),

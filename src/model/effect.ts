@@ -18,7 +18,21 @@ export class Effect {
 
     baseOn: Partial<StatMap>// eg: {[STR]: 2, [DEX]: 1} means 2*STR+1*DEX
 
-    type: { main: ModMain, sub: ModSub } | undefined = undefined
+    type: [ModMain, ModSub] | undefined = undefined
+
+    constructor(growth: GrowthType | ArbitraryGrowth,
+                hojuGrowth: HojuGrowthType | ArbitraryHojuGrowth,
+                bar: [number, number],
+                cap: number,
+                baseOn: Partial<StatMap>,
+                type: [ModMain, ModSub] | undefined) {
+        this.growth = growth;
+        this.hojuGrowth = hojuGrowth;
+        this.bar = bar;
+        this.cap = cap;
+        this.baseOn = baseOn;
+        this.type = type;
+    }
 
     get isDMG(): boolean {
         return this.type == undefined

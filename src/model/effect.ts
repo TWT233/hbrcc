@@ -41,6 +41,8 @@ export class Effect {
     }
 
     value(lv: number, hojuLV: number, stat: Stat, border: number): number {
+        if (this.growth == GrowthType.FIXED) return this.bar[0]
+        
         const bar = this.calcBar(lv)
         const sd = this.calcES(stat) - border
 
@@ -76,6 +78,8 @@ export class Effect {
     }
 
     calcHoju(bar: [number, number], sd: number, lv: number): number {
+        if (this.hojuGrowth == HojuGrowthType.NO) return 0
+
         const growth = (this.hojuGrowth instanceof Array) ? this.hojuGrowth : hojuGrowthRateMap[this.hojuGrowth]
         const hojuBar: [number, number] = [bar[0] * growth[0] * lv, bar[1] * growth[0] * lv]
         const hojuCap = this.cap + growth[1] * lv
@@ -84,18 +88,18 @@ export class Effect {
 }
 
 const growthRateMap: Record<GrowthType, ArbitraryGrowth> = {
-    [GrowthType.ATK]: [0.05, 0.02],
-    [GrowthType.HEAL]: [0.05, 0.02],
-    [GrowthType.BUFF]: [0.03, 0.02],
-    [GrowthType.DEBUFF]: [0.05, 0.02],
-    [GrowthType.OTHER]: [0, 0],
+    ATK: [0.05, 0.02],
+    HEAL: [0.05, 0.02],
+    BUFF: [0.03, 0.02],
+    DEBUFF: [0.05, 0.02],
+    FIXED: [0, 0],
 }
 
 const hojuGrowthRateMap: Record<HojuGrowthType, ArbitraryHojuGrowth> = {
-    [HojuGrowthType.ATK]: [0.02, 20],
-    [HojuGrowthType.HEAL]: [0.06, 60],
-    [HojuGrowthType.BUFF]: [0.04, 60],
-    [HojuGrowthType.DEBUFF]: [0.02, 20],
-    [HojuGrowthType.CRIT]: [0.02, 60],
-    [HojuGrowthType.OTHER]: [0, 0],
+    ATK: [0.02, 20],
+    HEAL: [0.06, 60],
+    BUFF: [0.04, 60],
+    DEBUFF: [0.02, 20],
+    CRIT: [0.02, 60],
+    FIXED: [0, 0],
 }

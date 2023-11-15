@@ -24,7 +24,7 @@ export enum GrowthType {
     HEAL = "HEAL",
     BUFF = "BUFF",
     DEBUFF = "DEBUFF",
-    OTHER = "OTHER",
+    FIXED = "FIXED",
 }
 
 export type ArbitraryGrowth = [number, number] // [bar min growth, bar max growth], e.g. [5%, 2%]
@@ -35,7 +35,7 @@ export enum HojuGrowthType {
     BUFF = "BUFF",
     DEBUFF = "DEBUFF",
     CRIT = "CRIT",
-    OTHER = "OTHER",
+    NO = "NO",
 }
 
 export type ArbitraryHojuGrowth = [number, number] // [bar rate, cap], e.g. [2%, 20]

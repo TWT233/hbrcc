@@ -19,6 +19,27 @@ export enum Stat {
     LUK = "LUK",
 }
 
+export enum GrowthType {
+    ATK = "ATK",
+    HEAL = "HEAL",
+    BUFF = "BUFF",
+    DEBUFF = "DEBUFF",
+    OTHER = "OTHER",
+}
+
+export type ArbitraryGrowth = [number, number] // [bar min growth, bar max growth], e.g. [5%, 2%]
+
+export enum HojuGrowthType {
+    ATK = "ATK",
+    HEAL = "HEAL",
+    BUFF = "BUFF",
+    DEBUFF = "DEBUFF",
+    CRIT = "CRIT",
+    OTHER = "OTHER",
+}
+
+export type ArbitraryHojuGrowth = [number, number] // [bar rate, cap], e.g. [2%, 20]
+
 export enum ModMain {
     ATK = "ATK",
     DEF = "DEF",

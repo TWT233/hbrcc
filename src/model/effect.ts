@@ -1,10 +1,12 @@
 import {
     ArbitraryGrowth,
-    ArbitraryHojuGrowth, BorderType,
+    ArbitraryHojuGrowth,
+    BorderType,
     GrowthType,
     HojuGrowthType,
     ModMain,
-    ModSub, ModType,
+    ModSub,
+    ModType,
     Stat,
     StatMap
 } from "@/model/types";
@@ -49,7 +51,7 @@ export class Effect {
         if (this.growth == GrowthType.FIXED) return this.bar[0]
 
         const bar = this.calcBar(lv)
-        const sd = this.calcES(stat) - border
+        const sd = this.calcES(stat) - (this.bdt == BorderType.NO ? 0 : border)
 
         return this.calcBase(bar, sd, this.cap) + this.calcHoju(bar, sd, hojuLV)
     }

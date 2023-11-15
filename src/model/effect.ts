@@ -4,7 +4,7 @@ import {
     GrowthType,
     HojuGrowthType,
     ModMain,
-    ModSub,
+    ModSub, ModType,
     Stat,
     StatMap
 } from "@/model/types";
@@ -17,7 +17,7 @@ export class Effect {
 
     base: Partial<StatMap> // eg: {[STR]: 2, [DEX]: 1} means 2*STR+1*DEX
 
-    mt: [ModMain, ModSub] | undefined = undefined // undefined: atk skill
+    mt: ModType | undefined = undefined // undefined: atk skill
     bdt: BorderType
 
     growth: GrowthType | ArbitraryGrowth

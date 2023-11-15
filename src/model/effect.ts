@@ -15,7 +15,7 @@ export class Effect {
     bar: [number, number] // [min, max]
     cap: number
 
-    baseOn: Partial<StatMap> // eg: {[STR]: 2, [DEX]: 1} means 2*STR+1*DEX
+    base: Partial<StatMap> // eg: {[STR]: 2, [DEX]: 1} means 2*STR+1*DEX
 
     mt: [ModMain, ModSub] | undefined = undefined // undefined: atk skill
     bdt: BorderType
@@ -26,7 +26,7 @@ export class Effect {
     constructor(
         bar: [number, number],
         cap: number,
-        baseOn: Partial<StatMap>,
+        base: Partial<StatMap>,
         mt: [ModMain, ModSub] | undefined,
         bdt: BorderType,
         growth: GrowthType | ArbitraryGrowth,
@@ -34,7 +34,7 @@ export class Effect {
     ) {
         this.bar = bar;
         this.cap = cap;
-        this.baseOn = baseOn;
+        this.base = base;
         this.mt = mt;
         this.bdt = bdt;
         this.growth = growth;
@@ -62,9 +62,9 @@ export class Effect {
     calcES(stat: Stat): number {
         let all = 0
         let multiplier = 0
-        for (const s in this.baseOn) {
-            all += stat[s] * this.baseOn[s]
-            multiplier += this.baseOn[s]
+        for (const s in this.base) {
+            all += stat[s] * this.base[s]
+            multiplier += this.base[s]
         }
         return multiplier == 0 ? 0 : all / multiplier
     }

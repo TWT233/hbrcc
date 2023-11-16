@@ -28,8 +28,8 @@ export class Effect {
         cap: number,
         base: Partial<StatMap>,
         mt: [ModMain, ModSub] | undefined,
-        bdt: BorderType,
-        growth: GrowthType | ArbitraryGrowth,
+        bdt: BorderType = BorderType.NO,
+        growth: GrowthType | ArbitraryGrowth = GrowthType.FIXED,
         hojuGrowth: HojuGrowthType | ArbitraryHojuGrowth = HojuGrowthType.NO,
     ) {
         this.bar = bar;

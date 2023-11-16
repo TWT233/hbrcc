@@ -5,7 +5,7 @@ import EditorEnemy from "@/components/editors/EditorEnemy.vue";
 import ViewResult from "@/components/ViewResult.vue";
 
 import {Hit} from "@/model/hit";
-import ViewSkillCall from "@/components/ViewSkillCalls.vue";
+import ViewBuffs from "@/components/ViewBuffs.vue";
 
 const hit = ref(new Hit())
 
@@ -21,10 +21,18 @@ provide('border', border)
       <v-container>
         <v-row>
           <v-col cols="12" lg="4">
-            <ViewSkillCall v-model:calls="hit.buffs"></ViewSkillCall>
+            <ViewBuffs v-model:calls="hit.buffs"></ViewBuffs>
           </v-col>
-          <v-col class="" cols="12" lg="4">
-            <EditorEnemy v-model:enemy="hit.enemy"></EditorEnemy>
+          <v-col cols="12" lg="4">
+            <v-row>
+              <v-col>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <EditorEnemy v-model:enemy="hit.enemy"></EditorEnemy>
+              </v-col>
+            </v-row>
           </v-col>
           <v-col cols="12" lg="4">
             <ViewResult v-model:hit="hit"></ViewResult>

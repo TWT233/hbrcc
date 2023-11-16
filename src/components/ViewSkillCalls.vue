@@ -2,7 +2,7 @@
 import {SKillCall} from "@/model/skill";
 import {SkillName} from "@/data/skills";
 import {newStatMap} from "@/model/types";
-import ShowSkillCall from "@/components/ShowSkillCall.vue";
+import EditorSkillCall from "@/components/editors/EditorSkillCall.vue";
 
 const props = defineProps<{
   calls: SKillCall[]
@@ -28,7 +28,7 @@ function addCall() {
     </v-toolbar>
     <v-list>
       <v-list-item v-for="(call, i) in calls" :key="i">
-        <ShowSkillCall v-model:call="calls[i]"></ShowSkillCall>
+        <EditorSkillCall v-model:call="calls[i]"></EditorSkillCall>
       </v-list-item>
     </v-list>
   </v-card>

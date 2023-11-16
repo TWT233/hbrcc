@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 
-import {SkillName, SKILLS_CATE} from "@/data/skills";
+import {querySkillName, SkillName, SKILLS_CATE} from "@/data/skills";
 import {Skill} from "@/model/skill";
-import {computed, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 
 const props = defineProps<{
   callee: SkillName | Skill
@@ -20,6 +20,16 @@ let category = ref('CUSTOM')
 const wrappedCallee = computed({
   get: () => props.callee,
   set: (value) => emit('update:callee', value),
+})
+
+onMounted(() => {
+  const name = querySkillName(props.callee)
+  for (const cate in SKILLS_CATE[props.type]) {
+    if (SKILLS_CATE[props.type][cate].includes(name)) {
+      category.value = cate
+      return
+    }
+  }
 })
 </script>
 

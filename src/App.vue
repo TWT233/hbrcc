@@ -3,7 +3,6 @@ import {ref} from "vue";
 
 import ViewMods from "@/components/ViewMods.vue";
 import ViewAndEditEnemy from "@/components/ViewAndEditEnemy.vue";
-import ViewChar from "@/components/ViewChar.vue";
 import ViewResult from "@/components/ViewResult.vue";
 
 import {Hit} from "@/model/hit";
@@ -19,9 +18,6 @@ const hit = ref(new Hit())
     <v-main class="d-flex align-center justify-center">
       <v-container>
         <v-row>
-          <v-col cols="12" lg="4">
-            <ViewChar v-model:char="hit.char"></ViewChar>
-          </v-col>
           <v-col cols="12" lg="4">
             <v-row>
               <v-col>

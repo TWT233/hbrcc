@@ -56,7 +56,7 @@ export class Effect {
 
     calcBar(lv: number): [number, number] {
         const growth = (this.growth instanceof Array) ? this.growth : growthRateMap[this.growth]
-        return [this.bar[0] * (1 + growth[0] * lv), this.bar[1] * (1 + growth[1] * lv)]
+        return [this.bar[0] * (1 + growth[0] * (lv - 1)), this.bar[1] * (1 + growth[1] * (lv - 1))]
     }
 
     calcES(stat: Partial<StatMap>): number {
@@ -71,7 +71,7 @@ export class Effect {
 
     calcBase(bar: [number, number], sd: number, cap: number) {
         if (sd < -cap / 2) {
-            return 1
+            return 0
         }
         if (sd <= 0) {
             return (sd + cap / 2) * bar[0] / (cap / 2)

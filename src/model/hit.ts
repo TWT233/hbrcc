@@ -17,12 +17,11 @@ export class Hit {
         }
     }
     buffs: SKillCall[] = []
-    mods: Modifier[] = []
 
     calculate(): number {
         const mods = this.getMods()
         if (this.isCrit) mods.push(new Modifier([ModMain.CRIT, CRIT.BASE], 0.5))
-        const modMap = this.mods2ModMap(mods)
+        const modMap = mods.reduce((res, m) => m.join(res), {})
 
         let rs = [
             defaultModValueCalc(modMap[ModMain.ATK]),
@@ -55,10 +54,6 @@ export class Hit {
 
     border(): number {
         return this.enemy.border - (this.isCrit ? 50 : 0)
-    }
-
-    mods2ModMap(mods: Modifier[]): ModMap {
-        return mods.reduce((res: ModMap, m) => (m.main in res ? res[m.main].push(m) : res[m.main] = [m], res), {})
     }
 }
 

@@ -1,4 +1,4 @@
-import {ModMain, ModSub, ModType} from "./types";
+import {ModMain, ModMap, ModSub, ModType} from "./types";
 
 export class Modifier {
     value: number
@@ -23,5 +23,13 @@ export class Modifier {
 
     set sub(v) {
         this.type[1] = v
+    }
+
+    join(mm: ModMap): ModMap {
+        if (!(this.main in mm)) {
+            mm[this.main] = []
+        }
+        mm[this.main].push(this)
+        return mm
     }
 }

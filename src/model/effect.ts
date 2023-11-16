@@ -7,7 +7,6 @@ import {
     ModMain,
     ModSub,
     ModType,
-    Stat,
     StatMap
 } from "@/model/types";
 import {NSName} from "@/data/NSS";

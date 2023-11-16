@@ -2,8 +2,8 @@ import {
     ADDITIONAL,
     ATK,
     BorderType,
-    CRIT,
-    EnemyType,
+    CRIT, DEF,
+    EnemyType, FRAGILE,
     GrowthType,
     HojuGrowthType,
     ModMain,
@@ -23,6 +23,16 @@ function buff(bar: [number, number], mt: ModType) {
     }
 }
 
+function debuff(bar: [number, number], mt: ModType, base: Partial<StatMap>) {
+    return (cap: number, growth: boolean = true, hoju: boolean = false) => {
+        return new Effect(
+            bar, cap, base,
+            mt, BorderType.ENEMY,
+            growth ? GrowthType.DEBUFF : GrowthType.NO,
+            hoju ? HojuGrowthType.DEBUFF : HojuGrowthType.NO,
+        )
+    }
+}
 
 export function dmg(
     bar: [number, number], cap: number, base: Partial<StatMap>
@@ -37,6 +47,18 @@ export const ATK_NORMAL_M = buff([0.5, 0.65], [ModMain.ATK, ATK.NORMAL])
 export const ATK_NORMAL_L = buff([0.75, 0.9], [ModMain.ATK, ATK.NORMAL])
 
 export const ATK_ELEMENT_S = buff([0.4, 0.55], [ModMain.ATK, ATK.ELEMENT])
+
+// DEF
+
+export const DEF_NORMAL_S = debuff([0.2, 0.3], [ModMain.DEF, DEF.NORMAL_DOWN], {WIS: 2, LUK: 1})
+export const DEF_NORMAL_M = debuff([0.3, 0.45], [ModMain.DEF, DEF.NORMAL_DOWN], {WIS: 2, LUK: 1})
+
+export const DEF_ELEMENT_S = debuff([0.3, 0.45], [ModMain.DEF, DEF.ELEMENT_DOWN], {WIS: 2, LUK: 1})
+export const DEF_ELEMENT_M = debuff([0.45, 0.6], [ModMain.DEF, DEF.ELEMENT_DOWN], {WIS: 2, LUK: 1})
+
+// FRAGILE
+
+export const FRAGILE_NORMAL = debuff([0.35, 0.5], [ModMain.FRAGILE, FRAGILE.NORMAL], {WIS: 1, LUK: 2})
 
 // EnemyType
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {provide, ref} from "vue";
 
-import EditorEnemy from "@/components/editors/EditorEnemy.vue";
+import EditorEnemy from "@/components/EditorEnemy.vue";
 import ViewResult from "@/components/ViewResult.vue";
 
 import {Hit} from "@/model/hit";

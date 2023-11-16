@@ -2,7 +2,7 @@
 import {SKillCall} from "@/model/skill";
 import {SkillName} from "@/data/skills";
 import {newStatMap} from "@/model/types";
-import EditorSkillCall from "@/components/editors/EditorSkillCall.vue";
+import EditorSkillCall from "@/components/EditorSkillCall.vue";
 
 const props = defineProps<{
   calls: SKillCall[]

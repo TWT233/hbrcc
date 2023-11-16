@@ -59,13 +59,13 @@ export class Effect {
         return this.mt == undefined
     }
 
-    value(lv: number, hojuLV: number, stat: Stat, border: number): number {
+    value(p: NSParam, border: number): number {
         if (this.growth == GrowthType.FIXED) return this.bar[0]
 
-        const bar = this.calcBar(lv)
-        const sd = this.calcES(stat) - (this.bdt == BorderType.NO ? 0 : border)
+        const bar = this.calcBar(p.lv)
+        const sd = this.calcES(p.stat) - (this.bdt == BorderType.NO ? 0 : border)
 
-        return this.calcBase(bar, sd, this.cap) + this.calcHoju(bar, sd, hojuLV)
+        return this.calcBase(bar, sd, this.cap) + this.calcHoju(bar, sd, p.hoju)
     }
 
     calcBar(lv: number): [number, number] {
@@ -73,7 +73,7 @@ export class Effect {
         return [this.bar[0] * (1 + growth[0] * lv), this.bar[1] * (1 + growth[1] * lv)]
     }
 
-    calcES(stat: Stat): number {
+    calcES(stat: Partial<StatMap>): number {
         let all = 0
         let multiplier = 0
         for (const s in this.base) {

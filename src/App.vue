@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {provide, ref} from "vue";
 
-import ViewAndEditEnemy from "@/components/ViewAndEditEnemy.vue";
+import EditorEnemy from "@/components/editors/EditorEnemy.vue";
 import ViewResult from "@/components/ViewResult.vue";
 
 import {Hit} from "@/model/hit";
@@ -24,8 +24,7 @@ provide('border', border)
             <ViewSkillCall v-model:calls="hit.buffs"></ViewSkillCall>
           </v-col>
           <v-col class="" cols="12" lg="4">
-
-            <ViewAndEditEnemy v-model:enemy="hit.enemy"></ViewAndEditEnemy>
+            <EditorEnemy v-model:enemy="hit.enemy"></EditorEnemy>
           </v-col>
           <v-col cols="12" lg="4">
             <ViewResult v-model:hit="hit"></ViewResult>

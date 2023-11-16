@@ -6,7 +6,7 @@ import ViewAndEditEnemy from "@/components/ViewAndEditEnemy.vue";
 import ViewResult from "@/components/ViewResult.vue";
 
 import {Hit} from "@/model/hit";
-import ViewSkillCall from "@/components/ViewSkillCall.vue";
+import ViewSkillCall from "@/components/ViewSkillCalls.vue";
 
 const hit = ref(new Hit())
 </script>
@@ -18,6 +18,9 @@ const hit = ref(new Hit())
     <v-main class="d-flex align-center justify-center">
       <v-container>
         <v-row>
+          <v-col>
+            <ViewSkillCall v-model:calls="hit.buffs"></ViewSkillCall>
+          </v-col>
           <v-col cols="12" lg="4">
             <v-row>
               <v-col>
@@ -31,16 +34,7 @@ const hit = ref(new Hit())
             </v-row>
           </v-col>
           <v-col cols="12" lg="4">
-            <v-row>
-              <v-col>
-                <ViewResult v-model:hit="hit"></ViewResult>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col>
-                <ViewSkillCall></ViewSkillCall>
-              </v-col>
-            </v-row>
+            <ViewResult v-model:hit="hit"></ViewResult>
           </v-col>
         </v-row>
       </v-container>

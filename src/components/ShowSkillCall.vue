@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import {SKillCall} from "@/model/skill";
-import {querySkill, querySkillName} from "@/data/skills";
-import {computed, inject, ref} from "vue";
+import {isSkillName, Skill, SKillCall} from "@/model/skill";
+import {querySkill, querySkillName, SkillName} from "@/data/skills";
+import {computed, inject, onMounted, ref} from "vue";
 import EditorSkillCall from "@/components/EditorSkillCall.vue";
+import {fetchSkillParam, storeSkillParam} from "@/data/localstorage";
 
 const props = defineProps<{
   call: SKillCall
@@ -22,6 +23,17 @@ const wrappedCall = computed({
 const border = inject<() => number>('border')
 
 const dialog = ref(false)
+
+function loadSP(callee: SkillName | Skill) {
+  if (isSkillName(callee)) {
+    const res = fetchSkillParam(callee as SkillName)
+    res && (props.call.param = res)
+  }
+}
+
+onMounted(() => {
+  loadSP(props.call.callee)
+})
 </script>
 
 <template>

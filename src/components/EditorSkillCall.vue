@@ -2,10 +2,11 @@
 import SelectorSkill from "@/components/SelectorSkill.vue";
 import NumberField from "@/components/utils/NumberField.vue";
 import DialogChip from "@/components/utils/DialogChip.vue";
-import {SKillCall} from "@/model/skill";
-import {computed, inject} from "vue";
-import {querySkill} from "@/data/skills";
+import {isSkillName, Skill, SKillCall, SkillParam} from "@/model/skill";
+import {computed, inject, onMounted} from "vue";
+import {querySkill, SkillName} from "@/data/skills";
 import {Stat} from "@/model/types";
+import {fetchSkillParam, storeSkillParam} from "@/data/localstorage";
 
 const props = defineProps<{
   call: SKillCall
@@ -27,6 +28,24 @@ const base = computed(() => skill.value
     .filter((v, i, a) => i === a.indexOf(v))
     .map(s => s as Stat)
 )
+
+function storeSP() {
+  if (isSkillName(props.call.callee)) {
+    console.log('store')
+    storeSkillParam(props.call.callee as SkillName, props.call.param)
+  }
+}
+
+function loadSP(callee: SkillName | Skill) {
+  if (isSkillName(callee)) {
+    const res = fetchSkillParam(callee as SkillName)
+    res && (props.call.param = res)
+  }
+}
+
+onMounted(() => {
+  loadSP(props.call.callee)
+})
 </script>
 
 <template>
@@ -35,7 +54,10 @@ const base = computed(() => skill.value
     <v-container>
       <v-row>
         <v-col>
-          <SelectorSkill v-model:callee="call.callee" :type="type"></SelectorSkill>
+          <SelectorSkill v-model:callee="call.callee"
+                         @update:callee="callee=>loadSP(callee)"
+                         :type="type">
+          </SelectorSkill>
         </v-col>
       </v-row>
       <v-row>
@@ -45,15 +67,15 @@ const base = computed(() => skill.value
       </v-row>
       <v-row>
         <v-col>
-          <NumberField v-model="call.param.lv" label="Skill Level"></NumberField>
+          <NumberField v-model="call.param.lv" @update:model-value="storeSP()" label="Skill Level"></NumberField>
         </v-col>
         <v-col>
-          <NumberField v-model="call.param.hoju" label="Hoju Level"></NumberField>
+          <NumberField v-model="call.param.hoju" @update:model-value="storeSP()" label="Hoju Level"></NumberField>
         </v-col>
       </v-row>
       <v-row>
         <v-col v-for="i in base">
-          <NumberField v-model="call.param.stat[i]" :label="i"></NumberField>
+          <NumberField v-model="call.param.stat[i]" @update:model-value="storeSP()" :label="i"></NumberField>
         </v-col>
       </v-row>
       <v-row>

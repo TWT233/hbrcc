@@ -2,7 +2,7 @@ import {SkillName} from "@/data/skills";
 
 import {SkillParam} from "@/model/skill";
 
-function getSkillData(sn: SkillName): SkillParam | undefined {
+export function fetchSkillParam(sn: SkillName): SkillParam | undefined {
     const key = getSDKey(sn)
     let res: SkillParam
     try {
@@ -11,6 +11,11 @@ function getSkillData(sn: SkillName): SkillParam | undefined {
         localStorage.setItem(key, '')
     }
     return res
+}
+
+export function storeSkillParam(sn: SkillName, param: SkillParam) {
+    const key = getSDKey(sn)
+    localStorage.setItem(key, JSON.stringify(param))
 }
 
 function getSDKey(sn: SkillName): string {

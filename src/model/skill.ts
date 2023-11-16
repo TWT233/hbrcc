@@ -14,3 +14,7 @@ export type SKillCall = {
     callee: SkillName | Skill
     param: SkillParam
 }
+
+export function isSkillName(callee: SkillName | Skill): boolean {
+    return !(callee instanceof Array)
+}

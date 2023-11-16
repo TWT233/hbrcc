@@ -42,6 +42,10 @@ export const SKILLS_CATE = {
     ]
 }
 
+export function querySkillName(key: SkillName | Skill): string {
+    return (key instanceof Array) ? "CUSTOM" : key
+}
+
 export function querySkill(key: SkillName | Skill): Skill {
     return (key instanceof Array) ? key : SKILLS[key]
 }

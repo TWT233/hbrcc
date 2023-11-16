@@ -45,6 +45,11 @@ export class Effect {
         return this.mt == undefined
     }
 
+    desc(param: SkillParam, border: number): string {
+        const value = `${this.value(param, border)} (${this.bar[0]}, ${this.bar[1]})`
+        return (this.mt == undefined) ? `DMG: ${value}` : `${this.mt[0]} | ${this.mt[1]} | ${value}`
+    }
+
     value(p: SkillParam, border: number): number {
         if (this.growth == GrowthType.FIXED) return this.bar[0]
 

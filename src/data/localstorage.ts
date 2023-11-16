@@ -1,4 +1,4 @@
-import {SkillName} from "@/data/SKILLS";
+import {SkillName} from "@/data/skills";
 
 import {SkillParam} from "@/model/skill";
 

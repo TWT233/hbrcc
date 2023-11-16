@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {computed, ref} from "vue";
 
-import {querySkill, SKILLS_CATE} from "@/data/SKILLS";
+import {querySkill, SKILLS_CATE} from "@/data/skills";
 import NumberField from "@/components/utils/NumberField.vue";
 import {Stat} from "@/model/types";
 import DialogChip from "@/components/utils/DialogChip.vue";

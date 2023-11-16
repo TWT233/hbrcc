@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {SKillCall} from "@/model/skill";
-import {querySkill, querySkillName} from "@/data/SKILLS";
+import {querySkill, querySkillName} from "@/data/skills";
 import {Effect} from "@/model/effect";
 
 const props = defineProps<{

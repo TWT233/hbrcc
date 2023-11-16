@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 
 import {SKillCall} from "@/model/skill";
-import {SkillName} from "@/data/SKILLS";
+import {SkillName} from "@/data/skills";
 import {newStatMap} from "@/model/types";
 import ShowSkillCall from "@/components/ShowSkillCall.vue";
 

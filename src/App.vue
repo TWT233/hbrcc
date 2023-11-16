@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {ref} from "vue";
+import {provide, ref} from "vue";
 
 import ViewMods from "@/components/ViewMods.vue";
 import ViewAndEditEnemy from "@/components/ViewAndEditEnemy.vue";
@@ -9,6 +9,8 @@ import {Hit} from "@/model/hit";
 import ViewSkillCall from "@/components/ViewSkillCalls.vue";
 
 const hit = ref(new Hit())
+
+provide('border', hit.value.border())
 </script>
 
 <template>

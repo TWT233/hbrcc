@@ -9,7 +9,6 @@ import {SKillCall} from "@/model/skill";
 
 const props = defineProps<{
   call: SKillCall
-  border: number
 }>()
 
 const emit = defineEmits<{

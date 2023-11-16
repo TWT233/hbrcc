@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {computed, ref} from "vue";
 
-import {SKILLS, SKILLS_CATE} from "@/data/SKILLS";
+import {querySkill, SKILLS_CATE} from "@/data/SKILLS";
 import NumberField from "@/components/utils/NumberField.vue";
 import {Stat} from "@/model/types";
 import DialogChip from "@/components/utils/DialogChip.vue";
@@ -20,7 +20,7 @@ const emit = defineEmits<{
 
 let category = ref('CUSTOM')
 
-const ns = computed(() => (props.call.callee instanceof Array) ? props.call.callee : SKILLS[props.call.callee])
+const ns = computed(() => querySkill(props.call.callee))
 const base = computed(() => ns.value.map(e => Object.keys(e.base)).flat().filter((v, i, a) => i === a.indexOf(v)).map(s => s as Stat))
 const param = computed(() => props.call.param)
 
@@ -67,8 +67,7 @@ const param = computed(() => props.call.param)
       </v-row>
       <v-row>
         <v-col v-for="i in ns">
-          <DialogChip
-              :text="`${i.mt[0]} | ${i.mt[1]} | ${i.value(param,border)}`"></DialogChip>
+          <DialogChip :text="`${i.mt[0]} | ${i.mt[1]} | ${i.value(param,border)}`"></DialogChip>
         </v-col>
       </v-row>
     </v-container>

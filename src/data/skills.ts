@@ -1,11 +1,22 @@
-import {ADDITIONAL_S, ATK_ELEMENT_S, ATK_NORMAL_L, CRIT_NORMAL, dmg, ENEMY_TYPE} from "@/data/effects";
+import {
+    ADDITIONAL_S,
+    ATK_ELEMENT_S,
+    ATK_NORMAL_L,
+    CRIT_NORMAL,
+    DEF_NORMAL_M,
+    dmg,
+    ENEMY_TYPE,
+    FRAGILE_NORMAL
+} from "@/data/effects";
 import {EnemyType} from "@/model/types";
 import {Skill} from "@/model/skill";
 
 export enum SkillName {
     AliceASkill51 = "天使光線",
     LShanhuaSkill51 = "第七計 無中生有",
-    SHiguchiSkill52 = "絕對現象"
+    SHiguchiSkill52 = "絕對現象",
+    MKiryuSkill52 = "御稲荷神話",
+    LShanhuaSkill02 = "臥龍演舞斬",
 }
 
 export const SKILLS: Record<SkillName, Skill> = {
@@ -21,6 +32,14 @@ export const SKILLS: Record<SkillName, Skill> = {
     [SkillName.SHiguchiSkill52]: [
         ATK_NORMAL_L(232, true),
         CRIT_NORMAL,
+    ],
+    [SkillName.MKiryuSkill52]: [
+        DEF_NORMAL_M(143),
+        FRAGILE_NORMAL(143),
+        // dmg([2025, 10125], 143, {STR: 1, DEX: 1}),
+    ],
+    [SkillName.LShanhuaSkill02]: [
+        DEF_NORMAL_M(123),
     ]
 }
 
@@ -29,6 +48,13 @@ export const SKILLS_CATE = {
         FREQUENTLY: [
             SkillName.LShanhuaSkill51,
             SkillName.SHiguchiSkill52,
+        ],
+        DEF: [
+            SkillName.MKiryuSkill52,
+            SkillName.LShanhuaSkill02,
+        ],
+        FRAGILE: [
+            SkillName.MKiryuSkill52,
         ],
         ADDITIONAL: [
             SkillName.LShanhuaSkill51,
@@ -39,6 +65,7 @@ export const SKILLS_CATE = {
     },
     DMG: [
         SkillName.AliceASkill51,
+        // SkillName.MKiryuSkill52,
     ]
 }
 

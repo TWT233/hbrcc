@@ -13,7 +13,7 @@ import {
 import {Effect} from "@/model/effect";
 
 function buff(bar: [number, number], mt: ModType) {
-    return (cap: number, growth: boolean = true, hoju: boolean = false) => {
+    return (cap: number, growth: boolean = false, hoju: boolean = false) => {
         return new Effect(
             bar, cap, {WIS: 1},
             mt, BorderType.NO,
@@ -24,7 +24,7 @@ function buff(bar: [number, number], mt: ModType) {
 }
 
 function debuff(bar: [number, number], mt: ModType, base: Partial<StatMap>) {
-    return (cap: number, growth: boolean = true, hoju: boolean = false) => {
+    return (cap: number, growth: boolean = false, hoju: boolean = false) => {
         return new Effect(
             bar, cap, base,
             mt, BorderType.ENEMY,

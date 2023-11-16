@@ -48,7 +48,7 @@ onMounted(() => {
       <v-btn icon="mdi-pencil" @click="dialog=true"></v-btn>
 
       <v-dialog v-model="dialog" width="auto">
-        <EditorSkillCall v-model:call="wrappedCall" type="MOD"></EditorSkillCall>
+        <EditorSkillCall v-model:call="wrappedCall" type="MOD" title="Skill Detail"></EditorSkillCall>
       </v-dialog>
     </div>
   </v-card>

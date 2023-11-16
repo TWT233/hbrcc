@@ -11,6 +11,7 @@ import {fetchSkillParam, storeSkillParam} from "@/data/localstorage";
 const props = defineProps<{
   call: SKillCall
   type: "MOD" | "DMG"
+  title: string
 }>()
 
 const emit = defineEmits<{
@@ -49,7 +50,7 @@ onMounted(() => {
 
 <template>
   <v-card width="auto">
-    <v-toolbar title="Edit Skill"></v-toolbar>
+    <v-toolbar :title="title"></v-toolbar>
     <v-container>
       <v-row>
         <v-col>

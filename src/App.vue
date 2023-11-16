@@ -22,7 +22,7 @@ provide('border', border)
       <v-container>
         <v-row>
           <v-col>
-            <EditorSkillCall v-model:call="hit.atk" type="DMG"></EditorSkillCall>
+            <EditorSkillCall v-model:call="hit.atk" type="DMG" title="Character Detail"></EditorSkillCall>
           </v-col>
           <v-col cols="12" lg="4">
             <ViewBuffs v-model:calls="hit.buffs"></ViewBuffs>

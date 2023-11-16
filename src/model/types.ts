@@ -76,15 +76,15 @@ export enum ATK {
 }
 
 export enum DEF {
-    NORMAL_DOWN,
-    ELEMENT_DOWN,
+    NORMAL_DOWN = "NORMAL_DOWN",
+    ELEMENT_DOWN = "ELEMENT_DOWN",
 
-    NORMAL_UP,
-    ELEMENT_UP,
+    NORMAL_UP = "NORMAL_UP",
+    ELEMENT_UP = "ELEMENT_UP",
 }
 
 export enum FRAGILE {
-    NORMAL,
+    NORMAL = "NORMAL",
 }
 
 export enum CRIT {

@@ -10,8 +10,20 @@ import {
     Stat,
     StatMap
 } from "@/model/types";
+import {NSName} from "@/data/NSS";
 
 export type NS = Effect[]
+
+export type NSParam = {
+    lv: number,
+    hoju: number,
+    stat: StatMap,
+}
+
+export type NSCall = {
+    callee: NSName | NS
+    param: NSParam
+}
 
 export class Effect {
     bar: [number, number] // [min, max]

@@ -6,6 +6,7 @@ import {computed, ref} from "vue";
 
 const props = defineProps<{
   callee: SkillName | Skill
+  type: "MOD" | "DMG"
 }>()
 
 const emit = defineEmits<{
@@ -28,15 +29,15 @@ const wrappedCallee = computed({
       <v-row>
         <v-col cols="auto">
           <v-tabs v-model="category" direction="vertical">
-            <v-tab v-for="i in Object.keys(SKILLS_CATE.MOD)" :value="i">{{ i }}</v-tab>
+            <v-tab v-for="i in Object.keys(SKILLS_CATE[type])" :value="i">{{ i }}</v-tab>
             <v-tab value="CUSTOM">CUSTOM</v-tab>
           </v-tabs>
         </v-col>
         <v-col>
           <v-window :model-value="category">
-            <v-window-item v-for="i in Object.keys(SKILLS_CATE.MOD)" :value="i">
+            <v-window-item v-for="i in Object.keys(SKILLS_CATE[type])" :value="i">
               <v-radio-group v-model="wrappedCallee">
-                <v-radio v-for="j in SKILLS_CATE.MOD[i]" :label="j" :value="j"></v-radio>
+                <v-radio v-for="j in SKILLS_CATE[type][i]" :label="j" :value="j"></v-radio>
               </v-radio-group>
             </v-window-item>
             <v-window-item value="CUSTOM">

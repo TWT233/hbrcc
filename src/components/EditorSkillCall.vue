@@ -33,9 +33,9 @@ const base = computed(() => skill.value
 
 function getEffectDesc(e: Effect): string {
   if (e.mt == undefined) {
-    return `DMG: ${e.bar[0]}, ${e.bar[1]}`
+    return `DMG: ${e.value(props.call.param, border())} (${e.bar[0]}, ${e.bar[1]})`
   }
-  return `${e.mt[0]} | ${e.mt[1]} | ${e.bar[0]}, ${e.bar[1]}`
+  return `${e.mt[0]} | ${e.mt[1]} | ${e.value(props.call.param, border())} (${e.bar[0]}, ${e.bar[1]})`
 }
 </script>
 
@@ -54,7 +54,7 @@ function getEffectDesc(e: Effect): string {
           <v-container>
             <v-row>
               <v-col>
-                <SelectorSkill v-model:callee="call.callee"></SelectorSkill>
+                <SelectorSkill v-model:callee="call.callee" type="DMG"></SelectorSkill>
               </v-col>
             </v-row>
             <v-row>

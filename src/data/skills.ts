@@ -36,7 +36,7 @@ export const SKILLS: Record<SkillName, Skill> = {
     [SkillName.MKiryuSkill52]: [
         DEF_NORMAL_M(143),
         FRAGILE_NORMAL(143),
-        // dmg([2025, 10125], 143, {STR: 1, DEX: 1}),
+        dmg([2025, 10125], 143, {STR: 1, DEX: 1}),
     ],
     [SkillName.LShanhuaSkill02]: [
         DEF_NORMAL_M(123),
@@ -63,10 +63,25 @@ export const SKILLS_CATE = {
             SkillName.SHiguchiSkill52,
         ],
     },
-    DMG: [
-        SkillName.AliceASkill51,
-        // SkillName.MKiryuSkill52,
-    ]
+    DMG: {
+        FIRE: [],
+        THUNDER: [
+            SkillName.MKiryuSkill52,
+        ],
+        ICE: [],
+        DARK: [],
+        LIGHT: [
+            SkillName.AliceASkill51,
+        ],
+        SLASH: [
+            SkillName.AliceASkill51,
+        ],
+        STAB: [
+            SkillName.MKiryuSkill52,
+        ],
+        STRIKE: [],
+    },
+
 }
 
 export function querySkillName(key: SkillName | Skill): string {

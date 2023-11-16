@@ -40,3 +40,7 @@ export const NSS_MOD = {
         NSName.SHiguchiSkill52,
     ]
 }
+
+export function NS(key: NSName | NS): NS {
+    return (key instanceof Array) ? key : NSS[key]
+}

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-
 import {SKillCall} from "@/model/skill";
 import {SkillName} from "@/data/skills";
 import {newStatMap} from "@/model/types";

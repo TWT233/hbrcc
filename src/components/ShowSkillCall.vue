@@ -20,7 +20,7 @@ function getEffectDesc(e: Effect): string {
 
 <template>
   <v-card>
-    <div class="d-flex flex-nowrap justify-space-between">
+    <div class="d-flex flex-nowrap justify-space-between align-center">
       <div>
         <v-card-title>{{ querySkillName(call.callee) }}</v-card-title>
         <v-card-subtitle v-for="effect in querySkill(call.callee)">{{ getEffectDesc(effect) }}</v-card-subtitle>

@@ -34,8 +34,10 @@ const emit = defineEmits<{
         </v-list-item>
 
         <v-list-item>
+          <v-card-title>Base Damage</v-card-title>
+          <v-card-text>{{ hit.getBaseDMG() }}</v-card-text>
           <v-card-title>Current Mods</v-card-title>
-          <v-card-text>{{ hit.mergeMods() }}</v-card-text>
+          <v-card-text>{{ hit.getMods() }}</v-card-text>
         </v-list-item>
 
       </v-list>

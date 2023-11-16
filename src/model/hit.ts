@@ -1,17 +1,28 @@
-import {Character} from "./character";
 import {Modifier} from "./modifier";
 import {Enemy} from "./enemy";
 import {CRIT, ModMain, ModMap, ModSub} from "./types";
+import {NSCall} from "@/model/effect";
+import {NS, NSName} from "@/data/NSS";
 
 export class Hit {
-    char: Character = new Character()
     enemy: Enemy = new Enemy()
     isCrit: boolean = true
 
+    atk: NSCall = {
+        callee: NSName.AliceASkill51,
+        param: {
+            lv: 3,
+            hoju: 5,
+            stat: {CON: 0, DEX: 320, LUK: 0, SPR: 0, STR: 320, WIS: 260}
+        }
+    }
+    buffs: NSCall[] = []
     mods: Modifier[] = []
 
     calculate(): number {
-        let modMap = this.mergeMods()
+        const mods = this.getMods()
+        if (this.isCrit) mods.push(new Modifier([ModMain.CRIT, CRIT.BASE], 0.5))
+        const modMap = this.mods2ModMap(mods)
 
         let rs = [
             defaultModValueCalc(modMap[ModMain.ATK]),
@@ -23,39 +34,31 @@ export class Hit {
             this.enemy.des,
         ].reduce((a, b) => a * b, 1)
 
-        return this.calcBaseDamage() * rs
+        return this.getBaseDMG() * rs
     }
 
-    mergeMods(): ModMap {
-        let res: ModMap = {}
-        let mods = [...this.mods, ...this.char.skill.presetModifiers].filter(mod => !!mod)
-        if (this.isCrit) mods.push(new Modifier([ModMain.CRIT, CRIT.BASE], 0.5))
-
-        for (const mod of mods) {
-            mod.main in res ? res[mod.main].push(mod) : res[mod.main] = [mod]
-        }
-        return res
+    getBaseDMG(): number {
+        const baseDMGs = NS(this.atk.callee)
+            .filter(e => e.isDMG)
+            .map(e => e.value(this.atk.param, this.border()))
+        return baseDMGs.length ? baseDMGs[0] : 0
     }
 
-    calcBaseDamage(): number {
-        let sd = this.calcSD(this.isCrit)
-        let skill = this.char.skill
-        let cap = skill.cap
+    getMods(): Modifier[] {
+        const call2Mods = (call: NSCall): Modifier[] =>
+            NS(call.callee)
+                .filter(e => !e.isDMG)
+                .map(e => new Modifier(e.mt, e.value(call.param, this.border())))
 
-        if (sd < -cap / 2) {
-            return 1
-        }
-        if (sd <= 0) {
-            return (sd + cap / 2) * skill.bar[0] / (cap / 2)
-        }
-        if (sd < cap) {
-            return (skill.bar[1] - skill.bar[0]) * sd / cap
-        }
-        return skill.bar[1]
+        return [...this.buffs, this.atk].map(call => call2Mods(call)).flat()
     }
 
-    calcSD(isCrit: boolean): number {
-        return this.char.es - (this.enemy.border - (isCrit ? 50 : 0))
+    border(): number {
+        return this.enemy.border - (this.isCrit ? 50 : 0)
+    }
+
+    mods2ModMap(mods: Modifier[]): ModMap {
+        return mods.reduce((res: ModMap, m) => (m.main in res ? res[m.main].push(m) : res[m.main] = [m], res), {})
     }
 }
 

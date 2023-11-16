@@ -31,7 +31,6 @@ const base = computed(() => skill.value
 
 function storeSP() {
   if (isSkillName(props.call.callee)) {
-    console.log('store')
     storeSkillParam(props.call.callee as SkillName, props.call.param)
   }
 }

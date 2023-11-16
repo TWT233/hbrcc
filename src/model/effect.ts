@@ -45,8 +45,12 @@ export class Effect {
         return this.mt == undefined
     }
 
-    desc(param: SkillParam, border: number): string {
-        const value = `${this.value(param, border).toFixed(2)} (${this.bar[0]}, ${this.bar[1]})`
+    desc(p: SkillParam, border: number): string {
+        const bar = this.calcBar(p.lv)
+        const hojuBar = this.calcHojuBar(bar, p.hoju, this.arbiHojuGrowth[0])
+
+        const value = `${this.value(p, border).toFixed(2)}` +
+            ` (${(bar[0] + hojuBar[0]).toFixed(2)}, ${(bar[1] + hojuBar[1]).toFixed(2)})`
         return (this.mt == undefined) ? `DMG: ${value}` : `${this.mt[0]} | ${this.mt[1]} | ${value}`
     }
 
@@ -60,8 +64,12 @@ export class Effect {
     }
 
     calcBar(lv: number): [number, number] {
-        const growth = (this.growth instanceof Array) ? this.growth : growthRateMap[this.growth]
+        const growth = this.arbiGrowth
         return [this.bar[0] * (1 + growth[0] * (lv - 1)), this.bar[1] * (1 + growth[1] * (lv - 1))]
+    }
+
+    get arbiGrowth(): ArbitraryGrowth {
+        return (this.growth instanceof Array) ? this.growth : growthRateMap[this.growth]
     }
 
     calcES(stat: Partial<StatMap>): number {
@@ -90,10 +98,18 @@ export class Effect {
     calcHoju(bar: [number, number], sd: number, lv: number): number {
         if (this.hojuGrowth == HojuGrowthType.NO) return 0
 
-        const growth = (this.hojuGrowth instanceof Array) ? this.hojuGrowth : hojuGrowthRateMap[this.hojuGrowth]
-        const hojuBar: [number, number] = [bar[0] * growth[0] * lv, bar[1] * growth[0] * lv]
+        const growth = this.arbiHojuGrowth
+        const hojuBar = this.calcHojuBar(bar, lv, growth[0])
         const hojuCap = this.cap + growth[1] * lv
         return this.calcBase(hojuBar, sd, hojuCap)
+    }
+
+    get arbiHojuGrowth(): ArbitraryHojuGrowth {
+        return (this.hojuGrowth instanceof Array) ? this.hojuGrowth : hojuGrowthRateMap[this.hojuGrowth]
+    }
+
+    calcHojuBar(bar: [number, number], lv: number, growth: number): [number, number] {
+        return [bar[0] * growth * lv, bar[1] * growth * lv]
     }
 }
 

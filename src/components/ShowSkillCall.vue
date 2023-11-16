@@ -26,9 +26,13 @@ const border = inject<() => number>('border')
 
 const dialog = ref(false)
 
-const ns = computed(() => querySkill(props.call.callee))
-const base = computed(() => ns.value.map(e => Object.keys(e.base)).flat().filter((v, i, a) => i === a.indexOf(v)).map(s => s as Stat))
-const param = computed(() => props.call.param)
+const skill = computed(() => querySkill(props.call.callee))
+const base = computed(() => skill.value
+    .map(e => Object.keys(e.base))
+    .flat()
+    .filter((v, i, a) => i === a.indexOf(v))
+    .map(s => s as Stat)
+)
 </script>
 
 <template>
@@ -64,12 +68,12 @@ const param = computed(() => props.call.param)
             </v-row>
             <v-row>
               <v-col v-for="i in base">
-                <NumberField v-model="param.stat[i]" :label="i"></NumberField>
+                <NumberField v-model="call.param.stat[i]" :label="i"></NumberField>
               </v-col>
             </v-row>
             <v-row>
-              <v-col v-for="i in ns">
-                <DialogChip :text="`${i.mt[0]} | ${i.mt[1]} | ${i.value(param,border())}`"></DialogChip>
+              <v-col v-for="i in skill">
+                <DialogChip :text="`${i.mt[0]} | ${i.mt[1]} | ${i.value(call.param,border())}`"></DialogChip>
               </v-col>
             </v-row>
           </v-container>

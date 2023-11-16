@@ -23,7 +23,7 @@ function addCall() {
 
 <template>
   <v-card>
-    <v-toolbar title="Skills">
+    <v-toolbar title="Buffs">
       <v-btn icon="mdi-plus" @click="addCall"></v-btn>
     </v-toolbar>
     <v-list>

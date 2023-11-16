@@ -1,10 +1,11 @@
-import {NSName} from "@/data/NSS";
-import {NSParam} from "@/model/effect";
+import {SkillName} from "@/data/SKILLS";
 
-function getSkillData(sn: NSName): NSParam | undefined {
-    return JSON.parse(localStorage.getItem(getSDKey(sn))) as NSParam
+import {SkillParam} from "@/model/skill";
+
+function getSkillData(sn: SkillName): SkillParam | undefined {
+    return JSON.parse(localStorage.getItem(getSDKey(sn))) as SkillParam
 }
 
-function getSDKey(sn: NSName): string {
+function getSDKey(sn: SkillName): string {
     return `SD_${sn}`
 }

@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 
 import {ref} from "vue";
-import {NSCall} from "@/model/effect";
-import EditorNS from "@/components/editors/EditorNS.vue";
+import EditorSkillCall from "@/components/editors/EditorSkillCall.vue";
+import {SKillCall} from "@/model/skill";
 
 let call = ref<
-    NSCall
+    SKillCall
 >({
   callee: [],
   param: {
@@ -18,7 +18,7 @@ let call = ref<
 </script>
 
 <template>
-  <EditorNS :border="280" v-model:call="call"></EditorNS>
+  <EditorSkillCall :border="280" v-model:call="call"></EditorSkillCall>
 </template>
 
 <style scoped>

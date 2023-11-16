@@ -6,7 +6,7 @@ import ViewAndEditEnemy from "@/components/ViewAndEditEnemy.vue";
 import ViewResult from "@/components/ViewResult.vue";
 
 import {Hit} from "@/model/hit";
-import ViewNS from "@/components/ViewNS.vue";
+import ViewSkillCall from "@/components/ViewSkillCall.vue";
 
 const hit = ref(new Hit())
 </script>
@@ -38,7 +38,7 @@ const hit = ref(new Hit())
             </v-row>
             <v-row>
               <v-col>
-                <ViewNS></ViewNS>
+                <ViewSkillCall></ViewSkillCall>
               </v-col>
             </v-row>
           </v-col>

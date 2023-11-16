@@ -9,20 +9,7 @@ import {
     ModType,
     StatMap
 } from "@/model/types";
-import {NSName} from "@/data/NSS";
-
-export type NS = Effect[]
-
-export type NSParam = {
-    lv: number,
-    hoju: number,
-    stat: StatMap,
-}
-
-export type NSCall = {
-    callee: NSName | NS
-    param: NSParam
-}
+import {SkillParam} from "@/model/skill";
 
 export class Effect {
     bar: [number, number] // [min, max]
@@ -58,7 +45,7 @@ export class Effect {
         return this.mt == undefined
     }
 
-    value(p: NSParam, border: number): number {
+    value(p: SkillParam, border: number): number {
         if (this.growth == GrowthType.FIXED) return this.bar[0]
 
         const bar = this.calcBar(p.lv)

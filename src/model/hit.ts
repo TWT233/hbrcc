@@ -1,22 +1,22 @@
 import {Modifier} from "./modifier";
 import {Enemy} from "./enemy";
 import {CRIT, ModMain, ModMap, ModSub} from "./types";
-import {NSCall} from "@/model/effect";
-import {NS, NSName} from "@/data/NSS";
+import {querySkill, SkillName} from "@/data/SKILLS";
+import {SKillCall} from "@/model/skill";
 
 export class Hit {
     enemy: Enemy = new Enemy()
     isCrit: boolean = true
 
-    atk: NSCall = {
-        callee: NSName.AliceASkill51,
+    atk: SKillCall = {
+        callee: SkillName.AliceASkill51,
         param: {
             lv: 3,
             hoju: 5,
             stat: {CON: 0, DEX: 320, LUK: 0, SPR: 0, STR: 320, WIS: 260}
         }
     }
-    buffs: NSCall[] = []
+    buffs: SKillCall[] = []
     mods: Modifier[] = []
 
     calculate(): number {
@@ -38,15 +38,15 @@ export class Hit {
     }
 
     getBaseDMG(): number {
-        const baseDMGs = NS(this.atk.callee)
+        const baseDMGs = querySkill(this.atk.callee)
             .filter(e => e.isDMG)
             .map(e => e.value(this.atk.param, this.border()))
         return baseDMGs.length ? baseDMGs[0] : 0
     }
 
     getMods(): Modifier[] {
-        const call2Mods = (call: NSCall): Modifier[] =>
-            NS(call.callee)
+        const call2Mods = (call: SKillCall): Modifier[] =>
+            querySkill(call.callee)
                 .filter(e => !e.isDMG)
                 .map(e => new Modifier(e.mt, e.value(call.param, this.border())))
 

@@ -37,7 +37,7 @@ const emit = defineEmits<{
           <v-card-title>Base Damage</v-card-title>
           <v-card-text>{{ hit.getBaseDMG() }}</v-card-text>
           <v-card-title>Current Mods</v-card-title>
-          <v-card-text>{{ hit.getMods() }}</v-card-text>
+          <p v-for="m in hit.getMods()"> {{ m.value.toFixed(2) }} | {{ m.main }} | {{ m.sub }}</p>
         </v-list-item>
 
       </v-list>

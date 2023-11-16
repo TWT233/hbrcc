@@ -4,6 +4,12 @@ export type ModType = [ModMain, ModSub]
 export type ModMap = Partial<Record<ModMain, Modifier[]>>
 export type StatMap = Record<Stat, number>
 
+export function newStatMap(): StatMap {
+    return {
+        CON: 0, DEX: 0, LUK: 0, SPR: 0, STR: 0, WIS: 0
+    }
+}
+
 export enum EnemyType {
     HP = "HP",
     DP = "DP",
@@ -31,6 +37,7 @@ export enum GrowthType {
     BUFF = "BUFF",
     DEBUFF = "DEBUFF",
     FIXED = "FIXED",
+    NO = "NO",
 }
 
 export type ArbitraryGrowth = [number, number] // [bar min growth, bar max growth], e.g. [5%, 2%]

@@ -98,6 +98,7 @@ const growthRateMap: Record<GrowthType, ArbitraryGrowth> = {
     BUFF: [0.03, 0.02],
     DEBUFF: [0.05, 0.02],
     FIXED: [0, 0],
+    NO: [0, 0],
 }
 
 const hojuGrowthRateMap: Record<HojuGrowthType, ArbitraryHojuGrowth> = {

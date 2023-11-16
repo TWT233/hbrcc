@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import {computed, provide, ref} from "vue";
+import {provide, ref} from "vue";
 
-import ViewMods from "@/components/ViewMods.vue";
 import ViewAndEditEnemy from "@/components/ViewAndEditEnemy.vue";
 import ViewResult from "@/components/ViewResult.vue";
 
@@ -21,20 +20,12 @@ provide('border', border)
     <v-main class="d-flex align-center justify-center">
       <v-container>
         <v-row>
-          <v-col>
+          <v-col cols="12" lg="4">
             <ViewSkillCall v-model:calls="hit.buffs"></ViewSkillCall>
           </v-col>
-          <v-col cols="12" lg="4">
-            <v-row>
-              <v-col>
-                <ViewMods v-model:mods="hit.mods" title="Buffs & DeBuffs"></ViewMods>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col>
-                <ViewAndEditEnemy v-model:enemy="hit.enemy"></ViewAndEditEnemy>
-              </v-col>
-            </v-row>
+          <v-col class="" cols="12" lg="4">
+
+            <ViewAndEditEnemy v-model:enemy="hit.enemy"></ViewAndEditEnemy>
           </v-col>
           <v-col cols="12" lg="4">
             <ViewResult v-model:hit="hit"></ViewResult>

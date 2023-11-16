@@ -77,7 +77,7 @@ export class Effect {
             return (sd + cap / 2) * bar[0] / (cap / 2)
         }
         if (sd < cap) {
-            return (bar[1] - bar[0]) * sd / cap
+            return bar[0] + (bar[1] - bar[0]) * sd / cap
         }
         return bar[1]
     }

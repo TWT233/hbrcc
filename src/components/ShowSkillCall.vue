@@ -22,7 +22,7 @@ function getEffectDesc(e: Effect): string {
   return `${e.mt[0]} | ${e.mt[1]} | ${e.bar[0]}, ${e.bar[1]}`
 }
 
-const border = inject<number>('border')
+const border = inject<() => number>('border')
 
 const dialog = ref(false)
 
@@ -69,7 +69,7 @@ const param = computed(() => props.call.param)
             </v-row>
             <v-row>
               <v-col v-for="i in ns">
-                <DialogChip :text="`${i.mt[0]} | ${i.mt[1]} | ${i.value(param,border)}`"></DialogChip>
+                <DialogChip :text="`${i.mt[0]} | ${i.mt[1]} | ${i.value(param,border())}`"></DialogChip>
               </v-col>
             </v-row>
           </v-container>

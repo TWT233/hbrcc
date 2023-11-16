@@ -46,7 +46,7 @@ export class Effect {
     }
 
     desc(param: SkillParam, border: number): string {
-        const value = `${this.value(param, border)} (${this.bar[0]}, ${this.bar[1]})`
+        const value = `${this.value(param, border).toFixed(2)} (${this.bar[0]}, ${this.bar[1]})`
         return (this.mt == undefined) ? `DMG: ${value}` : `${this.mt[0]} | ${this.mt[1]} | ${value}`
     }
 

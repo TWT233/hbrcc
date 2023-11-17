@@ -8,16 +8,20 @@ import {querySkill, SkillName} from "@/data/skills";
 import {Stat} from "@/model/types";
 import {fetchSkillParam, storeSkillParam} from "@/data/localstorage";
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   call: SKillCall
   type: "MOD" | "DMG"
   title: string
-}>()
+  save?: boolean
+}>(), {
+  save: false,
+})
 
 const emit = defineEmits<{
   'update:call': [
     calls: SKillCall
-  ]
+  ],
+  'save': [],
 }>()
 
 const border = inject<() => number>('border')
@@ -50,7 +54,9 @@ onMounted(() => {
 
 <template>
   <v-card width="auto">
-    <v-toolbar :title="title"></v-toolbar>
+    <v-toolbar :title="title">
+      <v-btn v-if="save" icon="mdi-content-save" @click="emit('save')"></v-btn>
+    </v-toolbar>
     <v-container>
       <v-row>
         <v-col>

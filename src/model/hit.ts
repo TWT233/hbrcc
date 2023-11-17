@@ -1,6 +1,6 @@
 import {Modifier} from "./modifier";
 import {Enemy} from "./enemy";
-import {CRIT, ModMain, ModMap, ModSub} from "./types";
+import {CRIT, ModMain, ModSub} from "./types";
 import {querySkill, SkillName} from "@/data/skills";
 import {SKillCall} from "@/model/skill";
 

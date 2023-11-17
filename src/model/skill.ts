@@ -1,8 +1,10 @@
 import {SkillName} from "@/data/skills";
 import {StatMap} from "@/model/types";
-import {Effect} from "@/model/effect";
+import {CustomEffect, Effect} from "@/model/effect";
 
 export type Skill = Effect[]
+
+export type CustomSkill = CustomEffect[]
 
 export type SkillParam = {
     lv: number,

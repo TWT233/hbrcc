@@ -113,6 +113,12 @@ export class Effect {
     }
 }
 
+export class CustomEffect extends Effect {
+    constructor(value: number, mt: ModType) {
+        super([value, value], 0, {}, mt);
+    }
+}
+
 const growthRateMap: Record<GrowthType, ArbitraryGrowth> = {
     ATK: [0.05, 0.02],
     HEAL: [0.05, 0.02],

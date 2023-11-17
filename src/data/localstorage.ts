@@ -1,6 +1,6 @@
 import {SkillName} from "@/data/skills";
 
-import {SkillParam} from "@/model/skill";
+import {Skill, SkillParam} from "@/model/skill";
 
 export function fetchSkillParam(sn: SkillName): SkillParam | undefined {
     const key = keySkillParam(sn)
@@ -9,6 +9,7 @@ export function fetchSkillParam(sn: SkillName): SkillParam | undefined {
         res = JSON.parse(localStorage.getItem(key)) as SkillParam
     } catch (e) {
         localStorage.setItem(key, '')
+        res = undefined
     }
     return res
 }
@@ -22,3 +23,22 @@ function keySkillParam(sn: SkillName): string {
     return `SP_${sn}`
 }
 
+export function fetchCustomSkill(name: string): Skill | undefined {
+    const key = keyCustomSkill(name)
+    let res: Skill
+    try {
+        res = JSON.parse(localStorage.getItem(key)) as Skill
+    } catch (e) {
+        localStorage.setItem(key, '')
+        res = undefined
+    }
+    return res
+}
+
+export function storeCustomSkill(name: string, skill: Skill) {
+
+}
+
+function keyCustomSkill(name: string): string {
+    return `CS_${name}`
+}

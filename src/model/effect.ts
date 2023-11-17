@@ -12,16 +12,16 @@ import {
 import {SkillParam} from "@/model/skill";
 
 export class Effect {
-    bar: [number, number] // [min, max]
-    cap: number
+    private readonly bar: [number, number] // [min, max]
+    private readonly cap: number
 
-    base: Partial<StatMap> // eg: {[STR]: 2, [DEX]: 1} means 2*STR+1*DEX
+    readonly base: Partial<StatMap> // eg: {[STR]: 2, [DEX]: 1} means 2*STR+1*DEX
 
-    mt: ModType | undefined = undefined // undefined: atk skill
-    bdt: BorderType
+    readonly mt: ModType | undefined = undefined // undefined: atk skill
+    private readonly bdt: BorderType
 
-    growth: GrowthType | ArbitraryGrowth
-    hojuGrowth: HojuGrowthType | ArbitraryHojuGrowth
+    private readonly growth: GrowthType | ArbitraryGrowth
+    private readonly hojuGrowth: HojuGrowthType | ArbitraryHojuGrowth
 
     constructor(
         bar: [number, number],
@@ -63,16 +63,16 @@ export class Effect {
         return this.calcBase(bar, sd, this.cap) + this.calcHoju(bar, sd, p.hoju)
     }
 
-    calcBar(lv: number): [number, number] {
+    private calcBar(lv: number): [number, number] {
         const growth = this.arbiGrowth
         return [this.bar[0] * (1 + growth[0] * (lv - 1)), this.bar[1] * (1 + growth[1] * (lv - 1))]
     }
 
-    get arbiGrowth(): ArbitraryGrowth {
+    private get arbiGrowth(): ArbitraryGrowth {
         return (this.growth instanceof Array) ? this.growth : growthRateMap[this.growth]
     }
 
-    calcES(stat: Partial<StatMap>): number {
+    private calcES(stat: Partial<StatMap>): number {
         let all = 0
         let multiplier = 0
         for (const s in this.base) {
@@ -82,7 +82,7 @@ export class Effect {
         return multiplier == 0 ? 0 : all / multiplier
     }
 
-    calcBase(bar: [number, number], sd: number, cap: number) {
+    private calcBase(bar: [number, number], sd: number, cap: number) {
         if (sd < -cap / 2) {
             return 0
         }
@@ -95,7 +95,7 @@ export class Effect {
         return bar[1]
     }
 
-    calcHoju(bar: [number, number], sd: number, lv: number): number {
+    private calcHoju(bar: [number, number], sd: number, lv: number): number {
         if (this.hojuGrowth == HojuGrowthType.NO) return 0
 
         const growth = this.arbiHojuGrowth
@@ -104,11 +104,11 @@ export class Effect {
         return this.calcBase(hojuBar, sd, hojuCap)
     }
 
-    get arbiHojuGrowth(): ArbitraryHojuGrowth {
+    private get arbiHojuGrowth(): ArbitraryHojuGrowth {
         return (this.hojuGrowth instanceof Array) ? this.hojuGrowth : hojuGrowthRateMap[this.hojuGrowth]
     }
 
-    calcHojuBar(bar: [number, number], lv: number, growth: number): [number, number] {
+    private calcHojuBar(bar: [number, number], lv: number, growth: number): [number, number] {
         return [bar[0] * growth * lv, bar[1] * growth * lv]
     }
 }

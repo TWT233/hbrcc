@@ -73,13 +73,6 @@ export const SKILLS_CATE = {
         LIGHT: [
             SkillName.AliceASkill51,
         ],
-        SLASH: [
-            SkillName.AliceASkill51,
-        ],
-        STAB: [
-            SkillName.MKiryuSkill52,
-        ],
-        STRIKE: [],
     },
 
 }

@@ -39,8 +39,8 @@ onMounted(() => {
       <v-row>
         <v-col cols="auto">
           <v-tabs v-model="category" direction="vertical">
-            <v-tab v-for="i in Object.keys(SKILLS_CATE[type])" :value="i">{{ i }}</v-tab>
             <v-tab value="CUSTOM">CUSTOM</v-tab>
+            <v-tab v-for="i in Object.keys(SKILLS_CATE[type])" :value="i">{{ i }}</v-tab>
           </v-tabs>
         </v-col>
         <v-col>

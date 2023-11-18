@@ -14,9 +14,13 @@ export function fetchSkillParam(sn: SkillName): SkillParam | undefined {
     return res
 }
 
-export function storeSkillParam(sn: SkillName, param: SkillParam) {
+export function storeSkillParam(sn: SkillName, param: SkillParam | undefined) {
     const key = keySkillParam(sn)
-    localStorage.setItem(key, JSON.stringify(param))
+    if (param === undefined) {
+        localStorage.removeItem(key)
+    } else {
+        localStorage.setItem(key, JSON.stringify(param))
+    }
 }
 
 function keySkillParam(sn: SkillName): string {
@@ -51,9 +55,24 @@ export function fetchCustomSkill(name: string): Skill | undefined {
     return res
 }
 
-export function storeCustomSkill(name: string, skill: Skill) {
+export function storeCustomSkill(name: string, skill: Skill | undefined) {
     const key = keyCustomSkill(name)
-    localStorage.setItem(key, JSON.stringify(skill))
+    if (skill === undefined) {
+        localStorage.removeItem(key)
+        const l = fetchCustomSkillList()
+        const idx = l.indexOf(key)
+        if (idx != -1) {
+            l.splice(idx, 1)
+            storeCustomSkillList(l)
+        }
+    } else {
+        localStorage.setItem(key, JSON.stringify(skill))
+        const l = fetchCustomSkillList()
+        if (l.indexOf(key) == -1) {
+            l.push(key)
+            storeCustomSkillList(l)
+        }
+    }
 }
 
 function keyCustomSkill(name: string): string {

@@ -21,20 +21,18 @@ provide('border', border)
     <v-main class="d-flex align-center justify-center">
       <v-container>
         <v-row>
-          <v-col>
+          <v-col cols="12" md="6" xl="4">
             <EditorSkillCall v-model:call="hit.atk" type="DMG" title="Character Detail"></EditorSkillCall>
           </v-col>
-          <v-col cols="12" lg="4">
+          <v-col cols="12" md="6" xl="4">
             <ViewBuffs v-model:calls="hit.buffs"></ViewBuffs>
           </v-col>
-          <v-col cols="12" lg="4">
+          <v-col cols="12" xl="4">
             <v-row>
-              <v-col>
+              <v-col cols="12" md="6" xl="12">
                 <EditorEnemy v-model:enemy="hit.enemy"></EditorEnemy>
               </v-col>
-            </v-row>
-            <v-row>
-              <v-col>
+              <v-col cols="12" md="6" xl="12">
                 <ViewResult v-model:hit="hit"></ViewResult>
               </v-col>
             </v-row>

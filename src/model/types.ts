@@ -53,23 +53,6 @@ export enum HojuGrowthType {
 
 export type ArbitraryHojuGrowth = [number, number] // [bar rate, cap], e.g. [2%, 20]
 
-export enum ModMain {
-    ATK = "ATK",
-    DEF = "DEF",
-    FRAGILE = "FRAGILE",
-    EnemyType = "EnemyType",
-    CRIT = "CRIT",
-    ADDITIONAL = "ADDITIONAL",
-}
-
-export type ModSub =
-    | ATK
-    | DEF
-    | FRAGILE
-    | EnemyType
-    | CRIT
-    | ADDITIONAL;
-
 export enum ATK {
     NORMAL = "NORMAL", // normal atk buff
     ELEMENT = "ELEMENT",
@@ -97,3 +80,28 @@ export enum ADDITIONAL {
     NORMAL = "NORMAL",
 }
 
+export enum ModMain {
+    ATK = "ATK",
+    DEF = "DEF",
+    FRAGILE = "FRAGILE",
+    EnemyType = "EnemyType",
+    CRIT = "CRIT",
+    ADDITIONAL = "ADDITIONAL",
+}
+
+export type ModSub =
+    | ATK
+    | DEF
+    | FRAGILE
+    | EnemyType
+    | CRIT
+    | ADDITIONAL;
+
+export const MAIN_TO_SUB = {
+    [ModMain.ATK]: Object.keys(ATK),
+    [ModMain.DEF]: Object.keys(DEF),
+    [ModMain.FRAGILE]: Object.keys(FRAGILE),
+    [ModMain.EnemyType]: Object.keys(EnemyType),
+    [ModMain.CRIT]: Object.keys(CRIT),
+    [ModMain.ADDITIONAL]: Object.keys(ADDITIONAL),
+}

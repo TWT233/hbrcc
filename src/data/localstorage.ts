@@ -23,6 +23,22 @@ function keySkillParam(sn: SkillName): string {
     return `SP_${sn}`
 }
 
+export function fetchCustomSkillList(): string[] {
+    let res = []
+    try {
+        res = JSON.parse(localStorage.getItem(keyCustomSkillList))
+    } catch (e) {
+        localStorage.setItem(keyCustomSkillList, '')
+    }
+    return res ? res : []
+}
+
+export function storeCustomSkillList(csl: string[]) {
+    localStorage.setItem(keyCustomSkillList, JSON.stringify(csl))
+}
+
+const keyCustomSkillList = "_CSL_"
+
 export function fetchCustomSkill(name: string): Skill | undefined {
     const key = keyCustomSkill(name)
     let res: Skill
@@ -36,7 +52,8 @@ export function fetchCustomSkill(name: string): Skill | undefined {
 }
 
 export function storeCustomSkill(name: string, skill: Skill) {
-
+    const key = keyCustomSkill(name)
+    localStorage.setItem(key, JSON.stringify(skill))
 }
 
 function keyCustomSkill(name: string): string {

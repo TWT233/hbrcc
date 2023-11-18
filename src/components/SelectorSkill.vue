@@ -3,6 +3,8 @@
 import {querySkillName, SkillName, SKILLS_CATE} from "@/data/skills";
 import {Skill} from "@/model/skill";
 import {computed, onMounted, ref} from "vue";
+import EditorCustomSkill from "@/components/EditorCustomSkill.vue";
+import {fetchCustomSkillList} from "@/data/localstorage";
 
 const props = defineProps<{
   callee: SkillName | Skill
@@ -31,6 +33,8 @@ onMounted(() => {
     }
   }
 })
+
+const selectedCustom = ref('')
 </script>
 
 <template>
@@ -51,7 +55,11 @@ onMounted(() => {
               </v-radio-group>
             </v-window-item>
             <v-window-item value="CUSTOM">
-              <v-card title="Custom Skill"></v-card>
+              <v-radio-group v-model="selectedCustom">
+                <v-radio v-for="i in fetchCustomSkillList()" :label="i" :value="i"></v-radio>
+              </v-radio-group>
+              <v-divider></v-divider>
+              <EditorCustomSkill></EditorCustomSkill>
             </v-window-item>
           </v-window>
         </v-col>

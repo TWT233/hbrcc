@@ -55,11 +55,11 @@ const selectedCustom = ref('')
               </v-radio-group>
             </v-window-item>
             <v-window-item value="CUSTOM">
+              <EditorCustomSkill @update="name => selectedCustom=name"></EditorCustomSkill>
+              <v-divider></v-divider>
               <v-radio-group v-model="selectedCustom">
                 <v-radio v-for="i in fetchCustomSkillList()" :label="i" :value="i"></v-radio>
               </v-radio-group>
-              <v-divider></v-divider>
-              <EditorCustomSkill></EditorCustomSkill>
             </v-window-item>
           </v-window>
         </v-col>

@@ -119,7 +119,7 @@ export class CustomEffect extends Effect {
     }
 }
 
-const growthRateMap: Record<GrowthType, ArbitraryGrowth> = {
+const growthRateMap: Record<GrowthType, ArbitraryGrowth> = { // [ lower_bound_grow_rate, upper_bound_grow_rate]
     ATK: [0.05, 0.02],
     HEAL: [0.05, 0.02],
     BUFF: [0.03, 0.02],
@@ -128,7 +128,7 @@ const growthRateMap: Record<GrowthType, ArbitraryGrowth> = {
     NO: [0, 0],
 }
 
-const hojuGrowthRateMap: Record<HojuGrowthType, ArbitraryHojuGrowth> = {
+const hojuGrowthRateMap: Record<HojuGrowthType, ArbitraryHojuGrowth> = { // [bar, cap]
     ATK: [0.02, 20],
     HEAL: [0.06, 60],
     BUFF: [0.04, 60],

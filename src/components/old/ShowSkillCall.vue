@@ -2,7 +2,7 @@
 import {isSkillName, Skill, SKillCall} from "@/model/skill";
 import {querySkill, querySkillName, SkillName} from "@/data/skills";
 import {computed, inject, onMounted, ref} from "vue";
-import EditorSkillCall from "@/components/EditorSkillCall.vue";
+import EditorSkillCall from "@/components/old/EditorSkillCall.vue";
 import {fetchSkillParam, storeSkillParam} from "@/data/localstorage";
 
 const props = defineProps<{

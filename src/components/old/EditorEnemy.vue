@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {computed} from "vue";
 
-import NumberField from "@/components/utils/NumberField.vue";
+import NumberField from "@/components/old/utils/NumberField.vue";
 
 import {Enemy} from "@/model/enemy";
 import {EnemyType} from "@/model/types";

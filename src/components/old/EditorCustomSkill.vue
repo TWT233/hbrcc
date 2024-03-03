@@ -4,7 +4,7 @@ import {computed, ref} from "vue";
 import {fetchCustomSkillList, storeCustomSkill} from "@/data/localstorage";
 import {CustomEffect} from "@/model/effect";
 import {ATK, MAIN_TO_SUB, ModMain} from "@/model/types";
-import NumberField from "@/components/utils/NumberField.vue";
+import NumberField from "@/components/old/utils/NumberField.vue";
 
 const emits = defineEmits<{
   'update': [

@@ -3,7 +3,7 @@
 import {querySkillName, SkillName, SKILLS_CATE} from "@/data/skills";
 import {Skill} from "@/model/skill";
 import {computed, onMounted, ref} from "vue";
-import EditorCustomSkill from "@/components/EditorCustomSkill.vue";
+import EditorCustomSkill from "@/components/old/EditorCustomSkill.vue";
 import {fetchCustomSkillList} from "@/data/localstorage";
 
 const props = defineProps<{

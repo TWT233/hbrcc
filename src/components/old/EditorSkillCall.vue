@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import SelectorSkill from "@/components/SelectorSkill.vue";
-import NumberField from "@/components/utils/NumberField.vue";
-import DialogChip from "@/components/utils/DialogChip.vue";
+import SelectorSkill from "@/components/old/SelectorSkill.vue";
+import NumberField from "@/components/old/utils/NumberField.vue";
+import DialogChip from "@/components/old/utils/DialogChip.vue";
 import {isSkillName, Skill, SKillCall} from "@/model/skill";
 import {computed, inject, onMounted} from "vue";
 import {querySkill, SkillName} from "@/data/skills";

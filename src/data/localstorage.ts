@@ -1,6 +1,7 @@
 import {SkillName} from "@/data/skills";
 
 import {Skill, SkillParam} from "@/model/skill";
+import {newStatMap, StatMap} from "@/model/types";
 
 export function fetchSkillParam(sn: SkillName): SkillParam | undefined {
     const key = keySkillParam(sn)
@@ -77,4 +78,27 @@ export function storeCustomSkill(name: string, skill: Skill | undefined) {
 
 function keyCustomSkill(name: string): string {
     return `CS_${name}`
+}
+
+export function Style(name: string) {
+    return {
+        fetch: () => {
+            try {
+                return JSON.parse(localStorage.getItem(keyStyle(name))) as StatMap
+            } catch (e) {
+                return newStatMap()
+            }
+        },
+        store: (stat: StatMap | undefined) => {
+            if (stat === undefined) {
+                localStorage.removeItem(keyStyle(name))
+            } else {
+                localStorage.setItem(keyStyle(name), JSON.stringify(stat))
+            }
+        },
+    }
+}
+
+function keyStyle(name: string): string {
+    return `Style:${name}`
 }

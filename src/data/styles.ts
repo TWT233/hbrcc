@@ -7,7 +7,7 @@ export enum Styles {
     MKiryuuGothic = "MKiryuuGothic",
 }
 
-export const CHARACTER_SKILLS: Record<Styles, SkillName[]> = {
+export const STYLE_SKILLS: Record<Styles, SkillName[]> = {
     [Styles.AliceAOnePiece]: [
         SkillName.AliceASkill51,
     ],

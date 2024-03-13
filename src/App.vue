@@ -4,10 +4,12 @@ import {useTeamStore} from "@/components/state/team";
 import EditorStyle from "@/components/EditorStyle.vue";
 import {toRefs} from "vue";
 import {Styles} from "@/data/styles";
+import ViewSkills from "@/components/ViewSkills.vue";
 
 const team = useTeamStore()
-team.team.members.fill(Styles.AliceADefault)
-const refMembers = toRefs(team.team.members)
+const members = toRefs(team.team.members)
+members[0].value = Styles.AliceADefault
+members[1].value = Styles.LShanhuaDefault
 
 </script>
 
@@ -16,27 +18,16 @@ const refMembers = toRefs(team.team.members)
     <v-app-bar :elevation="8" title="hbrcc"></v-app-bar>
     <v-main class="d-flex align-center justify-center">
       <v-container>
-        <v-stepper :items="['Step 1', 'Step 2', 'Step 3']">
-          <template v-slot:item.1>
-            <v-card title="Step One" flat>
-              <v-container>
-                <v-row>
-                  <v-col cols="2" v-for="(_,i) in refMembers">
-                    <EditorStyle v-model:style="refMembers[i].value"/>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card>
-          </template>
-
-          <template v-slot:item.2>
-            <v-card title="Step Two" flat>...</v-card>
-          </template>
-
-          <template v-slot:item.3>
-            <v-card title="Step Three" flat>...</v-card>
-          </template>
-        </v-stepper>
+        <v-row>
+          <v-col v-for="(_,i) in members" cols="2">
+            <EditorStyle v-model:style="members[i].value"/>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <ViewSkills></ViewSkills>
+          </v-col>
+        </v-row>
       </v-container>
     </v-main>
   </v-layout>

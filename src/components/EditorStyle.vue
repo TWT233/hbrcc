@@ -3,35 +3,34 @@ import {Styles} from "@/data/styles";
 import NumberField from "@/components/utils/NumberField.vue";
 import {newStatMap} from "@/model/types";
 import {Style} from "@/data/localstorage";
-import {computed, ref, watchEffect} from "vue";
+import {computed, ref, watch} from "vue";
 
 const style = defineModel<Styles>('style')
+let stat = ref(fetchStat(style.value))
 
-let stat = ref(newStatMap())
-
-if (style) {
-  const remote = Style(style.value).fetch()
-  if (remote) {
-    stat.value = remote
-  }
-}
-
-watchEffect(() => {
-  Style(style.value).store(stat.value)
-  console.log('Style updated', style.value, stat.value)
+watch(style, (n, _) => {
+  stat.value = fetchStat(n)
+  console.log("watched style change: ", n)
 })
+
+watch(stat, (n, _) => {
+  Style(style.value).store(n)
+}, {deep: true})
+
+function fetchStat(s: Styles) {
+  const remote = Style(s).fetch()
+  if (remote) {
+    return remote
+  }
+  return newStatMap()
+}
 
 const title = computed(() => style.value?.toString() || 'None')
 
 let dialog = ref(false)
 
-function onEditStyle() {
-  dialog.value = true
-}
-
 function onStyleSelected(n: Styles) {
   style.value = n
-  console.log('Style selected', n)
   dialog.value = false
 }
 
@@ -44,7 +43,7 @@ function onStyleSelected(n: Styles) {
         {{ title }}
       </v-toolbar-title>
       <template v-slot:append>
-        <v-btn icon="mdi-home" @click="onEditStyle"></v-btn>
+        <v-btn icon="mdi-pencil" @click="dialog=true"></v-btn>
       </template>
     </v-toolbar>
 

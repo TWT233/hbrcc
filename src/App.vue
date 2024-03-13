@@ -6,7 +6,7 @@ import {toRefs} from "vue";
 import {Styles} from "@/data/styles";
 
 const team = useTeamStore()
-team.team.members.fill(Styles.KanadeTachibana_EtherFlair)
+team.team.members.fill(Styles.AliceADefault)
 const refMembers = toRefs(team.team.members)
 
 </script>

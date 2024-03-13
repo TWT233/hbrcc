@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {Styles} from "@/data/styles";
 import NumberField from "@/components/utils/NumberField.vue";
 import {newStatMap} from "@/model/types";
@@ -39,32 +39,30 @@ function onStyleSelected(n: Styles) {
 
 <template>
   <v-card variant="outlined">
-    <v-img src="https://hbr.quest/hbr/AliceAOnePiece_R3.webp" height="50" cover>
-      <v-toolbar color="rgba(0, 0, 0, 0)">
-        <v-toolbar-title class="text-h6">
-          {{ title }}
-        </v-toolbar-title>
-        <template v-slot:append>
-          <v-btn icon="mdi-home" @click="onEditStyle"></v-btn>
-        </template>
-      </v-toolbar>
-    </v-img>
+    <v-toolbar color="rgba(0, 0, 0, 0)">
+      <v-toolbar-title class="text-h6">
+        {{ title }}
+      </v-toolbar-title>
+      <template v-slot:append>
+        <v-btn icon="mdi-home" @click="onEditStyle"></v-btn>
+      </template>
+    </v-toolbar>
 
     <v-container>
       <v-row>
-        <v-col cols="6" v-for="k in ['STR','DEX','CON','SPR','WIS','LUK']">
+        <v-col v-for="k in ['STR','DEX','CON','SPR','WIS','LUK']" cols="6">
           <NumberField v-model="stat[k]" :label="k"/>
         </v-col>
       </v-row>
     </v-container>
   </v-card>
 
-  <v-dialog max-width="600" v-model="dialog">
+  <v-dialog v-model="dialog" max-width="600">
     <v-card>
       <v-toolbar title="Choose style"></v-toolbar>
       <v-container>
         <v-row>
-          <v-col cols="12" v-for="style in Styles" :key="style">
+          <v-col v-for="style in Styles" :key="style" cols="12">
             <v-btn @click="onStyleSelected(style)">{{ style }}</v-btn>
           </v-col>
         </v-row>

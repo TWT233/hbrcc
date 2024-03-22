@@ -2,14 +2,16 @@
 
 import {useTeamStore} from "@/components/state/team";
 import EditorStyle from "@/components/EditorStyle.vue";
-import {toRefs} from "vue";
 import {Styles} from "@/data/styles";
 import ViewSkills from "@/components/ViewSkills.vue";
+import {storeToRefs} from "pinia";
 
 const team = useTeamStore()
-const members = toRefs(team.team.members)
-members[0].value = Styles.AliceADefault
-members[1].value = Styles.LShanhuaDefault
+const members = storeToRefs(team).team.value.members
+
+members[0] = Styles.LShanhuaDefault
+members[1] = Styles.AliceAOnePiece
+members[2] = Styles.MKiryuuGothic
 
 </script>
 
@@ -20,12 +22,12 @@ members[1].value = Styles.LShanhuaDefault
       <v-container>
         <v-row>
           <v-col v-for="(_,i) in members" cols="2">
-            <EditorStyle v-model:style="members[i].value"/>
+            <EditorStyle v-model:style="members[i]"/>
           </v-col>
         </v-row>
         <v-row>
           <v-col>
-            <ViewSkills></ViewSkills>
+            <ViewSkills :members="members"></ViewSkills>
           </v-col>
         </v-row>
       </v-container>

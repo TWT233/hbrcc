@@ -6,6 +6,11 @@ export type Skill = Effect[]
 
 export type CustomSkill = CustomEffect[]
 
+export type SkillLV = {
+    lv: number,
+    hoju: number,
+}
+
 export type SkillParam = {
     lv: number,
     hoju: number,

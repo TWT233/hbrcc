@@ -1,13 +1,21 @@
 <script lang="ts" setup>
 
-import {useTeamStore} from "@/components/state/team";
-import {computed} from "vue";
-import {STYLE_SKILLS} from "@/data/styles";
+import {computed, ref} from "vue";
+import {STYLE_SKILLS, Styles} from "@/data/styles";
+import {SkillName} from "@/data/skills";
 
-const team = useTeamStore()
+const props = defineProps<{
+  members: Styles[]
+}>()
 
-const skillList = computed(() => {
-  return team.team.members.map(m => STYLE_SKILLS[m]).flat().filter(v => !!v)
+const emit = defineEmits<{
+  update: [skills: SkillName[]]
+}>()
+
+const skills = ref<SkillName[]>([])
+
+const acceptable = computed(() => {
+  return props.members.map(m => STYLE_SKILLS[m]).flat().filter(v => !!v)
 })
 
 </script>
@@ -15,8 +23,15 @@ const skillList = computed(() => {
 <template>
   <v-card>
     <div>
-      {{ skillList }}
+      {{ acceptable }}
     </div>
+    <v-container>
+      <v-row>
+        <v-col>
+          
+        </v-col>
+      </v-row>
+    </v-container>
   </v-card>
 </template>
 

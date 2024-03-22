@@ -18,17 +18,24 @@ const acceptable = computed(() => {
   return props.members.map(m => STYLE_SKILLS[m]).flat().filter(v => !!v)
 })
 
+const dialog = ref(false)
+
 </script>
 
 <template>
-  <v-card>
+  <v-card max-width="400">
     <div>
       {{ acceptable }}
     </div>
+    <v-toolbar title="Skills">
+      <template v-slot:append>
+        <v-btn icon="mdi-plus" @click="dialog=true"></v-btn>
+      </template>
+    </v-toolbar>
     <v-container>
-      <v-row>
+      <v-row v-for="s in skills">
         <v-col>
-          
+          {{ s.toString() }}
         </v-col>
       </v-row>
     </v-container>

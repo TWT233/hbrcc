@@ -30,27 +30,35 @@ const enemy = useEnemyStore()
       />
     </n-layout-header>
 
-    <!-- content -->
-    <n-layout-content content-style="padding: 24px;">
-      <n-grid cols="6" responsive="screen" x-gap="12" y-gap="12">
+    <n-layout has-sider sider-placement="right">
+      <n-layout-content content-style="padding: 24px;">
 
         <!-- members -->
-        <n-gi v-for="(member, index) in members" :key="index">
-          <EditorMember :member="member"/>
-        </n-gi>
+        <n-grid cols="1 s:2 m:3 xl:6" responsive="screen" x-gap="12" y-gap="12">
+          <n-gi v-for="(member, index) in members" :key="index">
+            <EditorMember :member="member"/>
+          </n-gi>
+        </n-grid>
 
-        <!-- enemy -->
-        <n-gi span="3">
-          <EditorEnemy :enemy="enemy.enemy"/>
-        </n-gi>
+      </n-layout-content>
 
-        <!-- result -->
-        <n-gi span="3">
-          <n-card title="result"></n-card>
-        </n-gi>
+      <n-layout-sider :width="300" bordered content-style="padding: 24px;">
+        <n-grid cols="1" x-gap="12" y-gap="12">
 
-      </n-grid>
-    </n-layout-content>
+          <!-- enemy -->
+          <n-gi span="3">
+            <EditorEnemy :enemy="enemy.enemy"/>
+          </n-gi>
+
+          <!-- result -->
+          <n-gi span="3">
+            <n-card title="result"></n-card>
+          </n-gi>
+
+        </n-grid>
+      </n-layout-sider>
+    </n-layout>
+
 
   </n-layout>
 </template>

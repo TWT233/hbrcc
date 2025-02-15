@@ -2,13 +2,13 @@ import {Modifier} from "./modifier";
 import {Enemy} from "./enemy";
 import {CRIT, ModMain, ModSub} from "./types";
 import {querySkill, SkillName} from "@/data/skills";
-import {SKillCall} from "@/model/skill";
+import {SkillCall} from "@/model/skill";
 
 export class Hit {
     enemy: Enemy = new Enemy()
     isCrit: boolean = true
 
-    atk: SKillCall = {
+    atk: SkillCall = {
         callee: SkillName.AliceASkill51,
         param: {
             lv: 3,
@@ -16,7 +16,7 @@ export class Hit {
             stat: {CON: 0, DEX: 320, LUK: 0, SPR: 0, STR: 320, WIS: 260}
         }
     }
-    buffs: SKillCall[] = []
+    buffs: SkillCall[] = []
 
     calculate(): number {
         const mods = this.getMods()
@@ -44,7 +44,7 @@ export class Hit {
     }
 
     getMods(): Modifier[] {
-        const call2Mods = (call: SKillCall): Modifier[] =>
+        const call2Mods = (call: SkillCall): Modifier[] =>
             querySkill(call.callee)
                 .filter(e => !e.isDMG)
                 .map(e => new Modifier(e.mt, e.value(call.param, this.border())))

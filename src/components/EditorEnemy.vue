@@ -12,7 +12,7 @@ const enemyTypeOptions = [
 
 <template>
   <n-card title="enemy">
-    <n-form label-placement="left" label-width="120">
+    <n-form label-placement="left">
       <n-form-item label="属性值">
         <n-input-number v-model:value="enemy.border" :show-button="false"/>
       </n-form-item>

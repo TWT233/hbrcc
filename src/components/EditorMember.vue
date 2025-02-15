@@ -1,30 +1,34 @@
 <script lang="ts" setup>
-import {computed} from "vue";
+import {computed, ref} from "vue";
+
 import {Member} from "@/model/member";
 import {StatType} from "@/model/types";
-import {Pencil} from '@vicons/ionicons5'
+import EditorStat from "@/components/EditorStat.vue";
 
 const member = defineModel<Member>('member')
 
 const title = computed(() => member.value.style?.toString() || 'None')
+
+const statBrief = computed(() => Object.values(StatType).map(t => member.value.stat[t]).join(' | '))
+
+const showEditorStat = ref(false);
 </script>
 
 <template>
   <n-card :title="title" class="member-card">
-    <template #header-extra>
-      <n-button :bordered="false" circle>
-        <n-icon :component="Pencil"/>
-      </n-button>
+    {{ statBrief }}
+    <template #footer>
+      <n-button-group>
+        <n-button>选择战型</n-button>
+        <n-button @click="showEditorStat = true">
+          <n-modal v-model:show="showEditorStat">
+            <EditorStat v-model:stat="member.stat"></EditorStat>
+          </n-modal>
+          编辑属性
+        </n-button>
+        <n-button>选择技能</n-button>
+      </n-button-group>
     </template>
-    <n-form label-placement="left" label-width="auto">
-      <n-grid cols="1 l:2" responsive="screen" x-gap="12">
-        <n-gi v-for="t in Object.values(StatType)" :key="t" :label="t">
-          <n-form-item :label="t">
-            <n-input-number v-model:value="member.stat[t]" :show-button="false"/>
-          </n-form-item>
-        </n-gi>
-      </n-grid>
-    </n-form>
   </n-card>
 </template>
 

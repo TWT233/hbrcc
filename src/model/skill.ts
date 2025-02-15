@@ -17,7 +17,7 @@ export type SkillParam = {
     stat: Stat,
 }
 
-export type SKillCall = {
+export type SkillCall = {
     callee: SkillName | Skill
     param: SkillParam
 }

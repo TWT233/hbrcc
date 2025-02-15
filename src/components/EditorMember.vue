@@ -18,7 +18,7 @@ const title = computed(() => member.value.style?.toString() || 'None')
       </n-button>
     </template>
     <n-form label-placement="left" label-width="auto">
-      <n-grid cols="2" x-gap="12">
+      <n-grid cols="1 l:2" responsive="screen" x-gap="12">
         <n-gi v-for="t in Object.values(StatType)" :key="t" :label="t">
           <n-form-item :label="t">
             <n-input-number v-model:value="member.stat[t]" :show-button="false"/>

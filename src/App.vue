@@ -25,7 +25,7 @@ members[2].style = Styles.MKiryuuGothic
     </n-layout-header>
 
     <!-- 页面内容 -->
-    <n-layout-content content-style="padding: 24px; margin-top: 64px;">
+    <n-layout-content content-style="padding: 24px;">
       <n-grid cols="6" responsive="screen" x-gap="12" y-gap="12">
         <n-gi v-for="(member, index) in members" :key="index">
           <EditorMember :member="member"/>

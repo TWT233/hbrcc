@@ -4,14 +4,13 @@ import {Member} from "@/model/member";
 import {StatType} from "@/model/types";
 import {Pencil} from '@vicons/ionicons5'
 
-
 const member = defineModel<Member>('member')
 
 const title = computed(() => member.value.style?.toString() || 'None')
 </script>
 
 <template>
-  <n-card :title=title>
+  <n-card :title="title" class="member-card">
     <template #header-extra>
       <n-button :bordered="false" circle>
         <n-icon :component="Pencil"/>
@@ -28,3 +27,12 @@ const title = computed(() => member.value.style?.toString() || 'None')
     </n-form>
   </n-card>
 </template>
+
+
+<style scoped>
+.member-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+</style>

@@ -43,40 +43,6 @@ export const SKILLS: Record<SkillName, Skill> = {
     ]
 }
 
-export const SKILLS_CATE = {
-    MOD: {
-        FREQUENTLY: [
-            SkillName.LShanhuaSkill51,
-            SkillName.SHiguchiSkill52,
-        ],
-        DEF: [
-            SkillName.MKiryuSkill52,
-            SkillName.LShanhuaSkill02,
-        ],
-        FRAGILE: [
-            SkillName.MKiryuSkill52,
-        ],
-        ADDITIONAL: [
-            SkillName.LShanhuaSkill51,
-        ],
-        CRIT: [
-            SkillName.SHiguchiSkill52,
-        ],
-    },
-    DMG: {
-        FIRE: [],
-        THUNDER: [
-            SkillName.MKiryuSkill52,
-        ],
-        ICE: [],
-        DARK: [],
-        LIGHT: [
-            SkillName.AliceASkill51,
-        ],
-    },
-
-}
-
 export function querySkillName(key: SkillName | Skill): string {
     return (key instanceof Array) ? "CUSTOM" : key
 }

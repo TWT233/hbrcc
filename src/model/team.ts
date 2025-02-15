@@ -1,5 +1,5 @@
-import {Styles} from "@/data/styles";
+import {Member} from "@/model/member";
 
 export class Team {
-    members: (Styles | null)[] = Array(6).fill(null);
+    members: Member[] = Array.from({length: 6}, () => new Member())
 }

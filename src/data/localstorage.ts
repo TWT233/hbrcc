@@ -1,17 +1,17 @@
-import {newStatMap, StatMap} from "@/model/types";
 import {SkillName} from "@/data/skills";
 import {SkillLV} from "@/model/skill";
+import {newStatMap, Stat} from "@/model/stat";
 
 export function Style(name: string) {
     return {
         fetch: () => {
             try {
-                return JSON.parse(localStorage.getItem(keyStyle(name))) as StatMap
+                return JSON.parse(localStorage.getItem(keyStyle(name))) as Stat
             } catch (e) {
                 return newStatMap()
             }
         },
-        store: (stat: StatMap | undefined) => {
+        store: (stat: Stat | undefined) => {
             if (stat === undefined) {
                 localStorage.removeItem(keyStyle(name))
             } else {

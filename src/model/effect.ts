@@ -6,16 +6,16 @@ import {
     HojuGrowthType,
     ModMain,
     ModSub,
-    ModType,
-    StatMap
+    ModType
 } from "@/model/types";
 import {SkillParam} from "@/model/skill";
+import {Stat} from "@/model/stat";
 
 export class Effect {
     bar: [number, number] // [min, max]
     cap: number
 
-    base: Partial<StatMap> // eg: {[STR]: 2, [DEX]: 1} means 2*STR+1*DEX
+    base: Partial<Stat> // eg: {[STR]: 2, [DEX]: 1} means 2*STR+1*DEX
 
     mt: ModType | undefined = undefined // undefined: atk skill
     bdt: BorderType
@@ -26,7 +26,7 @@ export class Effect {
     constructor(
         bar: [number, number],
         cap: number,
-        base: Partial<StatMap>,
+        base: Partial<Stat>,
         mt: [ModMain, ModSub] | undefined,
         bdt: BorderType = BorderType.NO,
         growth: GrowthType | ArbitraryGrowth = GrowthType.FIXED,
@@ -43,6 +43,14 @@ export class Effect {
 
     get isDMG(): boolean {
         return this.mt == undefined
+    }
+
+    get arbiGrowth(): ArbitraryGrowth {
+        return (this.growth instanceof Array) ? this.growth : growthRateMap[this.growth]
+    }
+
+    get arbiHojuGrowth(): ArbitraryHojuGrowth {
+        return (this.hojuGrowth instanceof Array) ? this.hojuGrowth : hojuGrowthRateMap[this.hojuGrowth]
     }
 
     desc(p: SkillParam, border: number): string {
@@ -68,11 +76,7 @@ export class Effect {
         return [this.bar[0] * (1 + growth[0] * (lv - 1)), this.bar[1] * (1 + growth[1] * (lv - 1))]
     }
 
-    get arbiGrowth(): ArbitraryGrowth {
-        return (this.growth instanceof Array) ? this.growth : growthRateMap[this.growth]
-    }
-
-    calcES(stat: Partial<StatMap>): number {
+    calcES(stat: Partial<Stat>): number {
         let all = 0
         let multiplier = 0
         for (const s in this.base) {
@@ -102,10 +106,6 @@ export class Effect {
         const hojuBar = this.calcHojuBar(bar, lv, growth[0])
         const hojuCap = this.cap + growth[1] * lv
         return this.calcBase(hojuBar, sd, hojuCap)
-    }
-
-    get arbiHojuGrowth(): ArbitraryHojuGrowth {
-        return (this.hojuGrowth instanceof Array) ? this.hojuGrowth : hojuGrowthRateMap[this.hojuGrowth]
     }
 
     calcHojuBar(bar: [number, number], lv: number, growth: number): [number, number] {

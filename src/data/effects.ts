@@ -7,10 +7,10 @@ import {
     GrowthType,
     HojuGrowthType,
     ModMain,
-    ModType,
-    StatMap
+    ModType
 } from "@/model/types";
 import {Effect} from "@/model/effect";
+import {Stat} from "@/model/stat";
 
 function buff(bar: [number, number], mt: ModType) {
     return (cap: number, growth: boolean = false, hoju: boolean = false) => {
@@ -23,7 +23,7 @@ function buff(bar: [number, number], mt: ModType) {
     }
 }
 
-function debuff(bar: [number, number], mt: ModType, base: Partial<StatMap>) {
+function debuff(bar: [number, number], mt: ModType, base: Partial<Stat>) {
     return (cap: number, growth: boolean = false, hoju: boolean = false) => {
         return new Effect(
             bar, cap, base,
@@ -35,7 +35,7 @@ function debuff(bar: [number, number], mt: ModType, base: Partial<StatMap>) {
 }
 
 export function dmg(
-    bar: [number, number], cap: number, base: Partial<StatMap>
+    bar: [number, number], cap: number, base: Partial<Stat>
 ): Effect {
     return new Effect(bar, cap, base, undefined, BorderType.ENEMY, GrowthType.ATK, HojuGrowthType.ATK)
 }

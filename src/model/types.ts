@@ -2,20 +2,8 @@ import {Modifier} from "./modifier";
 
 export type ModType = [ModMain, ModSub]
 export type ModMap = Partial<Record<ModMain, Modifier[]>>
-export type StatMap = Record<Stat, number>
 
-export function newStatMap(): StatMap {
-    return {
-        CON: 0, DEX: 0, LUK: 0, SPR: 0, STR: 0, WIS: 0
-    }
-}
-
-export enum EnemyType {
-    HP = "HP",
-    DP = "DP",
-}
-
-export enum Stat {
+export enum StatType {
     STR = "STR",
     DEX = "DEX",
 
@@ -24,6 +12,11 @@ export enum Stat {
 
     WIS = "WIS",
     LUK = "LUK",
+}
+
+export enum EnemyType {
+    HP = "HP",
+    DP = "DP",
 }
 
 export enum BorderType {

@@ -1,6 +1,6 @@
 import {SkillName} from "@/data/skills";
-import {StatMap} from "@/model/types";
 import {CustomEffect, Effect} from "@/model/effect";
+import {Stat} from "@/model/stat";
 
 export type Skill = Effect[]
 
@@ -14,7 +14,7 @@ export type SkillLV = {
 export type SkillParam = {
     lv: number,
     hoju: number,
-    stat: StatMap,
+    stat: Stat,
 }
 
 export type SKillCall = {
